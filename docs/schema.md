@@ -38,3 +38,10 @@ id              | integer   | not null, primary key
 img_url         | varchar   |
 subscriptions_id| integer   | references subscriptions(id)
 time_stamp      | timestamp |
+## activity
+column name     | data type | details
+----------------|-----------|-----------------------
+id              | integer   | not null, primary key
+type            | varchar   |
+activity_init_id| integer   | 
+time_stamp      | timestamp |
