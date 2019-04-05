@@ -1,0 +1,25 @@
+{
+  "name": "envizo",
+  "version": "1.0.0",
+  "description": "Community based environmental awareness app.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RinatTr/Envizo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RinatTr/Envizo/issues"
+  },
+  "homepage": "https://github.com/RinatTr/Envizo#readme",
+  "dependencies": {
+    "create-react-app": "^2.1.8"
+  }
+}
