@@ -1,4 +1,4 @@
-const { db } = require('./Index');
+const { db } = require('./index');
 
 const getAllSubmissions = (req, res, next) => {
   db.any('SELECT * FROM submissions')
@@ -14,7 +14,7 @@ const getAllSubmissions = (req, res, next) => {
 
 const getAllSubmissionForSingleGoal = () => {
   let goalId = parseInt(req.params.goalId);
-  db.any('SELECT * FROM submissons JOIN subscriptions ON subscriptions_id = subscriptions.id WHERE goal_id = $1', goalId)
+  db.any('SELECT * FROM submissions JOIN subscriptions ON subscriptions_id = subscriptions.id WHERE goal_id = $1', goalId)
   .then(data => {
     res.status(200).json({
       status: 'success',
@@ -26,7 +26,7 @@ const getAllSubmissionForSingleGoal = () => {
 }
 
 const createNewSubmission = () => {
-  db.one('INSERT INTO submissons(img_url, subscriptions_id) VALUES(${img_url}, ${subscriptions_id}) RETURNING *', req.body)
+  db.one('INSERT INTO submissions(img_url, subscriptions_id) VALUES(${img_url}, ${subscriptions_id}) RETURNING *', req.body)
   .then(data => {
     res.status(200).json({
       status: 'success',
@@ -49,7 +49,7 @@ const deleteSubmission = () => {
   .catch(err => next(err))
 }
 
-module.exports = { 
+module.exports = {
   getAllSubmissions,
   getAllSubmissionForSingleGoal,
   createNewSubmission,
