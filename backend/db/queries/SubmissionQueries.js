@@ -1,4 +1,4 @@
-const { db } = require('./Index');
+const { db } = require('./index');
 
 const getAllSubmissions = (req, res, next) => {
   db.any('SELECT * FROM submissions')
@@ -49,7 +49,7 @@ const deleteSubmission = () => {
   .catch(err => next(err))
 }
 
-module.exports = { 
+module.exports = {
   getAllSubmissions,
   getAllSubmissionForSingleGoal,
   createNewSubmission,

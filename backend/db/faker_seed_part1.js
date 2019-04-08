@@ -1,4 +1,4 @@
-const { db } = require('./queries/Index.js')
+const { db } = require('./queries/index.js')
 const faker = require('faker')
 
 let communities_names = ['Manhattan','Queens','Bronx','Brooklyn','Staten Island'];

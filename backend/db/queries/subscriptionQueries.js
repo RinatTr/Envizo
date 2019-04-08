@@ -1,4 +1,4 @@
-const { db } = require('./Index');
+const { db } = require('./index');
 
 
 const getAllSubscriptions = (req, res, next) => {
