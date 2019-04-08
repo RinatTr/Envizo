@@ -9,7 +9,7 @@ name            | varchar   | not null, unique
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
-username        | integer   | not null, references users(id)
+username        | integer   | not null
 password_digest | varchar   | not null, unique
 email           | varchar   | not null
 community_id    | int       | references community(id)
@@ -31,10 +31,17 @@ id              | integer   | not null, primary key
 goal_id         | integer   | references goals(id)
 user_id         | integer   | references users(id)
 time_stamp      | timestamp |
-## submission
+## submissions
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
 img_url         | varchar   |
 subscriptions_id| integer   | references subscriptions(id)
+time_stamp      | timestamp |
+## activity
+column name     | data type | details
+----------------|-----------|-----------------------
+id              | integer   | not null, primary key
+type            | varchar   |
+activity_init_id| integer   |
 time_stamp      | timestamp |
