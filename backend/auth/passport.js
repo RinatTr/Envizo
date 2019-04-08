@@ -1,5 +1,5 @@
 const passport = require("passport");
-const db = require('../db/queries/Index.js')
+const db = require('../db/queries/index.js')
 
 
 module.exports = () => {
