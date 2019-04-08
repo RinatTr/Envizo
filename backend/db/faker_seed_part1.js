@@ -58,8 +58,9 @@ let activity = [];
 
 for (let i = 0; i < 40; i++) {
   let type = activity_names[Math.floor(Math.random() * 4)]
-  let activity_init_id = Math.floor(Math.random() * 25) + 1;
-  let str = `('${type}', ${activity_init_id})`
+  let user_id = Math.floor(Math.random() * 25) + 1;
+  let subscription_id = Math.floor(Math.random() * 25) + 1;
+  let str = `('${type}', ${user_id}, ${subscription_id})`
   activity.push(str)
 }
 
@@ -70,7 +71,6 @@ subscriptions = subscriptions.join(", ")
 submissions = submissions.join(", ")
 activity = activity.join(", ")
 
-console.log(activity);
 db.none("INSERT INTO communities(name) VALUES " + communities + ";")
 .then(() => {
   db.none("INSERT INTO users(username, password_digest, email, community_id, avatar_img) VALUES " + users + ";")
@@ -81,7 +81,7 @@ db.none("INSERT INTO communities(name) VALUES " + communities + ";")
         .then(() => {
           db.none("INSERT INTO submissions(img_url, subscriptions_id) VALUES " + submissions + ";")
           .then(() => {
-            db.none("INSERT INTO activity(type, activity_init_id) VALUES " + activity + ";")
+            db.none("INSERT INTO activity(type, user_id, subscription_id) VALUES " + activity + ";")
           })
         })
       })

@@ -45,6 +45,7 @@ CREATE TABLE submissions (
 CREATE TABLE activity (
   id SERIAL PRIMARY KEY,
   type VARCHAR,
-  activity_init_id INT,
+  user_id INT REFERENCES users(id),
+  subscription_id INT REFERENCES subscriptions(id),
   time_stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
