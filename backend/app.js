@@ -13,6 +13,9 @@ const passport = require('./auth/local')
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const submissionsRouter = require('./routes/submission');
+const subscriptionsRouter = require('./routes/subscription');
+const goalsRouter = require('./routes/goals');
+const communitiesRouter = require('./routes/communities');
 
 const app = express();
 
@@ -44,6 +47,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/submissions', submissionsRouter);
+app.use('/subscriptions', subscriptionsRouter);
+app.use('/goals', goalsRouter);
+app.use('/communities', communitiesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
