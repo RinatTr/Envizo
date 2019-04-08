@@ -13,7 +13,7 @@ CREATE TABLE users (
   username VARCHAR UNIQUE NOT NULL,
   password_digest VARCHAR UNIQUE NOT NULL,
   email VARCHAR UNIQUE NOT NULL,
-  community_id INT REFERENCES community(id),
+  community_id INT REFERENCES communities(id),
   avatar_img VARCHAR,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -22,7 +22,7 @@ CREATE TABLE goals (
   id SERIAL PRIMARY KEY,
   description VARCHAR,
   title VARCHAR,
-  community_id INT REFERENCES community(id),
+  community_id INT REFERENCES communities(id),
   target_value INT,
   completed BOOLEAN,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
