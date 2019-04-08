@@ -7,7 +7,7 @@ const getAllGoals = (req, res, next) => {
 
   let community_id = req.paragms.id;
 
-  db.any('SELECT * FROM goals WHERE community_id=$1', community_id)
+  db.any('SELECT goals.id, community_id, name AS community, goals.description, goals.title, target_value, completed, created_at FROM goals JOIN communities ON communities.id = community_id WHERE community_id=$1', community_id)
     .then(data => {
       res.status(200)
       .json({
@@ -33,7 +33,7 @@ const getAllGoals = (req, res, next) => {
 
    let goalId = req.params.id;
 
-   db.one('SELECT * FROM goals WHERE id=$1', goalId)
+   db.one('SELECT  goals.id, community_id, name AS community, goals.description, goals.title, target_value, completed, created_at FROM goals JOIN communities ON communities.id = community_id WHERE goals.id=$1', goalId)
     .then(data => {
       res.status(200)
       .json({
