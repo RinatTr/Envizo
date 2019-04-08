@@ -3,7 +3,7 @@ const router = express.Router();
 const { getAllGoals,
         getAGoal,
         postGoal,
-        updatePost } = require('../db/queries/goalsQueries.js')
+        updateGoal } = require('../db/queries/goalsQueries.js')
 
 
 // * `GET /goals/community/:community_id`

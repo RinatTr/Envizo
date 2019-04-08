@@ -105,13 +105,13 @@ const updateGoal = (req, res, next) => {
     .then(() => {
       res.status(200).json({
         status: "Success",
-        message: "Successfully updated a goal with the id of ", req.params.id
+        message: "Successfully updated a goal with the id of "
       });
     })
     .catch(err => {
       res.status(404).json({
         status:404,
-        message: 'Could not update goal with the id of ', req.params.id
+        message: 'Could not update goal with the id of '
       })
       next(err);
     });

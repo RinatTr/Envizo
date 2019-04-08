@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { 
-  getAllSubmissions, 
-  getAllSubmissionForSingleGoal, 
+const {
+  getAllSubmissions,
+  getAllSubmissionForSingleGoal,
   createNewSubmission, 
   deleteSubmission
-} = require('../db/queries/submissionQueries');
+} = require('../db/queries/SubmissionQueries');
 
 router.get('/', getAllSubmissions);
 router.get('/:goalId', getAllSubmissionForSingleGoal);
