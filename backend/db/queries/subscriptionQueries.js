@@ -20,7 +20,7 @@ const getSubscriptionsForAGoal = (req, res, next) => {
     .then(subscripGoals => {
       res.status(200).json({
         subscripGoals: subscripGoals,
-        message: 'Subscriptions for a goal'
+        message: 'Subscriptions for a given goal'
       })
     })
     .catch(err => {
