@@ -12,6 +12,7 @@ const passport = require('./auth/local')
 //route imports
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const submissionsRouter = require('./routes/submission');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //route usage
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/submissions', submissionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

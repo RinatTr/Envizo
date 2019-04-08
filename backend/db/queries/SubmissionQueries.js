@@ -1,4 +1,4 @@
-const { db } = require('./index');
+const { db } = require('.');
 
 const getAllSubmissions = (req, res, next) => {
   db.any('SELECT * FROM submissions')
@@ -12,7 +12,7 @@ const getAllSubmissions = (req, res, next) => {
   .catch(err => next(err))
 }
 
-const getAllSubmissionForSingleGoal = () => {
+const getAllSubmissionForSingleGoal = (req, res, next) => {
   let goalId = parseInt(req.params.goalId);
   db.any('SELECT * FROM submissions JOIN subscriptions ON subscriptions_id = subscriptions.id WHERE goal_id = $1', goalId)
   .then(data => {
@@ -25,7 +25,7 @@ const getAllSubmissionForSingleGoal = () => {
   .catch(err => next(err))
 }
 
-const createNewSubmission = () => {
+const createNewSubmission = (req, res, next) => {
   db.one('INSERT INTO submissions(img_url, subscriptions_id) VALUES(${img_url}, ${subscriptions_id}) RETURNING *', req.body)
   .then(data => {
     res.status(200).json({
@@ -37,7 +37,7 @@ const createNewSubmission = () => {
   .catch(err => next(err))
 }
 
-const deleteSubmission = () => {
+const deleteSubmission = (req, res, next) => {
   let submissionId = parseInt(req.params.submissionId);
   db.none('DELETE FROM submissions WHERE id = $1', submissionId)
   .then(() => {
