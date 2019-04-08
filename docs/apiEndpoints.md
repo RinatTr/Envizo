@@ -57,5 +57,5 @@
   * Get all submissions per goal id
 * `POST /submissions`
   * Add a new submission (img_url)
-* `DELETE /submission/:submissionId`
+* `DELETE /submissions/:submissionId`
   * delete a submission
