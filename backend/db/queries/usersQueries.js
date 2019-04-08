@@ -73,5 +73,5 @@ const getActivityPerUser = (req, res, next) => {
 module.exports = {
   getAllUsers,
   getAllUsersPerCommunity,
-  getActivityPerUser
+  getActivity
 }
