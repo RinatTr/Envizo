@@ -48,8 +48,9 @@ let submissions = [];
 
 for (let i = 0; i < 40; i++) {
   let img_url = `https://www.pppmi.com/wp-content/gallery/Retail-Non-Woven-Bags/whole-foods-grocery-bag.jpg`
-  let subscriptions_id = Math.floor(Math.random() * 25) + 1;
-  let str = `('${img_url}', ${subscriptions_id})`
+  let goal_id = Math.floor(Math.random() * 5) + 1;
+  let user_id = Math.floor(Math.random() * 25) + 1;
+  let str = `('${img_url}', ${goal_id}, ${user_id})`
   submissions.push(str)
 }
 
@@ -79,7 +80,7 @@ db.none("INSERT INTO communities(name) VALUES " + communities + ";")
       .then(() => {
         db.none("INSERT INTO subscriptions(goal_id, user_id) VALUES " + subscriptions + ";")
         .then(() => {
-          db.none("INSERT INTO submissions(img_url, subscriptions_id) VALUES " + submissions + ";")
+          db.none("INSERT INTO submissions(img_url, goal_id, user_id) VALUES " + submissions + ";")
           .then(() => {
             db.none("INSERT INTO activity(type, user_id, subscription_id) VALUES " + activity + ";")
           })
