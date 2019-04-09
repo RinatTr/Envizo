@@ -66,12 +66,44 @@ const getActivityPerUser = (req, res, next) => {
 }
 // * `POST /users`
 //   * Create a new user
+const createUser = (req, res, next) => {
+  db.none('INSERT INTO users(username) VALUES(${username}) RETURNING id', req.body)
+    .then(()=> {
+      res.status(200).json({
+        status: "success",
+        message: "Created a user"
+      })
+    })
+    .catch(err => {
+      next(err)
+    })
+}
+
 // * `PATCH /users/:user_id`
 //   * Update a specific user
-
+const editUser = (req, res, next) => { //PATCH
+  let user_id = parseInt(req.params.user_id)
+  let queryString = '';
+  for (let key in req.body) {
+    if (key !== undefined) {
+    queryString += key + "=${" + key + "}, "
+    }
+  }
+  queryString = queryString.slice(0,-2);
+  db.none('UPDATE users SET '+queryString+' WHERE id='+user_id, req.body)
+    .then(() => {
+      res.status(200).json({
+        status: "success",
+        message: "Editted user with user_id "+user_id
+      })
+    })
+    .catch(err => next(err));
+}
 
 module.exports = {
   getAllUsers,
   getAllUsersPerCommunity,
-  getActivity
+  getActivityPerUser,
+  createUser,
+  editUser
 }
