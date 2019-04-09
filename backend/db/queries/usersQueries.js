@@ -69,7 +69,7 @@ const getActivityPerUser = (req, res, next) => {
 const createUser = (req, res, next) => {
   db.one('INSERT INTO users(username, password_digest, email, community_id, avatar_img) VALUES(${username}, ${password_digest}, ${email}, ${community_id}, ${avatar_img}) RETURNING id', req.body)
     .then((data) => {
-      db.none('INSERT INTO activity(user_id, type) VALUES($1)',data.id)
+      db.none('INSERT INTO activity(user_id, type) VALUES($1,$2)',[data.id,'joined'])
       .then(()=> {
         res.status(200).json({
           status: "success",
