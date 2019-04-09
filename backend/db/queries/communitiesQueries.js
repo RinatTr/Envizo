@@ -19,7 +19,7 @@ const addCommunity = (req, res, next) => {
   db.none('INSERT INTO community (name) VALUES(${name})', {
     name: req.body.name
   })
-    .then(()) => {
+    .then(() => {
       res.status(200).json({
         message: 'You have added a community'
       })

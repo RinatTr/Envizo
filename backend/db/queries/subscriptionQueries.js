@@ -16,11 +16,25 @@ const getAllSubscriptions = (req, res, next) => {
 
 const getSubscriptionsForAGoal = (req, res, next) => {
   const goalId = parseInt(req.params.id)
-  db.any('SELECT * FROM subscriptions JOIN goals ON goals.id = subscriptions.goal_id WHERE goals.id=$1, goalId')
+  db.any('SELECT * FROM subscriptions JOIN goals ON goals.id = subscriptions.goal_id WHERE goals.id=$1', goalId)
     .then(subscripGoals => {
       res.status(200).json({
         subscripGoals: subscripGoals,
-        message: 'Subscriptions for a given goal'
+        message: 'Active subscriptions for a given goal'
+      })
+    })
+    .catch(err => {
+      return next(err)
+    })
+}
+
+const getSingleSubscriptionIdForUserAndGoal  = (req, res, next) => {
+  const userId = parseInt(req.params.user_id)
+  const goalId = parseInt(req.params.goal_id)
+  db.any('SELECT subscriptions.id FROM subscriptions WHERE subscriptions.user_id=$1 AND subscriptions.goal_id=$2', [userId, goalId])
+    .then(subId => {
+      res.status(200).json({
+        subId: subId
       })
     })
     .catch(err => {
@@ -30,7 +44,7 @@ const getSubscriptionsForAGoal = (req, res, next) => {
 
 const getSubscriptionsForAUser = (req, res, next) => {
   const userId = parseInt(req.params.id)
-  db.any('SELECT * FROM subscriptions JOIN users ON users.id = subscriptions.user_id WHERE id=$1, userId')
+  db.any('SELECT * FROM subscriptions JOIN users ON users.id = subscriptions.user_id WHERE id=$1', userId)
     .then(subscripUser => {
       res.status(200).json({
         subscripUser: subscripUser,
@@ -70,4 +84,4 @@ const deleteSubscription = (req, res, next) => {
     })
 }
 
-module.exports = { getAllSubscriptions, getSubscriptionsForAGoal, getSubscriptionsForAUser, addSubcription, deleteSubscription }
+module.exports = { getAllSubscriptions, getSubscriptionsForAGoal, getSubscriptionsForAUser, addSubcription, deleteSubscription, getSingleSubscriptionIdForUserAndGoal }
