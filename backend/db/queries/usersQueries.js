@@ -1,4 +1,4 @@
-const db = require('./index.js');
+const { db } = require('./index.js');
 // * `GET /users`
 //   * Get all users
 const getAllUsers = (req, res, next) => {
@@ -7,8 +7,8 @@ const getAllUsers = (req, res, next) => {
       res.status(200)
       .json({
         status:'Success',
-        message:'Retrieved All Users'
-        data:data
+        message:'Retrieved All Users',
+        users:data
       })
     })
     .catch(err => {
@@ -44,7 +44,6 @@ const getAllUsersPerCommunity = (req, res, next) => {
 
 // * `GET /users/activity/:user_id`
 //   * Get all activity for a user
-
 const getActivityPerUser = (req, res, next) => {
   let user_id = parseInt(req.params.user_id);
   db.any('SELECT * FROM activity WHERE user_id=$1', user_id)
