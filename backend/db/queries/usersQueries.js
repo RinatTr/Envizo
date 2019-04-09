@@ -67,11 +67,14 @@ const getActivityPerUser = (req, res, next) => {
 // * `POST /users`
 //   * Create a new user
 const createUser = (req, res, next) => {
-  db.none('INSERT INTO users(username) VALUES(${username}) RETURNING id', req.body)
-    .then(()=> {
-      res.status(200).json({
-        status: "success",
-        message: "Created a user"
+  db.one('INSERT INTO users(username, password_digest, email, community_id, avatar_img) VALUES(${username}, ${password_digest}, ${email}, ${community_id}, ${avatar_img}) RETURNING id', req.body)
+    .then((data) => {
+      db.none('INSERT INTO activity(user_id, type) VALUES($1)',data.id)
+      .then(()=> {
+        res.status(200).json({
+          status: "success",
+          message: "Created a user and new activity"
+        })
       })
     })
     .catch(err => {
