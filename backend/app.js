@@ -10,7 +10,6 @@ const session = require('express-session');
 const passport = require('./auth/local')
 
 //route imports
-const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const submissionsRouter = require('./routes/submission');
 const subscriptionsRouter = require('./routes/subscription');
@@ -44,7 +43,6 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //route usage
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/submissions', submissionsRouter);
 app.use('/subscriptions', subscriptionsRouter);
