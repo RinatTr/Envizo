@@ -36,7 +36,8 @@ column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
 img_url         | varchar   |
-subscriptions_id| integer   | references subscriptions(id)
+user_id         | integer   | references users(id)
+goal_id         | integer   | references goals(id)
 time_stamp      | timestamp |
 ## activity
 column name     | data type | details
