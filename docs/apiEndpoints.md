@@ -10,8 +10,10 @@
 
 
 ### USERS
-* `GET /user`
+* `GET /users`
   * Get all users
+* `GET /users/community/:id`
+  * Get all users per community
 * `GET /users/activity/:user_id`
   * Get all activity for a user
 * `POST /users`
@@ -40,10 +42,12 @@
 ### SUBSCRIPTIONS
 * `GET /subscriptions`
   * get all subscriptions
-* `GET /subscriptions/goal/goal_id`
+* `GET /subscriptions/goal/:goal_id`
   * Get all subscriptions for that goal
 * `GET /subscriptions/user/:user_id`
   * Get all subscriptions for a user
+* `GET /subscriptions/:user_id/:goal_id`
+  * a single subscription id for a user and a goal
 * `POST /subscriptions/new`
   * Subscribe to a goal
 * `DELETE /subscriptions/:goal_id`
