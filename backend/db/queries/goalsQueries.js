@@ -24,7 +24,18 @@ const getAllGoals = (req, res, next) => {
       next(err)
     });
 }
-
+const getAll = ( req, res, next ) => {
+  db.any('SELECT goals.id, community_id, name AS community, goals.description, goals.title, target_value, completed, created_at FROM goals JOIN communities ON communities.id = community_id')
+    .then(data => {
+      res.status(200)
+      .json({
+        status:'Success',
+        message:'Retrieved All Goals',
+        data:data
+      })
+    })
+    .catch(err => next(err))
+}
 
 
 // *`GET /goals/:goalId`
@@ -116,6 +127,7 @@ const updateGoal = (req, res, next) => {
 
 module.exports = {
   getAllGoals,
+  getAll,
   getAGoal,
   postGoal,
   updateGoal
