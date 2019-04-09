@@ -26,12 +26,14 @@ const getAllSubmissionForSingleGoal = (req, res, next) => {
 }
 
 const createNewSubmission = (req, res, next) => {
-  db.one('INSERT INTO submissions(img_url, subscriptions_id) VALUES(${img_url}, ${subscriptions_id}) RETURNING *', req.body)
-  .then(data => {
-    res.status(200).json({
-      status: 'success',
-      submissions: data,
-      message: 'Received a new submission'
+  db.none('INSERT INTO submissions(img_url, subscriptions_id) VALUES(${img_url}, ${subscriptions_id})', req.body)
+    .then(() => {
+      db.none('INSERT INTO activity(type, user_id, subscription_id) VALUES($1,$2,$3)',['uploaded',parseInt(req.params.user_id),parseInt(req.body.subscriptions_id)])
+      .then(() => {
+        res.status(200).json({
+          status: 'success',
+          message: 'Received a new submission and added activity'
+        })
     })
   })
   .catch(err => next(err))

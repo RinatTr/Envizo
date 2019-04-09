@@ -38,7 +38,8 @@ CREATE TABLE subscriptions (
 CREATE TABLE submissions (
   id SERIAL PRIMARY KEY,
   img_url VARCHAR,
-  subscriptions_id INT REFERENCES subscriptions(id),
+  goal_id INT REFERENCES goals(id),
+  user_id INT REFERENCES users(id),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
