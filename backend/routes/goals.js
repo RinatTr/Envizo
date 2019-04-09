@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const { getAllGoals,
+        getAll,
         getAGoal,
         postGoal,
         updateGoal } = require('../db/queries/goalsQueries.js')
 
+
+// * GET /goals
+// * Gets all goals
+router.get('/', getAll);
 
 // * `GET /goals/community/:community_id`
 // * Gets all goals for a community
