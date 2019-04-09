@@ -56,19 +56,22 @@ const getSubscriptionsForAUser = (req, res, next) => {
     })
 }
 
-const addSubcription = (req, res, next) => {
-  db.none('INSERT INTO subscriptions(goal_id, user_id) VALUES(${goal_id}, ${user_id})', {
+const addSubscription = (req, res, next) => {
+  db.one('INSERT INTO subscriptions(goal_id, user_id) VALUES(${goal_id}, ${user_id}) RETURNING id', {
     goal_id: req.body.goal_id,
     user_id: req.body.user_id
   })
-    .then(newSubscript => {
-      res.status(200).json({
-        message: 'You have subscribed to a goal!'
+  .then((data) => {
+    db.none('INSERT INTO activity(type, user_id, subscription_id) VALUES($1,$2,$3)',['subscribed',parseInt(req.body.user_id),parseInt(data.id)])
+      .then(() => {
+        res.status(200).json({
+          message: 'user subscribed to a goal and added activity'
+        })
       })
-    })
-    .catch(err => {
-      return next(err)
-    })
+  })
+  .catch(err => {
+    return next(err)
+  })
 }
 
 const deleteSubscription = (req, res, next) => {
@@ -84,4 +87,4 @@ const deleteSubscription = (req, res, next) => {
     })
 }
 
-module.exports = { getAllSubscriptions, getSubscriptionsForAGoal, getSubscriptionsForAUser, addSubcription, deleteSubscription, getSingleSubscriptionIdForUserAndGoal }
+module.exports = { getAllSubscriptions, getSubscriptionsForAGoal, getSubscriptionsForAUser, addSubscription, deleteSubscription, getSingleSubscriptionIdForUserAndGoal }
