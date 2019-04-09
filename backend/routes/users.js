@@ -1,6 +1,6 @@
-let express = require('express');
-let router = express.Router();
-const { getAllUsers, getAllUsersPerCommunity, getActivityPerUser, createUser, editUser} = require('.../db/queries/usersQueries.js')
+const express = require('express');
+const router = express.Router();
+const { getAllUsers, getAllUsersPerCommunity, getActivityPerUser, createUser, editUser} = require('../db/queries/usersQueries.js')
 
 // * `GET /users`
 //   * Get all users
@@ -16,7 +16,7 @@ const { getAllUsers, getAllUsersPerCommunity, getActivityPerUser, createUser, ed
 router.get('/', getAllUsers)
 router.get('/community/:id', getAllUsersPerCommunity)
 router.get('/activity/:user_id', getActivityPerUser)
-router.post('/users', createUser)
-router.patch('/users/:user_id', editUser)
+router.post('/', createUser)
+router.patch('/:user_id', editUser)
 
 module.exports = router;
