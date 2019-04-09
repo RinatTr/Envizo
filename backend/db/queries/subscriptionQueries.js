@@ -15,7 +15,7 @@ const getAllSubscriptions = (req, res, next) => {
 }
 
 const getSubscriptionsForAGoal = (req, res, next) => {
-  const goalId = parseInt(req.params.id)
+  const goalId = parseInt(req.params.goal_id)
   db.any('SELECT * FROM subscriptions JOIN goals ON goals.id = subscriptions.goal_id WHERE goals.id=$1', goalId)
     .then(subscripGoals => {
       res.status(200).json({
@@ -43,8 +43,8 @@ const getSingleSubscriptionIdForUserAndGoal  = (req, res, next) => {
 }
 
 const getSubscriptionsForAUser = (req, res, next) => {
-  const userId = parseInt(req.params.id)
-  db.any('SELECT * FROM subscriptions JOIN users ON users.id = subscriptions.user_id WHERE id=$1', userId)
+  const userId = parseInt(req.params.user_id)
+  db.any('SELECT * FROM subscriptions JOIN users ON users.id = subscriptions.user_id WHERE users.id=$1', userId)
     .then(subscripUser => {
       res.status(200).json({
         subscripUser: subscripUser,
@@ -72,8 +72,8 @@ const addSubcription = (req, res, next) => {
 }
 
 const deleteSubscription = (req, res, next) => {
-  const subscriptionId = parseInt(req.params.id)
-  db.none('DELETE subscriptions WHERE id=$1', subscriptionId)
+  const subscriptionId = parseInt(req.params.subscription_id)
+  db.none('DELETE FROM subscriptions WHERE id=$1', subscriptionId)
     .then(() => {
       res.status(200).json({
         message: 'You have unsubscribed from a goal'

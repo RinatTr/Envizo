@@ -16,7 +16,7 @@ const getAllCommunities = (req, res, next) => {
 
 
 const addCommunity = (req, res, next) => {
-  db.none('INSERT INTO community (name) VALUES(${name})', {
+  db.none('INSERT INTO communities (name) VALUES(${name})', {
     name: req.body.name
   })
     .then(() => {

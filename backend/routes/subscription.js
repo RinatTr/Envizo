@@ -8,6 +8,7 @@ router.get('/goal/:goal_id', getSubscriptionsForAGoal);
 router.get('/user/:user_id', getSubscriptionsForAUser);
 router.get('/:user_id/:goal_id', getSingleSubscriptionIdForUserAndGoal)
 router.post('/new', addSubcription);
-router.delete('/:subscription_id', deleteSubscription);
+// router.delete('/:subscription_id', deleteSubscription);
+
 
 module.exports = router

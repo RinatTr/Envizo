@@ -5,7 +5,7 @@ const { db } = require('./index.js');
 // * Gets all goals for a community
 const getAllGoals = (req, res, next) => {
 
-  let community_id = req.paragms.id;
+  let community_id = req.params.id;
 
   db.any('SELECT goals.id, community_id, name AS community, goals.description, goals.title, target_value, completed, created_at FROM goals JOIN communities ON communities.id = community_id WHERE community_id=$1', community_id)
     .then(data => {
@@ -55,7 +55,7 @@ const getAllGoals = (req, res, next) => {
 // * `POST /goals`
 // * Posts a new goal (for Admin use only)
 const postGoal = (req, res, next) => {
-  db.none('INSERT into goals(description,title,community_id,target_value,completed) VALUES(${descriptiion},${title},${community_id},${target_value},${completed})', req.body)
+  db.none('INSERT into goals(description,title,community_id,target_value,completed) VALUES(${description},${title},${community_id},${target_value},${completed})', req.body)
   .then(()=> {
     res.status(200)
       .json({
@@ -105,14 +105,10 @@ const updateGoal = (req, res, next) => {
     .then(() => {
       res.status(200).json({
         status: "Success",
-        message: "Successfully updated a goal with the id of "
+        message: "Successfully updated a goal "
       });
     })
     .catch(err => {
-      res.status(404).json({
-        status:404,
-        message: 'Could not update goal with the id of '
-      })
       next(err);
     });
 
