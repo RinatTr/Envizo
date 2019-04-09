@@ -57,9 +57,11 @@
 ### SUBMISSIONS
 * `GET /submissions`
   * Get all submissions
-* `GET /submissions/:goalId`
+* `GET /submissions/goal/:goal_id`
   * Get all submissions per goal id
-* `POST /submissions`
-  * Add a new submission (img_url)
+* `GET /submissions/user/:user_id`
+  * Get all submissions per user id
+* `POST /submissions/:user_id`
+  * Add a new submission for the user
 * `DELETE /submissions/:submissionId`
   * delete a submission
