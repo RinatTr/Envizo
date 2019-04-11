@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GoalsList from './GoalsList';
 
 class Home extends Component {
   constructor() {
@@ -8,11 +9,18 @@ class Home extends Component {
     }
   }
   componentDidMount() {
-    this.props.fetchTonnage()
+    this.props.fetchTonnage();
+    this.props.fetchAllGoals();
   }
+
     render() {
       console.log(this.props)
-      return (<h1>Take a dive in NYC's trash pile.</h1>)
+      return (
+        <>
+          <h1>Take a dive in NYC's trash pile.</h1>
+          <GoalsList goals={this.props.goals}/>
+        </>
+      )
     }
 }
 
