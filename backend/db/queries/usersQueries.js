@@ -19,6 +19,27 @@ const getAllUsers = (req, res, next) => {
       next(err)
     });
 }
+//Gets specific user by id
+const getAUser = ( req, res, next ) => {
+  let userId = req.params.id
+  db.one('SELECT * FROM users WHERE id=$1',userId)
+    .then(data => {
+      res.status(200)
+      .json({
+        status:'Success',
+        message:'Retrieved User: ', userId,
+        user:data
+      })
+    })
+    .catch(err => {
+      res.status(404).json({
+        status:404,
+        message:'Error: could not get all users'
+      })
+      next(err)
+    });
+}
+
 // * `GET /users/community/:id`
 //   * Get all users per community
 const getAllUsersPerCommunity = (req, res, next) => {
@@ -104,6 +125,7 @@ const editUser = (req, res, next) => { //PATCH
 
 module.exports = {
   getAllUsers,
+  getAUser,
   getAllUsersPerCommunity,
   getActivityPerUser,
   createUser,
