@@ -10,6 +10,9 @@ class Home extends Component {
   componentDidMount() {
     this.props.fetchTonnage()
   }
+
+  //normalizeData helper function
+  //import visual component into react
     render() {
       console.log(this.props)
       return (<h1>Take a dive in NYC's trash pile.</h1>)
