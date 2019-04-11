@@ -15,6 +15,7 @@ const submissionsRouter = require('./routes/submission');
 const subscriptionsRouter = require('./routes/subscription');
 const goalsRouter = require('./routes/goals');
 const communitiesRouter = require('./routes/communities');
+const sessionsRouter = require('./routes/session')
 
 const app = express();
 
@@ -48,6 +49,7 @@ app.use('/submissions', submissionsRouter);
 app.use('/subscriptions', subscriptionsRouter);
 app.use('/goals', goalsRouter);
 app.use('/communities', communitiesRouter);
+app.use('/sessions', sessionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
