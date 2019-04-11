@@ -8,8 +8,8 @@ const {
 } = require('../db/queries/SubmissionQueries');
 
 router.get('/', getAllSubmissions);
-router.get('/:goalId', getAllSubmissionForSingleGoal);
-router.post('/:user_id', createNewSubmission);
+router.get('/goal/:goalId', getAllSubmissionForSingleGoal);
+router.post('/user/:user_id', createNewSubmission);
 router.delete('/:submissionId', deleteSubmission);
 
 module.exports = router;
