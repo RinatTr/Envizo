@@ -1,6 +1,6 @@
 const d3 = require("d3");
 //3.5.17
-
+/*
 var tes2 = [{ bronx:
    { '2018 / 01': 33301.9,
      '2018 / 02': 29698.800000000007,
@@ -246,3 +246,4 @@ function collide(node) {
     return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
   };
 }
+*/
