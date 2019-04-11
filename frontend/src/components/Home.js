@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GoalsList from './GoalsList';
-
+import VisualDisplay from './VisualDisplay'
 class Home extends Component {
   constructor() {
     super()
