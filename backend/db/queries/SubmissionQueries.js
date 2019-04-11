@@ -14,7 +14,7 @@ const getAllSubmissions = (req, res, next) => {
 
 const getAllSubmissionForSingleGoal = (req, res, next) => {
   let goalId = parseInt(req.params.goalId);
-  db.any('SELECT * FROM submissions JOIN subscriptions ON subscriptions_id = subscriptions.id WHERE goal_id = $1', goalId)
+  db.any('SELECT * FROM submissions WHERE goal_id = $1', goalId)
   .then(data => {
     res.status(200).json({
       status: 'success',
@@ -26,7 +26,8 @@ const getAllSubmissionForSingleGoal = (req, res, next) => {
 }
 
 const createNewSubmission = (req, res, next) => {
-  db.none('INSERT INTO submissions(img_url, subscriptions_id) VALUES(${img_url}, ${subscriptions_id})', req.body)
+  //req.body needs to include goal_id,subscription_id and params needs to have user_id
+  db.none('INSERT INTO submissions(img_url, user_id, goal_id ) VALUES($1, $2, $3)', [req.body.img_url,req.params.user_id, req.body.goal_id])
     .then(() => {
       db.none('INSERT INTO activity(type, user_id, subscription_id) VALUES($1,$2,$3)',['uploaded',parseInt(req.params.user_id),parseInt(req.body.subscriptions_id)])
       .then(() => {
