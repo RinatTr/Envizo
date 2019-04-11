@@ -3,10 +3,10 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const init = require("./passport");
 const helpers = require("./helpers");
-const db = require("../db/queries/index.js")
+const {db} = require("../db/queries/index.js")
 
 passport.use(
-  //email or username ? make changes accordingly
+
   new LocalStrategy((username, password, done) => {
 
     db.one("SELECT * FROM users WHERE username = ${username}", {
@@ -26,5 +26,6 @@ passport.use(
 );
 
 init();
+
 
 module.exports = passport;
