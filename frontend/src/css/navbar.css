@@ -1,0 +1,18 @@
+.brand-logo {
+  width: 250px;
+  height: 64px;
+  background-color: transparent;
+}
+
+.nav-wrapper {
+  background: #8EE4AF
+}
+
+.navbar_registration {
+  padding-right: 40px;
+  font-weight: bold;
+}
+
+.signup, .login {
+  font-size: 2rem;
+}
