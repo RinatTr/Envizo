@@ -27,12 +27,12 @@ const  logoutUser = (req, res, next) => {
 }
 
 const loginUser = (req, res)=> {
-    console.log("LOGINUSER ",req.user);
+
   res.json(req.user);
 }
 
 const isLoggedIn = (req, res) => {
-  console.log("this is req.user on Isloggedin ", req.user);
+
   if (req.user) {
 
     res.json({ id: req.user });
