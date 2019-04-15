@@ -73,7 +73,9 @@ class Signup extends Component {
             type='file'
             name='avatar'
           />
-          <button type='submit'>Signup</button>
+          <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i className="material-icons right">send</i>
+          </button>
         </form>
       </div>
     )

@@ -51,7 +51,9 @@ class Login extends Component {
             placeholder='Input Password'
             onChange={this.handleChange}
           />
-          {this.props.isLoggedIn?<button onClick={this.logout}>LogOut</button>:<button type='submit'>LogIn</button>}
+          {this.props.isLoggedIn?<button onClick={this.logout}>LogOut</button>:<button className="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i className="material-icons right">send</i>
+          </button>}
         </form>
         {this.props.isLoggedIn?<img src="https://media1.tenor.com/images/8d9e656f141cb596b9196287197bea37/tenor.gif?itemid=11705959" alt="logintest" />:<h1>You're Logged out</h1>}
       </div>
