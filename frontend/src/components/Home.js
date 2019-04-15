@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {VisualDisplay} from './VisualDisplay'
+import GoalsList from './GoalsList';
+
 class Home extends Component {
   constructor() {
     super()
@@ -8,19 +10,21 @@ class Home extends Component {
     }
   }
   componentDidMount() {
-    this.props.fetchTonnage()
+    this.props.fetchTonnage();
+    this.props.fetchAllGoals();
   }
 
-  //normalizeData helper function
-  //import visual component into react
     render() {
-      console.log(this.props)
-      return (<>
-                <h1>Take a dive in NYC's trash pile.</h1>
-                <div id="demo">
-                <VisualDisplay />
-                </div>
-              </>)
+
+      return (
+        <>
+          <h1>Take a dive in NYC's trash pile.</h1>
+            <div id="demo">
+            <VisualDisplay />
+            </div>
+          <GoalsList goals={this.props.goals}/>
+        </>
+      )
     }
 }
 
