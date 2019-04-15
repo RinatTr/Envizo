@@ -1,31 +1,19 @@
 import React, { Component } from 'react';
-import M from 'materialize-css';
+import { Modal, Button } from 'react-materialize';
 
 
 class Prediction extends Component {
 
-  componentDidMount() {
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.modal');
-      M.Modal.init(elems);
-    });
-  }
-  
   render() {
 
     return (
-      <div className = 'modal-trigger'>
-
-        <div id="modal1" className="modal">
-          <div className="modal-content">
-          <p>Hello</p>
-          </div>
-          <div className="modal-footer">
-            <a href="#!" className="modal-close waves-effect waves-green btn-flat">Agree</a>
-          </div>
-        </div>
-        <button data-target="modal1" className="btn modal-trigger" >Prediction</button>
-      </div>
+      <>
+        <Modal header="Modal Header" trigger={<Button small>Prediction</Button>}>
+          <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+          </p>
+        </Modal>
+      </>
     )
   }
 }
