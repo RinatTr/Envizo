@@ -9,7 +9,7 @@ export const VisualDisplay = () => {
         width="960px"
         height="500px"
         id="myId"
-        className="myClassname"
+        className="iframe-visual"
         display="initial"
         position="relative"
         allowFullScreen/>
