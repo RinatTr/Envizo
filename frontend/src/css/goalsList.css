@@ -1,3 +1,15 @@
-.modal-trigger {
-  margin-left: 320px
+/* .collapsible-body {
+  padding-bottom: 15px
+} */
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 30px;
+}
+
+.subscribe {
+  margin: 0 10px;
 }
