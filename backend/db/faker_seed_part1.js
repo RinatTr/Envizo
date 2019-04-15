@@ -34,7 +34,31 @@ for (let i = 0; i < communities.length; i++) {
   let str = `('${description}', '${title}', ${community_id}, ${target_value}, ${completed})`;
   goals.push(str)
 }
+///
 
+  let goals1 = [];
+for (let i = 0; i < communities.length; i++) {
+  let description = "Take a picture of the recycling bin in your area. @$You know the three R''s (Reduce, Reuse and Recycle). But do you know how powerful they can be? The average New Yorker throws out nearly 4.5 pounds of waste each year. If we can remember our Rs, we can lower that number and stop overcrowding our landfills. @$Feed your recycling bin - it is hungry."
+  let title = "Recyle"
+  let community_id = i+1;
+  let target_value = 2000
+  let completed = false
+  let str = `('${description}', '${title}', ${community_id}, ${target_value}, ${completed})`;
+  goals1.push(str)
+
+}
+let goals2 = []
+for (let i = 0; i < communities.length; i++) {
+  let description = "Take a picture of your reusable water bottle or glass of water. @$NYC tap water is about the best in the country -- pure, clean, and refreshing. It''s also better for your wallet, health, and planet than bottled water. @$Drink up pristine water from the Catskill Mountains FOR FREE."
+  let title = "Drink Tap Water"
+  let community_id = i+1;
+  let target_value = 2000
+  let completed = false
+  let str = `('${description}', '${title}', ${community_id}, ${target_value}, ${completed})`;
+  goals2.push(str)
+
+}
+///
 let subscriptions = [];
 
 for (let i = 0; i < 25; i++) {
@@ -67,6 +91,7 @@ for (let i = 0; i < 40; i++) {
 
 communities = communities.join(", ")
 users = users.join(", ")
+goals = goals.concat(goals1).concat(goals2)
 goals = goals.join(", ")
 subscriptions = subscriptions.join(", ")
 submissions = submissions.join(", ")
@@ -76,7 +101,7 @@ db.none("INSERT INTO communities(name) VALUES " + communities + ";")
 .then(() => {
   db.none("INSERT INTO users(username, password_digest, email, community_id, avatar_img) VALUES " + users + ";")
   .then(() => {
-      db.none("INSERT INTO goals(description, title, community_id, target_value, completed) VALUES " + goals + ";")
+      db.none("INSERT INTO goals(description, title, community_id, target_value, completed) VALUES " + goals +  ";")
       .then(() => {
         db.none("INSERT INTO subscriptions(goal_id, user_id) VALUES " + subscriptions + ";")
         .then(() => {
@@ -89,4 +114,5 @@ db.none("INSERT INTO communities(name) VALUES " + communities + ";")
   })
 })
 .catch(err => console.log(err));
+
 //have to chain the seedings, since it's a promise (it takes time to seed the database.)
