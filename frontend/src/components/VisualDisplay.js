@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import visual from '../util/visual.js'
-import d3 from 'd3';
-// import info from "./info.json";
-// import "./styles.css";
-// import "./visual.js";
+import Iframe from 'react-iframe';
 
+export const VisualDisplay = () => {
 
-// export const VisualDisplay = () => {
-//
-// }
+    return(
+      <div id="content">
+        <Iframe url="https://rinattr.github.io/envizoDemo/"
+        width="960px"
+        height="500px"
+        id="myId"
+        className="myClassname"
+        display="initial"
+        position="relative"
+        allowFullScreen/>
+     </div>)
+}

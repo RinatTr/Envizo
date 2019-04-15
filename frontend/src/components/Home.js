@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import VisualDisplay from './VisualDisplay'
+import {VisualDisplay} from './VisualDisplay'
 class Home extends Component {
   constructor() {
     super()
@@ -15,7 +15,12 @@ class Home extends Component {
   //import visual component into react
     render() {
       console.log(this.props)
-      return (<h1>Take a dive in NYC's trash pile.</h1>)
+      return (<>
+                <h1>Take a dive in NYC's trash pile.</h1>
+                <div id="demo">
+                <VisualDisplay />
+                </div>
+              </>)
     }
 }
 
