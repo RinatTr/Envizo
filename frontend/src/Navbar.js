@@ -7,11 +7,12 @@ return (
   <div>
     <nav>
       <div className="nav-wrapper">
-        <div className='logo_img'><a href='/'><img src={logo} alt='' className="brand-logo"></img></a></div>
+        <div className='logo_img'><a href='/'><img src={logo} alt='' className="brand-logo responsive-img"></img></a></div>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <div className='navbar_registration'>
             <li><a href="signup" className='signup'>Signup</a></li>
             <li><a href="login" className='login'>Login</a></li>
+            <li><a href="aboutus" className='aboutus'>About Us</a></li>
           </div>
         </ul>
       </div>

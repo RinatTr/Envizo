@@ -1,6 +1,5 @@
-.brand-logo {
-  width: 250px;
-  height: 64px;
+nav .brand-logo {
+  height: 60px;
   background-color: transparent;
 }
 
@@ -13,6 +12,6 @@
   font-weight: bold;
 }
 
-.signup, .login {
+.signup, .login, .aboutus {
   font-size: 32px;
 }
