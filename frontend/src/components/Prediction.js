@@ -2,24 +2,35 @@ import React, { Component } from 'react';
 import { Modal, Button, Select } from 'react-materialize';
 import M from 'materialize-css';
 
+//change the prediction text according to goal type.
 class Prediction extends Component {
   constructor(props) {
     super(props)
     this.state = {
       currentGoal: "",
+      currentStory: "",
       input_a: "",
       input_b: "",
       calcResult: "",
-      frequency: "m",
+      frequency: "month",
       isSubmitted: false,
       isInvalid: ""
     }
   }
 
   componentDidMount() {
+    let { currentGoal } = this.props;
     this.setState({
-      currentGoal: this.props.currentGoal
+      currentGoal: currentGoal,
+      currentStory: this.setStory(currentGoal)
     })
+  }
+
+  setStory = (currentGoal) => {
+    let stories = { ["Reusable Grocery Bag"]: ["I shop for groceries","times per week, and use","plastic bags on average each time.","plastic bags"],
+                    ["Drink Tap Water"]: ["I drink a bottled or canned beverage","times per week.","bottles and/or cans"],
+                    ["Recyle"]: ["I recycle","times per week","all the paper, metal, plastic and glass I generate",""] }
+    return stories[currentGoal];
   }
 
   handleChange = (e) => {
@@ -32,9 +43,9 @@ class Prediction extends Component {
     if (e) { e.preventDefault() }
     let { input_a, input_b, frequency } = this.state;
     let input_a_parse = parseInt(input_a);
-    let input_b_parse = parseInt(input_b);
-    let weeks = (frequency === "m") ? 4.345 : 52.142
-    let result = input_a_parse * input_b_parse * weeks;
+    let input_b_parse = input_b ? parseInt(input_b) : 1;
+    let weeks = (frequency === "month") ? 4.345 : 52.142
+    let result = (input_a_parse * input_b_parse * weeks).toFixed(1);
 
     if (!isNaN(result)) {
       this.setState({
@@ -58,33 +69,35 @@ class Prediction extends Component {
   }
 
   render() {
-    let { input_a, input_b, calcResult, frequency, currentGoal, isSubmitted, isInvalid } = this.state;
-    console.log(frequency);
+    let { input_a, input_b, calcResult, frequency, currentGoal, currentStory, isSubmitted, isInvalid } = this.state;
+    console.log(currentStory, currentGoal);
     return (
       <>
         <Modal header={currentGoal} trigger={<Button small>Prediction</Button>}>
           <form className="input-field col s6 FormContainer" onSubmit={this.handleSubmit}>
-          <p>I shop for groceries
+          {currentStory[0]}
             <div className='input-field col s6'>
-              <input placeholder="number of times" type="text" name="input_a" value={input_a} onChange={this.handleChange} />
+              <input placeholder="input number of times" type="text" name="input_a" value={input_a} onChange={this.handleChange} />
             </div>
-          times per week, and use
-          <div className='input-field col s6'>
-            <input placeholder="number of bags" type="text" name="input_b" value={input_b} onChange={this.handleChange} />
-          </div>
-            plastic bags on average each time.
-          </p>
+          {currentStory[1]}
+          {!currentStory[2] ? null :
+            <div className='input-field col s6'>
+              <input placeholder="input number of bags" type="text" name="input_b" value={input_b} onChange={this.handleChange} />
+            </div>
+          }
+            {currentStory[2]}
             {isSubmitted ? isInvalid : null}
           <button className="btn-small">CALC</button>
             {isSubmitted
-              ? <> {calcResult}
+              ? <>
               <div className='input-field col s6'>
                 {/*Select materialize component does not accept "name" attribute*/}
                 <Select onChange={this.handleSelect}>
-                  <option value="m">month</option>
-                  <option value="y">year</option>
+                  <option value="month">month</option>
+                  <option value="year">year</option>
                 </Select>
               </div>
+                You are polluting your community with <b>{calcResult}</b> {currentStory[3]} on average per {frequency}.
                 </>
               : null
             }
