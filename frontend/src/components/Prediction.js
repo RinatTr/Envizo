@@ -28,8 +28,8 @@ class Prediction extends Component {
 
   setStory = (currentGoal) => {
     let stories = { ["Reusable Grocery Bag"]: ["I shop for groceries","times per week, and use","plastic bags on average each time.","plastic bags"],
-                    ["Drink Tap Water"]: ["I drink a bottled or canned beverage","times per week.","bottles and/or cans"],
-                    ["Recyle"]: ["I recycle","times per week","all the paper, metal, plastic and glass I generate",""] }
+                    ["Drink Tap Water"]: ["I drink a bottled or canned beverage","times per week.","","bottles and/or cans"],
+                    ["Recyle"]: ["I recycle","times per week","all the paper, metal, plastic and glass I generate.",""] }
     return stories[currentGoal];
   }
 
@@ -56,7 +56,7 @@ class Prediction extends Component {
     } else {
       this.setState({
         isSubmitted: true,
-        isInvalid: "please submit a valid number",
+        isInvalid: "*Please submit a valid number",
         calcResult: ""
       })
     }
@@ -70,25 +70,24 @@ class Prediction extends Component {
 
   render() {
     let { input_a, input_b, calcResult, frequency, currentGoal, currentStory, isSubmitted, isInvalid } = this.state;
-    console.log(currentStory, currentGoal);
     return (
       <>
         <Modal header={currentGoal} trigger={<Button small>Prediction</Button>}>
           <form className="input-field col s6 FormContainer" onSubmit={this.handleSubmit}>
           {currentStory[0]}
             <div className='input-field col s6'>
-              <input placeholder="input number of times" type="text" name="input_a" value={input_a} onChange={this.handleChange} />
+              <input placeholder="input number" type="text" name="input_a" value={input_a} onChange={this.handleChange} />
             </div>
           {currentStory[1]}
           {!currentStory[2] ? null :
             <div className='input-field col s6'>
-              <input placeholder="input number of bags" type="text" name="input_b" value={input_b} onChange={this.handleChange} />
+              <input placeholder="input number" type="text" name="input_b" value={input_b} onChange={this.handleChange} />
             </div>
           }
             {currentStory[2]}
-            {isSubmitted ? isInvalid : null}
-          <button className="btn-small">CALC</button>
-            {isSubmitted
+            {isSubmitted ? <p style={{color:'red'}}>{isInvalid}</p> : null}
+            <p><button className="btn-small">SHOW MY IMPACT</button></p>
+            {isSubmitted && !isInvalid
               ? <>
               <div className='input-field col s6'>
                 {/*Select materialize component does not accept "name" attribute*/}
@@ -97,7 +96,7 @@ class Prediction extends Component {
                   <option value="year">year</option>
                 </Select>
               </div>
-                You are polluting your community with <b>{calcResult}</b> {currentStory[3]} on average per {frequency}.
+                You are polluting your community with <b>{calcResult}</b> {currentStory[3]} on average each {frequency}.
                 </>
               : null
             }
