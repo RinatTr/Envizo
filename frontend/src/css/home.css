@@ -16,3 +16,8 @@
 a.active {
   border-bottom: 2px solid blue;
 }
+
+div#content {
+  display: flex;
+  justify-content: center;
+}
