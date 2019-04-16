@@ -40,8 +40,8 @@ class Login extends Component {
         <h1>Log In</h1>
       </div>
         <form onSubmit={this.onSubmitLogIn}>
-        <div class='input-field col s6'>
-        <label for="username">Username</label>
+        <div className='input-field col s6'>
+        <label htmlFor="username">Username</label>
           <input
             type='text'
             className='signup_username'
@@ -50,8 +50,8 @@ class Login extends Component {
             onChange={this.handleChange}
           />
           </div>
-          <div class='input-field col s6'>
-          <label for="password">Password</label>
+          <div className='input-field col s6'>
+          <label htmlFor="password">Password</label>
           <input
             type='password'
             className='signup_password'

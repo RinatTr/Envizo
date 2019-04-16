@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button, Select } from 'react-materialize';
 import M from 'materialize-css';
+import { VisualPrediction } from  './VisualPrediction.js'
 
 //change the prediction text according to goal type.
 class Prediction extends Component {
@@ -97,6 +98,9 @@ class Prediction extends Component {
                 </Select>
               </div>
                 You are polluting your community with <b>{calcResult}</b> {currentStory[3]} on average each {frequency}.
+              <VisualPrediction
+                  result={calcResult}
+                  type={currentGoal}/>
                 </>
               : null
             }
