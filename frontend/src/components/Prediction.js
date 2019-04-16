@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button, Select } from 'react-materialize';
 import M from 'materialize-css';
+import { VisualPrediction } from  './VisualPrediction.js'
 
 class Prediction extends Component {
   constructor(props) {
@@ -85,6 +86,9 @@ class Prediction extends Component {
                   <option value="y">year</option>
                 </Select>
               </div>
+              <VisualPrediction
+                  result={calcResult}
+                  type={currentGoal}/>
                 </>
               : null
             }
