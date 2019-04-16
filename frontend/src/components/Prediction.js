@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-materialize';
-
+import M from 'materialize-css';
 
 class Prediction extends Component {
   constructor(props) {
@@ -14,6 +14,13 @@ class Prediction extends Component {
       isSubmitted: false,
       isInvalid: ""
     }
+  }
+
+  componentDidMount() {
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      M.FormSelect.init(elems);
+    });
   }
 
   handleChange = (e) => {
@@ -59,9 +66,19 @@ class Prediction extends Component {
           times per week, and use <input placeholder="number of bags" type="text" name="input_b" value={input_b} onChange={this.handleChange} />
           plastic bags on average each time.
           </p>
-          {isSubmitted ? isInvalid : null}
+            {isSubmitted ? isInvalid : null}
           <button className="btn-small">CALC</button>
-          {isSubmitted ? calcResult : null}
+            {isSubmitted
+              ? <> {calcResult}
+                <div className='input-field col s6'>
+                  <select defaultValue="1" onChange={this.handleChange}>
+                    <option value="1">month</option>
+                    <option value="2">year</option>
+                  </select>
+                </div>
+                </>
+              : null
+            }
           </form>
         </Modal>
       </>
