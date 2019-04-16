@@ -19,7 +19,7 @@ class GoalsList extends Component {
       return (
         <CollapsibleItem header={goal.title} icon="delete" key={goal.id}> { goal.description }
           <div className='buttons'>
-            <Prediction />{' '}{' '}
+            <Prediction currentGoal={goal.title}/>{' '}{' '}
             <button className="btn-small subscribe"><a href='/login' className='subscribe-link white-text'>Subscribe</a></button>{' '}{' '}{' '}
             <SubscriberCount />
           </div>
