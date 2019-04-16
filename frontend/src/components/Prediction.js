@@ -11,7 +11,8 @@ class Prediction extends Component {
       input_b: "",
       calcResult: "",
       frequency: "month",
-      isSubmitted: false
+      isSubmitted: false,
+      isInvalid: ""
     }
   }
 
@@ -26,16 +27,21 @@ class Prediction extends Component {
     let { input_a, input_b } = this.state;
     let input_a_parse = parseInt(input_a);
     let input_b_parse = parseInt(input_b);
-    console.log(typeof input_a_parse, input_b_parse);
-    if (input_a_parse !== "NaN" && input_b_parse !== "NaN") {
     let result = input_a_parse * input_b_parse;
-        this.setState({
-          calcResult: result,
-          isSubmitted: true
-        })
-      }
+    if (!isNaN(result)) {
+      this.setState({
+        calcResult: result,
+        isSubmitted: true,
+        isInvalid: ""
+      })
+    } else {
+      this.setState({
+        isSubmitted: true,
+        isInvalid: "please submit a valid number",
+        calcResult: ""
+      })
+    }
   }
-
 
   componentDidMount() {
     this.setState({
@@ -44,7 +50,7 @@ class Prediction extends Component {
   }
 
   render() {
-    let { input_a, input_b, calcResult, frequency, currentGoal, isSubmitted } = this.state;
+    let { input_a, input_b, calcResult, frequency, currentGoal, isSubmitted, isInvalid } = this.state;
     return (
       <>
         <Modal header={currentGoal} trigger={<Button small>Prediction</Button>}>
@@ -53,6 +59,7 @@ class Prediction extends Component {
           times per week, and use <input placeholder="number of bags" type="text" name="input_b" value={input_b} onChange={this.handleChange} />
           plastic bags on average each time.
           </p>
+          {isSubmitted ? isInvalid : null}
           <button className="btn-small">CALC</button>
           {isSubmitted ? calcResult : null}
           </form>
