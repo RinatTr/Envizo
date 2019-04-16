@@ -79,7 +79,7 @@ class Signup extends Component {
           />
           </div>
           <div className='input-field col s6'>
-          <label htmfor="username">Username</label>
+          <label htmlFor="username">Username</label>
           <input
             type='text'
             className='signup_username'
@@ -100,7 +100,7 @@ class Signup extends Component {
           </div>
 
           <div className='input-field col s6'>
-          <label htmFor="password">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type='password'
             className='signup_password'
@@ -111,7 +111,7 @@ class Signup extends Component {
           </div>
 
           <div className='input-field col s6'>
-          <label htmFor="passwordConfirm">Confirm Password</label>
+          <label htmlFor="passwordConfirm">Confirm Password</label>
           <input
             type='password'
             className='confirm_password'
