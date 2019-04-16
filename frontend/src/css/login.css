@@ -1,0 +1,17 @@
+.LogInContainer {
+  margin:auto;
+  width:45%
+}
+
+@media only screen and (max-width: 900px) {
+  .LogInContainer {
+    margin:auto;
+    width:60%
+  }
+}
+@media only screen and (max-width: 700px) {
+  .LogInContainer {
+    margin:auto;
+    width:85%
+  }
+}
