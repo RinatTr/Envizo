@@ -13,7 +13,6 @@ export const recieveAllSubscriptions = subscriptions => {
 export const fetchAllSubscriptions = () => dispatch => {
   return Util.getAllSubscriptions()
   .then(res => {
-    console.log(res);
     return dispatch(recieveAllSubscriptions(res.data)) 
   })
   .catch(err => console.log(err))

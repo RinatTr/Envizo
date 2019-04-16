@@ -11,19 +11,26 @@ class GoalsList extends Component {
 
     }
   }
+
   componentDidMount() {
     this.props.fetchAllGoals();
-    this.props.fetchAllSubscriptions()
+    this.props.fetchAllSubscriptions();
   }
 
-  calcSubscribers(id) {
-    //input : all subscribers counts per all goals (from a BE query)
-    // this.state.allSubscribers --> from GoalsContainer
-    //return output : subscribers count per goal id.
+  //Input: all subsciptions fetched from backend; Output: number of subscribers for each goal
+  calcSubscribers = (id) => {
+    
+    if (this.props.subscriptions) {
+      const { subscriptions } = this.props.subscriptions;
+      let count = 0;
+      subscriptions.forEach(subscription => (subscription.goal_id === id && count ++));
+      return count;
+    } else {
+      return 0;
+    }
   }
+
   render() {
-    console.log("goalslistprops===>",this.props)
-
     //map through the goals array and present the goal in a collapsible card.
     const goalsList = this.props.goals ? this.props.goals.data.map(goal => {
       return (
@@ -31,7 +38,7 @@ class GoalsList extends Component {
           <div className='buttons' goal_id={goal.id}>
             <Prediction />{' '}{' '}
             <button className="btn-small subscribe"><a href='/login' className='subscribe-link white-text'>Subscribe</a></button>{' '}{' '}{' '}
-            <SubscriberCount subscribers={this.calcSubscribers(goal.id)}/>
+            <SubscriberCount count={this.calcSubscribers(goal.id)}/>
           </div>
         </CollapsibleItem>
       )
