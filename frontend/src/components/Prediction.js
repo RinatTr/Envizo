@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button } from 'react-materialize';
+import { Modal, Button, Select } from 'react-materialize';
 import M from 'materialize-css';
 
 class Prediction extends Component {
@@ -17,10 +17,13 @@ class Prediction extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('select');
-      M.FormSelect.init(elems);
-    });
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   var elems = document.querySelectorAll('select');
+    //   M.FormSelect.init(elems);
+    // });
+    this.setState({
+      currentGoal: this.props.currentGoal
+    })
   }
 
   handleChange = (e) => {
@@ -50,32 +53,32 @@ class Prediction extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({
-      currentGoal: this.props.currentGoal
-    })
-  }
-
   render() {
     let { input_a, input_b, calcResult, frequency, currentGoal, isSubmitted, isInvalid } = this.state;
     return (
       <>
         <Modal header={currentGoal} trigger={<Button small>Prediction</Button>}>
-          <form onSubmit={this.handleSubmit}>
-          <p>I shop for groceries <input placeholder="number of times" type="text" name="input_a" value={input_a} onChange={this.handleChange} />
-          times per week, and use <input placeholder="number of bags" type="text" name="input_b" value={input_b} onChange={this.handleChange} />
-          plastic bags on average each time.
+          <form className="input-field col s6 FormContainer" onSubmit={this.handleSubmit}>
+          <p>I shop for groceries
+            <div className='input-field col s6'>
+              <input placeholder="number of times" type="text" name="input_a" value={input_a} onChange={this.handleChange} />
+            </div>
+          times per week, and use
+          <div className='input-field col s6'>
+            <input placeholder="number of bags" type="text" name="input_b" value={input_b} onChange={this.handleChange} />
+          </div>
+            plastic bags on average each time.
           </p>
             {isSubmitted ? isInvalid : null}
           <button className="btn-small">CALC</button>
             {isSubmitted
               ? <> {calcResult}
-                <div className='input-field col s6'>
-                  <select defaultValue="1" onChange={this.handleChange}>
-                    <option value="1">month</option>
-                    <option value="2">year</option>
-                  </select>
-                </div>
+              <div className='input-field col s6'>
+                <Select name="frequency" onChange={this.handleChange}>
+                  <option value="1">month</option>
+                  <option value="2">year</option>
+                </Select>
+              </div>
                 </>
               : null
             }
