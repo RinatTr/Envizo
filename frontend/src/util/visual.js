@@ -1,6 +1,8 @@
-const d3 = require("d3");
+import d3 from "d3";
 //3.5.17
-/*
+
+var nodeDiv = document.createElement('div');
+
 var tes2 = [{ bronx:
    { '2018 / 01': 33301.9,
      '2018 / 02': 29698.800000000007,
@@ -88,55 +90,33 @@ var tes2 = [{ bronx:
      '2019 / 04': 49861.49999999999 } }
 ]
 
-
 const magicfunction = (obj) => {
-
   let testNodes = []
   //gives boroughs
   let keys = Object.keys(obj[0])
-
-// console.log(tes[0][keys[0]]);
-
     for(let i = 0; i< keys.length;i++){
       let objKeys = Object.values(obj[0][keys[i]])
       // console.log(objK)
       //find smarter way to make the bubbles show instead of just dividing it into 10k
       objKeys.forEach(el => {
-        testNodes.push({radius:el/10000,
+        testNodes.push({radius:el/8000,
                         borough:keys[i]})
       })
     }
-
-//maybe return testNodes??
+    //maybe return testNodes??
   return testNodes;
 }
 
-// console.log(magicfunction(tes));
 
 var width = 960,
     height = 500;
 
-
-
 var nodes = magicfunction(tes2)
-console.log(nodes);
+
 var root = nodes[0];
-// var = color = d3.scale.category20();
-
-
-// //it creates 200 elements then maps through them and adds a radius key with a random number
-// var nodes = d3.range(100).map(d => {return {radius: Math.random() * 16+4}; }),
-//     root = nodes[0],
-//     color = d3.scale.category20();
-    // console.log(nodes);
-//nodes is an array of obj with radius as a key
-
-// var lecolors = ['#8067fe','#6efaf1','#00f100']
-
 
 root.radius = 0;
 root.fixed = true;
-
 
 //in here the gravity on how close the mouse gets to the bubbles is created. Higher numbers the further away they are
 var force = d3.layout.force()
@@ -148,15 +128,13 @@ var force = d3.layout.force()
 force.start();
 
 //here the svg tags attributes are added to the <body> tag
-var svg = d3.select("body").append("svg")
+var svg = d3.select(nodeDiv).append("svg")
     //the width and height attributes are added
     .attr("width", width)
     .attr("height", height);
 
 //here not quite sure, but i think the shape of a circle is selected to be added to all the svg tags that were created
 //or it could be that the name of circle is added to the svg tag so then it can be selected and appended to...???
-
-
 // #DE2F32 , bronx: #00ABD8, queens: #FDD54A, brooklyn: #008E7F, staten: #F15D8A
 
 var color = ['#DE2F32','#00ABD8','#FDD54A','#008E7F','#F15D8A']
@@ -182,22 +160,6 @@ svg.selectAll("circle")
         return color[4]}} )
     .style({stroke:'#969b01'})
     .style("stroke-width", 3)
-
-///////
-// svg.selectAll("circle")
-//         .data(nodes.slice(1,10))
-//       .enter().append("circle")
-//         .attr("r", function(d) { return d.radius; })
-//         .attr("class",'test1')
-//         .style("fill", function(d) {return lecolors[Math.floor((Math.random() * lecolors.length))]} );
-// svg.selectAll("circle")
-//     .data(nodes.slice(1))
-//   .enter().append("circle")
-//     .attr("r", function(d) { return d.radius; })
-//     .attr("class",'test')
-//     .style("fill", function(d) {return lecolors[Math.floor((Math.random() * lecolors.length))]} );
-
-//////////
 
 force.on("tick", function(e) {
   var q = d3.geom.quadtree(nodes),
@@ -246,4 +208,4 @@ function collide(node) {
     return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
   };
 }
-*/
+export default nodeDiv;
