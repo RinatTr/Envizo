@@ -10,17 +10,13 @@ class Prediction extends Component {
       input_a: "",
       input_b: "",
       calcResult: "",
-      frequency: "month",
+      frequency: "m",
       isSubmitted: false,
       isInvalid: ""
     }
   }
 
   componentDidMount() {
-    // document.addEventListener('DOMContentLoaded', function() {
-    //   var elems = document.querySelectorAll('select');
-    //   M.FormSelect.init(elems);
-    // });
     this.setState({
       currentGoal: this.props.currentGoal
     })
@@ -32,12 +28,14 @@ class Prediction extends Component {
     })
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    let { input_a, input_b } = this.state;
+  handleSubmit = (e = null) => {
+    if (e) { e.preventDefault() }
+    let { input_a, input_b, frequency } = this.state;
     let input_a_parse = parseInt(input_a);
     let input_b_parse = parseInt(input_b);
-    let result = input_a_parse * input_b_parse;
+    let weeks = (frequency === "m") ? 4.345 : 52.142
+    let result = input_a_parse * input_b_parse * weeks;
+
     if (!isNaN(result)) {
       this.setState({
         calcResult: result,
@@ -53,8 +51,15 @@ class Prediction extends Component {
     }
   }
 
+  handleSelect = (e) => {
+    this.setState({
+      frequency: e.target.value
+    }, this.handleSubmit)
+  }
+
   render() {
     let { input_a, input_b, calcResult, frequency, currentGoal, isSubmitted, isInvalid } = this.state;
+    console.log(frequency);
     return (
       <>
         <Modal header={currentGoal} trigger={<Button small>Prediction</Button>}>
@@ -74,9 +79,10 @@ class Prediction extends Component {
             {isSubmitted
               ? <> {calcResult}
               <div className='input-field col s6'>
-                <Select name="frequency" onChange={this.handleChange}>
-                  <option value="1">month</option>
-                  <option value="2">year</option>
+                {/*Select materialize component does not accept "name" attribute*/}
+                <Select onChange={this.handleSelect}>
+                  <option value="m">month</option>
+                  <option value="y">year</option>
                 </Select>
               </div>
                 </>
