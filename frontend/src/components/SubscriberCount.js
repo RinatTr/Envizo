@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
 class SubscribeCount extends Component {
+
   render() {
+    let { subscribers } = this.props;
     return (
-      <span>15 Subscriber</span>
+      <span>{subscribers} Subscribers</span>
     )
   }
 }
