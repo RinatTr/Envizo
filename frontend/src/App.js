@@ -13,9 +13,9 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <Switch>
+          <Route exact path='/' component={HomeContainer}/>
           <Route path='/signup' component={SignUpContainer}/>
           <Route path='/login' component={LoginContainer}/>
-          <Route path='/' component={HomeContainer}/>
           <Route path='/profile/:id' component={UserContainer}/>
 
         </Switch>
