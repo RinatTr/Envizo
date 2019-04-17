@@ -19,14 +19,14 @@ class Home extends Component {
       console.log(this.props)
       return (
         <>
-          <Tabs className="tab-demo z-depth-1">
+          <Tabs className="tab-demo z-depth-1" active>
             <Tab title="Monthly Tonnage">
               <h1>Take a dive in NYC's trash pile.</h1>
                 <div id="demo">
                 <VisualDisplay />
                 </div>
             </Tab>
-            <Tab title="Air Pollution" active>
+            <Tab title="Air Pollution">
               Air Pollution
             </Tab>
             <Tab title="Energy Consumption">
