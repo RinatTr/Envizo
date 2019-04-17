@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class SubscribeCount extends Component {
-  render() {
-    return (
-      <span>15 Subscriber</span>
-    )
-  }
+const SubscribeCount = (props) => {
+  let { count } = props;
+  return (
+    <span>{ count } Subscribers</span>
+  )
 }
 
 export default SubscribeCount;
