@@ -14,7 +14,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchAllGoals: () => dispatch(fetchAllGoals()),
     fetchAllUsers: () => dispatch(fetchAllUsers()),
     fetchAllActicitiesPerUser: id => dispatch(fetchAllActicitiesPerUser(id))
   }
