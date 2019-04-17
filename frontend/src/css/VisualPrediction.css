@@ -1,0 +1,19 @@
+.VisualWrapper {
+  width:100%;
+  display:flex;
+  flex-direction: row;
+
+}
+#people {
+  width:30%;
+  height:80%;
+  margin-top:auto
+}
+
+#garbageList {
+  width:100%;
+  height:80%
+}
+#garbage {
+  width:10%;
+}

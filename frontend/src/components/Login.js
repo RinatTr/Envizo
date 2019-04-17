@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import M from 'materialize-css'
+import '../css/login.css'
 
 class Login extends Component {
   state = {
@@ -8,6 +10,7 @@ class Login extends Component {
 
   componentDidMount(){
   this.props.checkAuthenticateStatus()
+  M.updateTextFields()
   }
 
   handleChange = e => {
@@ -32,26 +35,32 @@ class Login extends Component {
   render(){
     console.log(this.props);
     return (
-      <div>
+      <div className='container LogInContainer'>
+      <div className='input-field col s6'>
+        <h1>Log In</h1>
+      </div>
         <form onSubmit={this.onSubmitLogIn}>
-
+        <div className='input-field col s6'>
+        <label htmlFor="username">Username</label>
           <input
             type='text'
             className='signup_username'
             name='username'
             value={this.state.usernameInput}
-            placeholder='Username'
             onChange={this.handleChange}
           />
+          </div>
+          <div className='input-field col s6'>
+          <label htmlFor="password">Password</label>
           <input
             type='password'
             className='signup_password'
             name='password'
             value={this.state.passwordInput}
-            placeholder='Input Password'
             onChange={this.handleChange}
           />
-          {this.props.isLoggedIn?<button onClick={this.logout}>LogOut</button>:<button className="btn waves-effect waves-light" type="submit" name="action">Submit
+          </div>
+          {this.props.isLoggedIn?<button className="btn waves-effect waves-light" onClick={this.logout}>LogOut</button>:<button className="btn waves-effect waves-light" type="submit" name="action">Submit
             <i className="material-icons right">send</i>
           </button>}
         </form>

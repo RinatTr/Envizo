@@ -35,8 +35,8 @@ class GoalsList extends Component {
     const goalsList = this.props.goals ? this.props.goals.data.map(goal => {
       return (
         <CollapsibleItem header={goal.title} icon="delete" key={goal.id}> { goal.description }
-          <div className='buttons' goal_id={goal.id}>
-            <Prediction />{' '}{' '}
+          <div className='buttons'>
+            <Prediction currentGoal={goal.title}/>{' '}{' '}
             <button className="btn-small subscribe"><a href='/login' className='subscribe-link white-text'>Subscribe</a></button>{' '}{' '}{' '}
             <SubscriberCount count={this.calcSubscribers(goal.id)}/>
           </div>
