@@ -30,7 +30,7 @@ class Prediction extends Component {
   setStory = (currentGoal) => {
     let stories = { ["Reusable Grocery Bag"]: ["I shop for groceries","times per week, and use","plastic bags on average each time.","plastic bags"],
                     ["Drink Tap Water"]: ["I drink a bottled or canned beverage","times per week.","","bottles and/or cans"],
-                    ["Recycle"]: ["I recycle","times per week","all the paper, metal, plastic and glass I generate.",""] }
+                    ["Recycle"]: ["I dispose about","paper, metal, plastic and glass items per week, and recycle about","precentage of it.","paper, metal, plastic and glass items"] }
     return stories[currentGoal];
   }
 
@@ -42,11 +42,14 @@ class Prediction extends Component {
 
   handleSubmit = (e = null) => {
     if (e) { e.preventDefault() }
-    let { input_a, input_b, frequency } = this.state;
+    let { input_a, input_b, frequency, currentGoal } = this.state;
     let input_a_parse = parseInt(input_a);
     let input_b_parse = input_b ? parseInt(input_b) : 1;
+    //b - precentage 0.5
     let weeks = (frequency === "month") ? 4.345 : 52.142
-    let result = (input_a_parse * input_b_parse * weeks).toFixed(1);
+    let result = (currentGoal === "Recycle")
+      ? input_a_parse - (input_a_parse * input_b_parse/100)
+      : (input_a_parse * input_b_parse * weeks).toFixed(1)
 
     if (!isNaN(result)) {
       this.setState({
