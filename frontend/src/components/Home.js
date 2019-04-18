@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { VisualDisplay } from './VisualDisplay'
 import { Tab, Tabs } from 'react-materialize'
 import '../css/home.css';
-import GoalsContainer from '../containers/GoalsContainer';
+import GoalsListContainer from '../containers/GoalsListContainer';
 import M from 'materialize-css'
 
 class Home extends Component {
@@ -59,7 +59,7 @@ class Home extends Component {
           </div>
 
 
-          <GoalsContainer boroughId={this.state.borough}/>
+          <GoalsListContainer boroughId={this.state.borough}/>
         </>
       )
     }
