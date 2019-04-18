@@ -1,8 +1,6 @@
 .VisualWrapper {
   width:100%;
   display:flex;
-  flex-direction: row;
-
 }
 #people {
   width:30%;
@@ -11,9 +9,19 @@
 }
 
 #garbageList {
+  margin-top:auto;
   width:100%;
   height:80%
 }
-#garbage {
+#recyclePics {
+  width:8%;
+}
+#plasticBagsPics {
+  width:15%;
+  border-radius: 5px;
+  margin:0px
+}
+#waterBottlePics {
   width:10%;
+  border-radius: 5px
 }
