@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { VisualDisplay } from './VisualDisplay'
-import GoalsList from './GoalsList';
 import { Tab, Tabs } from 'react-materialize'
 import '../css/home.css';
+import GoalsContainer from '../containers/GoalsContainer';
+
 class Home extends Component {
   constructor() {
     super()
@@ -12,11 +13,10 @@ class Home extends Component {
   }
   componentDidMount() {
     this.props.fetchTonnage();
-    this.props.fetchAllGoals();
   }
 
     render() {
-
+      console.log(this.props)
       return (
         <>
           <Tabs className="tab-demo z-depth-1">
@@ -33,7 +33,7 @@ class Home extends Component {
               Energy Consumption
             </Tab>
           </Tabs>
-          <GoalsList goals={this.props.goals}/>
+          <GoalsContainer />
         </>
       )
     }
