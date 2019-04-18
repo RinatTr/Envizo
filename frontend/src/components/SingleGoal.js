@@ -4,7 +4,7 @@ import '../css/singlegoal.css';
 
 export default class SingleGoal extends Component {
   state = {
-    progress:98,
+    progress:12,
     subs:1247
   }
   distance = this.state.progress
