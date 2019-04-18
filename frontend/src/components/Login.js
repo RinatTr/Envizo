@@ -60,7 +60,7 @@ class Login extends Component {
             onChange={this.handleChange}
           />
           </div>
-          {this.props.isLoggedIn?<button className="btn waves-effect waves-light" onClick={this.logout}>LogOut</button>:<button className="btn waves-effect waves-light" type="submit" name="action">Submit
+          {this.props.isLoggedIn?<button className="btn waves-effect waves-light" onClick={this.logout}>LogOut</button>:<button className="btn waves-effect waves-light" type="submit" name="action">Login
             <i className="material-icons right">send</i>
           </button>}
         </form>

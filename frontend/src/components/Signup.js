@@ -61,7 +61,7 @@ class Signup extends Component {
     console.log(this.props);
     return (
       <div className='container SignUpContainer'>
-      <div className='input-field col s6 '>
+      <div className='container'>
         <h1>Sign Up</h1>
       </div>
         <form   className='input-field col s6 FormContainer' onSubmit={this.onSubmitNewUser}>
@@ -143,6 +143,10 @@ class Signup extends Component {
           </button>
         </form>
         {this.state.error?<p>Check Input Entries</p>:null}
+
+        <div className="container">
+        <p className="flow-text">Already a member? <button className="btn-small waves-effect waves-light"><a href="login">Login</a></button></p>
+        </div>
       </div>
     )
   }
