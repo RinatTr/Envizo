@@ -48,13 +48,24 @@ class GoalsList extends Component {
     const goalsList = this.props.goals ? this.props.goals.data.filter(goal =>goal.community_id=== +this.props.boroughId).map(goal => {
         console.log(goal.description);
       return (
+
         <CollapsibleItem header={goal.title +' - ' + this.dS(goal.description).slogan} icon="delete" key={goal.id}>
-            {this.dS(goal.description).description}
-          <div className='buttons'>
-            <Prediction currentGoal={goal.title}/>{' '}{' '}
-            <button className="btn-small subscribe"><a href='/login' className='subscribe-link white-text'>Subscribe</a></button>{' '}{' '}{' '}
+            <div className="container">
+            <p className='flow-text'>{this.dS(goal.description).initiative}</p>
+
+            <h4>Task:</h4><h5>{this.dS(goal.description).description}</h5>
+            </div>
+
+          <div className='container leButtons'>
+
+            <Prediction currentGoal={goal.title}/>
+
+            <button className="btn-small subscribe">
+              <a href='/login' className='subscribe-link white-text'>Subscribe</a>
+            </button>
             <SubscriberCount count={this.calcSubscribers(goal.id)}/>
           </div>
+
         </CollapsibleItem>
       )
     })
