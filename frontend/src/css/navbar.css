@@ -1,5 +1,5 @@
 nav .brand-logo {
-  height: 60px;
+  height: 55px;
   background-color: transparent;
 }
 
@@ -14,4 +14,8 @@ nav .brand-logo {
 
 .signup, .login, .aboutus {
   font-size: 32px;
+}
+
+.btn-small {
+  background-color: #8EE4AF
 }

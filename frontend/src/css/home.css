@@ -1,0 +1,22 @@
+.tabs .tab a {
+  color: #01356B;
+  border-bottom: 2px solid #8EE4AF;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+  color: #01356B;
+  border-bottom: 2px solid #8EE4AF;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+  /* color: #8EE4AF; */
+  background-color: #8EE4AF;
+}
+
+a.active {
+  border-bottom: 2px solid blue;
+}
+
+.tabs {
+  margin-top: 10px;
+}
