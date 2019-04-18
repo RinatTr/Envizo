@@ -4,7 +4,8 @@ import HomeContainer from './containers/HomeContainer';
 import Navbar from './Navbar'
 import SignUpContainer from './containers/SignUpContainer'
 import LoginContainer from './containers/LoginContainer'
-import SingleGoal from './components/SingleGoal'
+import GoalsContainer from './containers/GoalsContainer'
+
 import './App.css';
 
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
         <Switch>
           <Route path='/signup' component={SignUpContainer}/>
           <Route path='/login' component={LoginContainer}/>
-          <Route path='/goal/:goal_id' component={SingleGoal}/>
+          <Route path='/goal/:goal_id' component={GoalsContainer}/>
           <Route path='/' component={HomeContainer}/>
 
 
