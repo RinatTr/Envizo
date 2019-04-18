@@ -23,7 +23,7 @@ class Signup extends Component {
     borough:1,
     avatar_img:null,
     error:false,
-    imgUrl: ""
+    didUpload: false
           }
 
   componentDidMount(){
@@ -43,8 +43,9 @@ class Signup extends Component {
 
   upload = (e) => {
     ReactS3.uploadFile(e.target.files[0], config)
-            .then((data) => {
-              console.log("data", data);
+            .then((res) => {
+              this.setState({ avatar_img: res.location,
+                              didUpload: true })
             })
             .catch(err => console.log(err))
   }
@@ -56,7 +57,7 @@ class Signup extends Component {
       password:this.state.password,
       email:this.state.email,
       community_id:+this.state.borough,
-      avatar_img:this.state.avatar
+      avatar_img:this.state.avatar_img
     }
     // console.log(newuserData);
     if(this.state.password===this.state.passwordConfirm){
@@ -67,7 +68,7 @@ class Signup extends Component {
         passwordConfirm:'',
         borough:0,
         email:"",
-        avatar:"",
+        avatar_img:"",
         error:false
       })
     }else{
@@ -150,15 +151,12 @@ class Signup extends Component {
                 name="avatar"
                 accept=".jpg, .jpeg, .png"
                 onChange={this.upload}/>
-          {this.state.imgURL ? <img src={this.state.imgURL}></img> : ""}
           </div>
+          {this.state.didUpload ? "Photo Uploaded!" : "Choose Photo and Wait to Load ..."}
           <div className="file-path-wrapper">
             <input className="file-path validate" name='avatarpath' type="text" />
           </div>
         </div>
-
-
-
 
           <button className="btn-small waves-effect waves-light" type="submit" name="action">Sign Up
             <i className="material-icons right">send</i>
