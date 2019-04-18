@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import M from 'materialize-css';
 import '../css/signup.css';
-var ReactS3Uploader = require('react-s3-uploader');
+import ReactS3 from 'react-s3';
+// import { uploadFile } from 'react-s3';
+let aws = require('../util/secret.json')
+
+//Optional Import
+
+const config = {
+    bucketName: 'envizo-img',
+    region: 'us-east-1',
+    accessKeyId: aws["AWSAccessKeyId"],
+    secretAccessKey: aws["AWSSecretKey"]
+}
 
 class Signup extends Component {
   state = {
@@ -26,15 +37,16 @@ class Signup extends Component {
 
   handleChange = e => {
     this.setState({
-      [e.target.name]:e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
-  onUploadFinish = (img) => {
-    console.log(img)
-    this.setState({
-      imgURL: 'http://s3.amazonaws.com/envizo-img/' + img.filename
-    })
+  upload = (e) => {
+    ReactS3.uploadFile(e.target.files[0], config)
+            .then((data) => {
+              console.log("data", data);
+            })
+            .catch(err => console.log(err))
   }
 
   onSubmitNewUser = e => {
@@ -72,7 +84,7 @@ class Signup extends Component {
       <div className='input-field col s6 '>
         <h1>Sign Up</h1>
       </div>
-        <form   className='input-field col s6 FormContainer' onSubmit={this.onSubmitNewUser}>
+        <form className='input-field col s6 FormContainer' onSubmit={this.onSubmitNewUser}>
 
         <div className='input-field col s6'>
         <label htmlFor="signup_email">Email</label>
@@ -133,20 +145,11 @@ class Signup extends Component {
 
           <div className="btn-small waves-effect waves-light">
             <span>Upload</span>
-              {/*<input
+              <input
                 type="file"
                 name="avatar"
-                accept=".jpg, .jpeg, .png"/>
-                <div className="image-holder">*/}
-            <ReactS3Uploader
-              signingUrl="/s3/sign"
-              signingUrlMethod="GET"
-              accept="image/*"
-              uploadRequestHeaders={{
-                'x-amz-acl': 'public-read'
-              }}
-              onFinish={this.onUploadFinish}
-            />
+                accept=".jpg, .jpeg, .png"
+                onChange={this.upload}/>
           {this.state.imgURL ? <img src={this.state.imgURL}></img> : ""}
           </div>
           <div className="file-path-wrapper">
@@ -167,8 +170,5 @@ class Signup extends Component {
   }
 
 }
-
-
-
 
 export default Signup
