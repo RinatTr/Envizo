@@ -24,3 +24,8 @@ div#content {
 .tabs .indicator {
     background-color: #07356B
 }
+
+.borough-select {
+  width:25%;
+
+}

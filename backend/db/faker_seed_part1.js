@@ -26,7 +26,7 @@ for (let i = 0; i < 25; i++) {
 let goals = [];
 
 for (let i = 0; i < communities.length; i++) {
-  let description = "Upload a picture of your reusable grocery bag after you are back from grocery shopping."
+  let description = "Take a picture of your reusable bag after you have gone shopping. @$Reusable bags look great, don't rip, and carry lots of stuff. Keep a box of them near your front door so you remember to take them to the store. It's surprisingly convenient! @$Keep the Sky and the Sea Plastic free"
   let title = "Reusable Grocery Bag"
   let community_id = i+1;
   let target_value = 2000
