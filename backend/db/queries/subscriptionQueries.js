@@ -16,10 +16,14 @@ const getAllSubscriptions = (req, res, next) => {
 
 const getSubscriptionsForAGoal = (req, res, next) => {
   const goalId = parseInt(req.params.goal_id)
-  db.any('SELECT * FROM subscriptions JOIN goals ON goals.id = subscriptions.goal_id WHERE goals.id=$1', goalId)
-    .then(subscripGoals => {
+  db.any(`SELECT subscriptions.id, subscriptions.goal_id, subscriptions.user_id, goals.description, goals.title, goals.target_value, goals.community_id, users.username, communities.name FROM subscriptions
+          JOIN goals ON goals.id = subscriptions.goal_id
+          JOIN users ON subscriptions.user_id = users.id
+          JOIN communities ON goals.community_id = communities.id
+          WHERE goals.id=$1`, goalId)
+    .then(data => {
       res.status(200).json({
-        subscripGoals: subscripGoals,
+        subscriptions: data,
         message: 'Active subscriptions for a given goal'
       })
     })
