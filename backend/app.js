@@ -19,6 +19,13 @@ const sessionsRouter = require('./routes/session')
 
 const app = express();
 
+var AWS = require('aws-sdk');
+
+app.use('/s3', require('react-s3-uploader/s3router')({
+    bucket: "envizo-img",
+    ACL: "public-read"
+}));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

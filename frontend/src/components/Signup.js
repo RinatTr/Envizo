@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import M from 'materialize-css'
-import '../css/signup.css'
+import React, { Component } from 'react';
+import M from 'materialize-css';
+import '../css/signup.css';
+var ReactS3Uploader = require('react-s3-uploader');
 
 class Signup extends Component {
   state = {
@@ -10,16 +11,17 @@ class Signup extends Component {
     passwordConfirm:'',
     borough:1,
     avatar_img:null,
-    error:false
+    error:false,
+    imgUrl: ""
           }
 
   componentDidMount(){
   this.props.checkAuthenticateStatus()
   document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('select');
-  M.FormSelect.init(elems);
-  M.updateTextFields()
-});
+      var elems = document.querySelectorAll('select');
+      M.FormSelect.init(elems);
+      M.updateTextFields()
+    });
   }
 
   handleChange = e => {
@@ -27,6 +29,14 @@ class Signup extends Component {
       [e.target.name]:e.target.value
     })
   }
+
+  onUploadFinish = (img) => {
+    console.log(img)
+    this.setState({
+      imgURL: 'http://s3.amazonaws.com/envizo-img/' + img.filename
+    })
+  }
+
   onSubmitNewUser = e => {
     e.preventDefault();
     let newuserData = {
@@ -36,29 +46,27 @@ class Signup extends Component {
       community_id:+this.state.borough,
       avatar_img:this.state.avatar
     }
-    console.log(newuserData);
-  if(this.state.password===this.state.passwordConfirm){
-    this.props.newUser(newuserData);
-    this.setState({
-      username:"",
-      password:"",
-      passwordConfirm:'',
-      borough:0,
-      email:"",
-      avatar:"",
-      error:false
-    })
-  }else{
-    this.setState({
-      error:true
-    })
-  }
-
-
+    // console.log(newuserData);
+    if(this.state.password===this.state.passwordConfirm){
+      this.props.newUser(newuserData);
+      this.setState({
+        username:"",
+        password:"",
+        passwordConfirm:'',
+        borough:0,
+        email:"",
+        avatar:"",
+        error:false
+      })
+    }else{
+      this.setState({
+        error:true
+      })
+    }
   }
 
   render(){
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className='container SignUpContainer'>
       <div className='input-field col s6 '>
@@ -125,10 +133,21 @@ class Signup extends Component {
 
           <div className="btn-small waves-effect waves-light">
             <span>Upload</span>
-              <input
-              type="file"
-              name="avatar"
-              accept=".jpg, .jpeg, .png"/>
+              {/*<input
+                type="file"
+                name="avatar"
+                accept=".jpg, .jpeg, .png"/>
+                <div className="image-holder">*/}
+            <ReactS3Uploader
+              signingUrl="/s3/sign"
+              signingUrlMethod="GET"
+              accept="image/*"
+              uploadRequestHeaders={{
+                'x-amz-acl': 'public-read'
+              }}
+              onFinish={this.onUploadFinish}
+            />
+          {this.state.imgURL ? <img src={this.state.imgURL}></img> : ""}
           </div>
           <div className="file-path-wrapper">
             <input className="file-path validate" name='avatarpath' type="text" />
