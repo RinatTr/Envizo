@@ -1,6 +1,18 @@
-import React, { Component } from 'react'
-import M from 'materialize-css'
-import '../css/signup.css'
+import React, { Component } from 'react';
+import M from 'materialize-css';
+import '../css/signup.css';
+import ReactS3 from 'react-s3';
+// import { uploadFile } from 'react-s3';
+let aws = require('../util/secret.json')
+
+//Optional Import
+
+const config = {
+    bucketName: 'envizo-img',
+    region: 'us-east-1',
+    accessKeyId: aws["AWSAccessKeyId"],
+    secretAccessKey: aws["AWSSecretKey"]
+}
 
 class Signup extends Component {
   state = {
@@ -10,23 +22,33 @@ class Signup extends Component {
     passwordConfirm:'',
     borough:1,
     avatar_img:null,
-    error:false
+    error:false,
+    imgUrl: ""
           }
 
   componentDidMount(){
   this.props.checkAuthenticateStatus()
   document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('select');
-  M.FormSelect.init(elems);
-  M.updateTextFields()
-});
+      var elems = document.querySelectorAll('select');
+      M.FormSelect.init(elems);
+      M.updateTextFields()
+    });
   }
 
   handleChange = e => {
     this.setState({
-      [e.target.name]:e.target.value
+      [e.target.name]: e.target.value
     })
   }
+
+  upload = (e) => {
+    ReactS3.uploadFile(e.target.files[0], config)
+            .then((data) => {
+              console.log("data", data);
+            })
+            .catch(err => console.log(err))
+  }
+
   onSubmitNewUser = e => {
     e.preventDefault();
     let newuserData = {
@@ -36,35 +58,33 @@ class Signup extends Component {
       community_id:+this.state.borough,
       avatar_img:this.state.avatar
     }
-    console.log(newuserData);
-  if(this.state.password===this.state.passwordConfirm){
-    this.props.newUser(newuserData);
-    this.setState({
-      username:"",
-      password:"",
-      passwordConfirm:'',
-      borough:0,
-      email:"",
-      avatar:"",
-      error:false
-    })
-  }else{
-    this.setState({
-      error:true
-    })
-  }
-
-
+    // console.log(newuserData);
+    if(this.state.password===this.state.passwordConfirm){
+      this.props.newUser(newuserData);
+      this.setState({
+        username:"",
+        password:"",
+        passwordConfirm:'',
+        borough:0,
+        email:"",
+        avatar:"",
+        error:false
+      })
+    }else{
+      this.setState({
+        error:true
+      })
+    }
   }
 
   render(){
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className='container SignUpContainer'>
       <div className='container'>
         <h1>Sign Up</h1>
       </div>
-        <form   className='input-field col s6 FormContainer' onSubmit={this.onSubmitNewUser}>
+        <form className='input-field col s6 FormContainer' onSubmit={this.onSubmitNewUser}>
 
         <div className='input-field col s6'>
         <label htmlFor="signup_email">Email</label>
@@ -126,9 +146,11 @@ class Signup extends Component {
           <div className="btn-small waves-effect waves-light">
             <span>Upload</span>
               <input
-              type="file"
-              name="avatar"
-              accept=".jpg, .jpeg, .png"/>
+                type="file"
+                name="avatar"
+                accept=".jpg, .jpeg, .png"
+                onChange={this.upload}/>
+          {this.state.imgURL ? <img src={this.state.imgURL}></img> : ""}
           </div>
           <div className="file-path-wrapper">
             <input className="file-path validate" name='avatarpath' type="text" />
@@ -152,8 +174,5 @@ class Signup extends Component {
   }
 
 }
-
-
-
 
 export default Signup
