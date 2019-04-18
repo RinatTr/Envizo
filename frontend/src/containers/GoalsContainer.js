@@ -5,8 +5,8 @@ import { fetchSubmissionsPerGoal, fetchSubscriptionsPerGoal } from '../actions/G
 //
 const mapStateToProps = (state, ownProps) => {
   return {
-    goals: state.goals.goals,
-    subscriptions: state.subscriptions.subscriptions
+    submissions: state.goals.submissions,
+    subscriptions: state.goals.subscriptions
   }
 }
 

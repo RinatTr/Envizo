@@ -22,6 +22,7 @@ export default class SingleGoal extends Component {
 
   render(){
     let { progress, subs} = this.state
+    console.log(this.props);
 
     return(
 
