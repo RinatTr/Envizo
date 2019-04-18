@@ -13,3 +13,10 @@
 .subscribe {
   margin: 0 10px;
 }
+.leButtons {
+  display:flex;
+
+}
+.leButtons span {
+  margin:auto;
+}
