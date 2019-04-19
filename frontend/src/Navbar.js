@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import M from 'materialize-css';
 import logo from './navbarLogo.png'
 import './css/navbar.css'
@@ -28,18 +29,18 @@ render(){
           <a href="/" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <div className='navbar_registration'>
-            <li><a href="signup" className='signup'>Signup</a></li>
-            <li><a href="login" className='login'>Login</a></li>
-            <li><a href="aboutus" className='aboutus'>About Us</a></li>
+            <li><a href="/signup" className='signup'>Signup</a></li>
+            <li><a href="/login" className='login'>Login</a></li>
+            <li><a href="/aboutus" className='aboutus'>About Us</a></li>
             </div>
           </ul>
         </div>
       </nav>
 
       <ul className="sidenav" id="mobile-demo">
-        <li><a href="signup" className='signup'>Signup</a></li>
-        <li><a href="login" className='login'>Login</a></li>
-        <li><a href="aboutus" className='aboutus'>About Us</a></li>
+        <li><NavLink to='/signup'>Sign Up</NavLink></li>
+        <li><NavLink to='/login'>Login</NavLink></li>
+        <li><NavLink to='/aboutus'>About Us</NavLink></li>
       </ul>
     </div>
   )

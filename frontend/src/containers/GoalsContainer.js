@@ -1,24 +1,27 @@
-import GoalsList from '../components/GoalsList';
+import Goals from '../components/Goals';
 import { connect } from 'react-redux';
-import { fetchAllGoals } from '../actions/GoalsActions';
-import { fetchAllSubscriptions } from '../actions/SubscriptionsActions';
+import { fetchSubmissionsPerGoal, fetchSubscriptionsPerGoal } from '../actions/GoalsActions';
+import { checkAuthenticateStatus } from '../actions/AuthActions';
+
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state)
+  console.log("state==>",state);
   return {
-    goals: state.goals.goals,
-    subscriptions: state.subscriptions.subscriptions
+    loggedUser: state.auth.currentUser,
+    submissions: state.goals.submissions,
+    subscriptions: state.goals.subscriptions
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchAllGoals: () => dispatch(fetchAllGoals()),
-    fetchAllSubscriptions: () => dispatch(fetchAllSubscriptions())
+    fetchSubmissionsPerGoal: (goalId) => dispatch(fetchSubmissionsPerGoal(goalId)),
+    fetchSubscriptionsPerGoal: (goalId) => dispatch(fetchSubscriptionsPerGoal(goalId)),
+    checkAuthenticateStatus: () => dispatch(checkAuthenticateStatus())
   }
 }
 
 export default connect (
   mapStateToProps,
   mapDispatchToProps
-)(GoalsList)
+)(Goals)

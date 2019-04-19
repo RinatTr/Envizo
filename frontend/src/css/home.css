@@ -21,3 +21,11 @@ div#content {
   display: flex;
   justify-content: center;
 }
+.tabs .indicator {
+    background-color: #07356B
+}
+
+.borough-select {
+  width:45%;
+
+}

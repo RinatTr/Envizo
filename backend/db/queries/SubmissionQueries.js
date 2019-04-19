@@ -1,5 +1,6 @@
 const { db } = require('.');
 
+
 const getAllSubmissions = (req, res, next) => {
   db.any('SELECT * FROM submissions')
   .then(data => {
@@ -23,6 +24,20 @@ const getAllSubmissionForSingleGoal = (req, res, next) => {
     })
   })
   .catch(err => next(err))
+}
+
+const getAllSubmissionsPerUserPerGoal = (req, res, next) => {
+  let goalId = parseInt(req.params.goal_id)
+  let userId = parseInt(req.params.user_id)
+  db.any(`SELECT * FROM submissions WHERE goal_id = $1 AND user_id = $2`, [goalId, userId])
+    .then(data => {
+      res.status(200).json({
+        status: 'success',
+        submissions: data,
+        message: "Received all submissions for a goal for user "+userId
+      })
+    })
+    .catch(err => next(err))
 }
 
 const createNewSubmission = (req, res, next) => {
@@ -55,6 +70,7 @@ const deleteSubmission = (req, res, next) => {
 module.exports = {
   getAllSubmissions,
   getAllSubmissionForSingleGoal,
+  getAllSubmissionsPerUserPerGoal,
   createNewSubmission,
   deleteSubmission
 }

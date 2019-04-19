@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/RinatTr/Envizo#readme",
   "dependencies": {
-    "create-react-app": "^2.1.8"
+    "create-react-app": "^2.1.8",
+    "react-s3": "^1.3.1"
   }
 }
