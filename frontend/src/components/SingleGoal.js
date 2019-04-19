@@ -1,50 +1,49 @@
 import React, { Component } from 'react';
-import { Col , Row, ProgressBar} from 'react-materialize'
+import { Col , Row, ProgressBar } from 'react-materialize'
 import '../css/singlegoal.css';
 
 export default class SingleGoal extends Component {
   state = {
-    progress:12,
-    subs:1247
+    loggedUser: { id: 22 }
   }
-  distance = this.state.progress
 
   goUp = e => {
     e.preventDefault();
     this.setState({
       progress:this.state.progress + 1,
       subs:this.state.subs + 1
-
     })
 
   }
 
 
   render(){
-    let { progress, subs} = this.state
-    console.log(this.props);
-
+    let { loggedUser } = this.state
+    let { submissions, subscriptions } = this.props;
+    let percAll = submissions && subscriptions ? (submissions.length/+subscriptions[0].target_value*100).toFixed(2) : 0;
+    let countUserSubs = submissions ? (submissions.filter(el => el.user_id === loggedUser.id)).length : null
+    let percUser = submissions && subscriptions ? (countUserSubs/+subscriptions[0].target_value*100).toFixed(2) : 0 ;
     return(
-
+      submissions && subscriptions ? (
       <div className="container">
       <h3>Goal Title -  Community</h3>
       <div className="subs">
       <button className="btn waves-effect waves-light" onClick={this.goUp}>Subscribe</button>
-      <h2>{subs}</h2>
+      <h2>{submissions ? submissions.length : null}</h2>
       </div>
 
     <Row>
       <Col s={12}>
-      <h3>User's Contribution</h3>
-      <h2>{progress}%</h2>
-      <ProgressBar className={progress >99? "finished":'not-finished'}progress={progress} />
+      <h3>Logged User's Contribution</h3>
+      <h2>{countUserSubs}/{subscriptions[0].target_value}</h2>
+      <ProgressBar className={percUser > 99 ? "finished":'not-finished'} progress={percUser} />
       </Col>
     </Row>
     <Row>
       <Col s={12}>
       <h3>Community Contribution</h3>
-      <h2>{25.3}%</h2>
-      <ProgressBar className={progress >99? "finished":'not-finished'}progress={25.3} />
+      <h2>{percAll}%</h2>
+      <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={percAll} />
       </Col>
 
         <div className="container puzzle-container">
@@ -59,6 +58,7 @@ export default class SingleGoal extends Component {
     </Row>
 
       </div>
+    ) : ""
     )
   }
 }
