@@ -6,14 +6,26 @@ import { Link } from 'react-router-dom'
 class UserProfile extends Component {
 
   state = {
-    goalsForUser: []
+    goalsForUser: [],
+    community: []
   }
 
   componentDidMount() {
     this.props.fetchAllGoals();
     this.props.checkAuthenticateStatus();
     this.props.fetchAllUsers();
+    this.getCommunityForAUser();
     this.getSubscriptionsForAUser();
+  }
+
+  getCommunityForAUser = () => {
+    axios.get(`/communities/user/${this.props.match.params.id}`)
+    .then(res => {
+      this.setState({
+        community: res.data.community
+      })
+    })
+    .catch(err => Error)
   }
 
   getSubscriptionsForAUser = () => {
@@ -28,7 +40,7 @@ class UserProfile extends Component {
   
   render() {
     const { users, goals } = this.props;
-    const { goalsForUser } = this.state;
+    const { goalsForUser, community } = this.state;
     console.log(goals)
     let imgUrl;
     const usersInfo = users.find(user => {
@@ -67,16 +79,18 @@ class UserProfile extends Component {
             <Collection className='avatar'>
               <CollectionItem> 
                 <img src={imgUrl} alt="" className="circle"></img>
-                <div><Link to='/community/:id'>Community Name</Link></div>
+                <div>
+                  <Link to='/community/:id'>
+                    { community.length ? community[0].name : 'Loading'}
+                  </Link>
+                </div>
+                <h5>What Motivates You?</h5>
               </CollectionItem>
-            </Collection>
-
-            <Collection>
               { goalsList }
             </Collection>
-
+            
           </Col>
-          
+
           {/* Activities side */}
           <Col l={5} className="teal offset-l2 black-text">
             <Collection>
