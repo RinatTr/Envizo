@@ -4,6 +4,7 @@ import { fetchAllGoals } from '../actions/GoalsActions';
 import { fetchAllSubscriptions } from '../actions/SubscriptionsActions';
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state)
   return {
     goals: state.goals.goals,
     subscriptions: state.subscriptions.subscriptions

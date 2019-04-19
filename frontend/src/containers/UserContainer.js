@@ -1,25 +1,27 @@
 import UserProfile from '../components/UserProfile';
 import { connect } from 'react-redux';
 import { fetchAllGoals } from '../actions/GoalsActions';
-import { fetchAllActicitiesPerUser } from '../actions/ActivitiesActions';
-import { fetchAllUsers } from '../actions/UsersActions';
+import { checkAuthenticateStatus } from '../actions/AuthActions';
+import { fetchAllUsers } from '../actions/UserActions';
 
 const mapStateToProps = (state, ownProps) => {
+
+  console.log(state)
   return {
+    auth: state.auth,
     goals: state.goals.goals,
-    activities: state.activities.activities,
-    users: state.users.users
+    users: state.users
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    fetchAllGoals: () => dispatch(fetchAllGoals()),
+    checkAuthenticateStatus: () => dispatch(checkAuthenticateStatus()),
     fetchAllUsers: () => dispatch(fetchAllUsers()),
-    fetchAllActicitiesPerUser: id => dispatch(fetchAllActicitiesPerUser(id))
   }
 }
 
 export default connect (
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps, mapDispatchToProps
  ) (UserProfile);
