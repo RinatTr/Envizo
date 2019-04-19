@@ -17,5 +17,10 @@ nav .brand-logo {
 }
 
 .btn-small {
-  background-color: #8EE4AF
+  background-color: #8EE4AF;
+}
+
+a.active {
+ background: lightgreen;
+ border-bottom: 0;
 }

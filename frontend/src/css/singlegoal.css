@@ -13,4 +13,15 @@
 }
 .subs {
   display:flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.subs p {
+
+}
+
+.goal-header {
+  display: flex;
+  justify-content: space-between;
 }
