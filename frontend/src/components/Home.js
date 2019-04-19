@@ -28,8 +28,7 @@ class Home extends Component {
     render() {
       return (
         <>
-
-          <Tabs className="tab-demo z-depth-1">
+          <Tabs className="tab-demo z-depth-1" active>
             <Tab title="Monthly Tonnage">
               <h1>Take a dive in NYC's trash pile.</h1>
                 <div id="demo">
@@ -37,7 +36,7 @@ class Home extends Component {
                 <p>* Each circle represents Monthly Tonnage for each borough between 2018-2019, according to NYC Open Data API.</p>
                 </div>
             </Tab>
-            <Tab title="Air Pollution" active>
+            <Tab title="Air Pollution">
               Air Pollution
             </Tab>
             <Tab title="Energy Consumption">

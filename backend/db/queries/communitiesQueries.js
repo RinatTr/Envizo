@@ -27,6 +27,17 @@ const getAllActivityForACommunity = (req, res, next) => {
     })
 }
 
+const getCommunityForAUser = ( req, res, next ) => {
+  const userId = parseInt(req.params.id);
+  db.any('SELECT communities.id, communities.name FROM communities JOIN users ON users.community_id = communities.id WHERE users.id = $1', userId)
+  .then(community => {
+    res.status(200).json({
+      community
+    })
+  })
+  .catch(err => next (err));
+}
+
 const addCommunity = (req, res, next) => {
   db.none('INSERT INTO communities (name) VALUES(${name})', {
     name: req.body.name
@@ -41,4 +52,8 @@ const addCommunity = (req, res, next) => {
     })
 }
 
-module.exports = { getAllCommunities, addCommunity, getAllActivityForACommunity }
+module.exports = { 
+  getAllCommunities, 
+  getCommunityForAUser,
+  addCommunity, 
+  getAllActivityForACommunity }

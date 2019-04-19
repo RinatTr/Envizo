@@ -48,7 +48,7 @@ const getSingleSubscriptionIdForUserAndGoal  = (req, res, next) => {
 
 const getSubscriptionsForAUser = (req, res, next) => {
   const userId = parseInt(req.params.user_id)
-  db.any('SELECT * FROM subscriptions JOIN users ON users.id = subscriptions.user_id WHERE users.id=$1', userId)
+  db.any('SELECT subscriptions.goal_id,goals.title FROM subscriptions JOIN users ON users.id = subscriptions.user_id JOIN goals ON goals.id = subscriptions.goal_id WHERE users.id = $1', userId)
     .then(subscripUser => {
       res.status(200).json({
         subscripUser: subscripUser,

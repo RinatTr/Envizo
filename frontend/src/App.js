@@ -4,8 +4,8 @@ import HomeContainer from './containers/HomeContainer';
 import Navbar from './Navbar'
 import SignUpContainer from './containers/SignUpContainer'
 import LoginContainer from './containers/LoginContainer'
+import UserContainer from './containers/UserContainer';
 import GoalsContainer from './containers/GoalsContainer'
-
 import './App.css';
 
 class App extends Component {
@@ -14,12 +14,11 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <Switch>
+          <Route exact path='/' component={HomeContainer}/>
           <Route path='/signup' component={SignUpContainer}/>
           <Route path='/login' component={LoginContainer}/>
+          <Route path='/profile/:id' component={UserContainer}/>
           <Route path='/goal/:goal_id' component={GoalsContainer}/>
-          <Route path='/' component={HomeContainer}/>
-
-
         </Switch>
       </div>
     );
