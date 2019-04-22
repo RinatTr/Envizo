@@ -5,7 +5,7 @@ import { checkAuthenticateStatus } from '../actions/AuthActions';
 
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("state==>",state);
+  // console.log("state==>",state);
   return {
     loggedUser: state.auth.currentUser,
     submissions: state.goals.submissions,
