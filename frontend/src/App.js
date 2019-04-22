@@ -6,13 +6,14 @@ import SignUpContainer from './containers/SignUpContainer'
 import LoginContainer from './containers/LoginContainer'
 import UserContainer from './containers/UserContainer';
 import GoalsContainer from './containers/GoalsContainer'
+import NavbarContainer from './containers/NavbarContainer'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
+        <NavbarContainer />
         <Switch>
           <Route exact path='/' component={HomeContainer}/>
           <Route path='/signup' component={SignUpContainer}/>
