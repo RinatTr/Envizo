@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom'
+import '../css/user.css'
 
 class UserProfile extends Component {
 
@@ -37,7 +38,7 @@ class UserProfile extends Component {
     })
     .catch(err => Error)
   }
-  
+
   render() {
     const { users, goals } = this.props;
     const { goalsForUser, community } = this.state;
@@ -45,7 +46,7 @@ class UserProfile extends Component {
     let imgUrl;
     const usersInfo = users.find(user => {
        return user.id === parseInt(this.props.match.params.id)
-    }) 
+    })
 
     if (usersInfo) {
       imgUrl = usersInfo.avatar_img
@@ -77,7 +78,7 @@ class UserProfile extends Component {
           <Col l={4} className="teal push-l1 black-text">
 
             <Collection className='avatar'>
-              <CollectionItem> 
+              <CollectionItem>
                 <img src={imgUrl} alt="" className="circle"></img>
                 <div>
                   <Link to='/community/:id'>
@@ -88,7 +89,7 @@ class UserProfile extends Component {
               </CollectionItem>
               { goalsList }
             </Collection>
-            
+
           </Col>
 
           {/* Activities side */}

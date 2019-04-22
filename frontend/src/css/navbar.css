@@ -23,4 +23,18 @@ nav .brand-logo {
 a.active {
  background: lightgreen;
  border-bottom: 0;
+ font-size: 15px;
+}
+
+.chip {
+  font-size: 15px;
+  height: 41px;
+  line-height: 37px;
+  background-color: #8EE4AF;
+  color: white;
+}
+
+.chip>img {
+  width: 40px;
+  height: 40px;
 }
