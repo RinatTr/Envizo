@@ -20,8 +20,18 @@ class Navbar extends Component {
     });
   }
 
+  logout = (event) => {
+    this.props.logout()
+    window.location='/'
+
+  }
+
 render(){
-  console.log(this.props)
+  console.log(this.props.auth);
+  // if(!this.props.isLoggedIn) {
+  //   return <Redirect to='/'></Redirect>
+  // }
+
   const navbarTernary = this.props.auth.isLoggedIn ? (
     <ul id="nav-mobile" className="right hide-on-med-and-down">
       <div className='navbar_registration'>
@@ -33,7 +43,7 @@ render(){
             </Chip>
           </Link>
         </li>
-        <li><NavLink to="/" className='logout'>Logout</NavLink></li>
+        <li><NavLink to="/" className='logout' onClick={this.logout}>Logout</NavLink></li>
       </div>
     </ul> ) :
   <ul id="nav-mobile" className="right hide-on-med-and-down">
