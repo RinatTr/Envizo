@@ -12,11 +12,14 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
+
     this.props.fetchAllGoals();
     this.props.checkAuthenticateStatus();
     this.props.fetchAllUsers();
     this.getCommunityForAUser();
-    this.getSubscriptionsForAUser();
+    if(this.props.match.params.user_id) {
+      this.getSubscriptionsForAUser(parseInt(this.props.match.params.user_id));
+    }
   }
 
   getCommunityForAUser = () => {

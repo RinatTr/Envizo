@@ -12,3 +12,4 @@ export const getAllSubscriptionsPerGoal = (id) => axios.get(`/subscriptions/goal
 export const getSingleSubscriptionIdForUserAndGoal = (userId, goalId) => axios.get(`/subscriptions/${userId}/${goalId}`)
 export const addSubscription = (subscription) => axios.post(`/subscriptions/new`, subscription)
 export const deleteSubscription = (subscriptionId) => axios.delete(`/subscriptions/${subscriptionId}`)
+export const getSubscriptionsForAUser = (user_id) => axios.get(`/subscriptions/user/${user_id}`)
