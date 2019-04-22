@@ -63,7 +63,7 @@ export default class SingleGoal extends Component {
               <button className="btn waves-effect waves-light" onClick={this.handleSubscribe}> {loggedUserSubId ? "Unsubscribe " : "Subscribe "}{subscriptions ? subscriptions.length : null}</button>
             </div>
         </div>
-        <h4>{subscriptions[0].description}</h4>
+        <h4>{subscriptions[0].description.description}</h4>
         { loggedUser.id && loggedUserSubId ?
         <Row>
           <Col s={12}>
