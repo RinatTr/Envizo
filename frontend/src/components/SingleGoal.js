@@ -46,7 +46,7 @@ export default class SingleGoal extends Component {
   render(){
     let { loggedUserSubId } = this.state
     let { submissions, subscriptions, loggedUser } = this.props;
-    console.log("logged=>",loggedUserSubId);
+
     let percAll = submissions && subscriptions ? (submissions.length/+subscriptions[0].target_value*100).toFixed(2) : 0;
     let countUserSubs = submissions ? (submissions.filter(el => el.user_id === loggedUser.id)).length : null
     let percUser = submissions && subscriptions ? (countUserSubs/+subscriptions[0].target_value*100).toFixed(2) : 0 ;
@@ -71,7 +71,7 @@ export default class SingleGoal extends Component {
         : null }
         <Row>
           <Col s={12}>
-          <h3>Community Contribution</h3>
+          <h3>{subscriptions[0].name} Contributions</h3>
           <h2>{percAll}%</h2>
           <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={percAll} />
           </Col>
