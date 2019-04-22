@@ -12,11 +12,13 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
+
     this.props.fetchAllGoals();
     this.props.checkAuthenticateStatus();
     this.props.fetchAllUsers();
     this.getCommunityForAUser();
-    this.getSubscriptionsForAUser();
+    console.log(this.props.match.params.id);
+    this.props.fetchAllSubscriptionsForAUser(this.props.match.params.id);
   }
 
   getCommunityForAUser = () => {
@@ -29,20 +31,18 @@ class UserProfile extends Component {
     .catch(err => Error)
   }
 
-  getSubscriptionsForAUser = () => {
-    axios.get(`/subscriptions/user/${this.props.match.params.id}`)
-    .then(res => {
-      this.setState({
-        goalsForUser: res.data.subscripUser
-      })
-    })
-    .catch(err => Error)
-  }
+  // getSubscriptionsForAUser = () => {
+  //   axios.get(`/subscriptions/user/${this.props.match.params.id}`)
+  //   .then(res => {
+  //     this.setState({
+  //       goalsForUser: res.data.subscripUser
+  //     })
+  //   })
+  //   .catch(err => Error)
+  // }
 
   render() {
-    if(!this.props.isLoggedIn) {
-      console.log(this.props.currentUser)
-    }
+console.log(this.props);
 
     const { users, goals } = this.props;
     const { goalsForUser, community } = this.state;
@@ -73,6 +73,7 @@ class UserProfile extends Component {
         </>
       )
     }) : <p>No subscriptions yet...</p>
+
 
     return (
       <>

@@ -13,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchAllGoals: () => dispatch(fetchAllGoals()),
-    fetchAllSubscriptions: () => dispatch(fetchAllSubscriptions())
+    fetchAllSubscriptions: () => dispatch(fetchAllSubscriptions()),
   }
 }
 
