@@ -6,7 +6,7 @@ const SubscriptionReducer = (oldState = {}, action) => {
     case RECEIVE_ALLSUBSCRIPTIONS:
       return { ...oldState, subscriptions: action.subscriptions}
     case RECEIVE_ALLSUBSCRIPTIONS_FORAUSER:
-      return { ...oldState, subscriptionsUser: action.subscriptions}
+      return { ...oldState, ...action.subscriptionsUser}
     default:
       return oldState;
   }

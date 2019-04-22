@@ -19,10 +19,10 @@ export const fetchAllSubscriptions = () => dispatch => {
   .catch(err => console.log(err))
 }
 
-export const recieveAllSubscriptionsForAUser = subscriptions => {
+export const recieveAllSubscriptionsForAUser = subscriptionsUser => {
   return {
     type: RECEIVE_ALLSUBSCRIPTIONS_FORAUSER,
-    subscriptions
+    subscriptionsUser
   }
 }
 

@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
     auth: state.auth,
     goals: state.goals.goals,
     users: state.users,
-    subscriptions: state.subscriptions
+    subscriptions: state.subscriptionsUser
   }
 }
 
