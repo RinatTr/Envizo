@@ -7,17 +7,14 @@ import '../css/user.css'
 class UserProfile extends Component {
 
   state = {
-    goalsForUser: [],
     community: []
   }
 
   componentDidMount() {
-
     this.props.fetchAllGoals();
     this.props.checkAuthenticateStatus();
     this.props.fetchAllUsers();
     this.getCommunityForAUser();
-    console.log(this.props.match.params.id);
     this.props.fetchAllSubscriptionsForAUser(this.props.match.params.id);
   }
 
@@ -31,22 +28,11 @@ class UserProfile extends Component {
     .catch(err => Error)
   }
 
-  // getSubscriptionsForAUser = () => {
-  //   axios.get(`/subscriptions/user/${this.props.match.params.id}`)
-  //   .then(res => {
-  //     this.setState({
-  //       goalsForUser: res.data.subscripUser
-  //     })
-  //   })
-  //   .catch(err => Error)
-  // }
-
   render() {
-console.log(this.props);
+    const { users } = this.props;
+    const { community } = this.state;
+    const { subscripUser } = this.props.subscriptions;
 
-    const { users, goals } = this.props;
-    const { goalsForUser, community } = this.state;
-    console.log(goals)
     let imgUrl;
     const usersInfo = users.find(user => {
        return user.id === parseInt(this.props.match.params.id)
@@ -58,8 +44,7 @@ console.log(this.props);
       imgUrl = ''
     }
 
-
-    const goalsList = goalsForUser.length ? goalsForUser.map(goal => {
+    const goalsList = subscripUser.length ? subscripUser.map(goal => {
       return (
         <>
          <CollectionItem>
