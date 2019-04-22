@@ -24,19 +24,23 @@ export default class SingleGoal extends Component {
     let userId = loggedUser.id;
     let goalId = this.props.match.params.goal_id;
       if (e.target.innerText.slice(0,3) === "SUB") {
-        addSubscription({ user_id: userId , goal_id: goalId }).then((res) => {console.log("sub sucess");})
+        addSubscription({ user_id: userId , goal_id: goalId }).then((res) => {
+          this.refreshSubscriptions(userId, goalId);
+        })
       } else {
-        deleteSubscription(loggedUserSubId).then((res) => {console.log("sucess");})
+        deleteSubscription(loggedUserSubId).then((res) => {
+          this.refreshSubscriptions(userId, goalId);
+        })
       }
   }
 
   refreshSubscriptions = (userId, goalId) => {
     getSingleSubscriptionIdForUserAndGoal(userId, goalId)
       .then((res) => {
-        debugger
-          return res.data.subId.length ? this.setState({ loggedUserSubId: res.data.subId[0].id }) : null ;
+          this.props.fetchSubscriptionsPerGoal(goalId);
+          let newValue = res.data.subId.length ? res.data.subId[0].id : "" ;
+          return this.setState({ loggedUserSubId: newValue });
       })
-    this.props.fetchSubscriptionsPerGoal(goalId)
   }
   // isSubscribed(loggedUserId) {
   //   let { subscriptions } = this.props;

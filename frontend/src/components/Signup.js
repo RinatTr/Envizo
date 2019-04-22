@@ -71,7 +71,7 @@ class Signup extends Component {
         username:"",
         password:"",
         passwordConfirm:'',
-        borough:0,
+        borough:1,
         email:"",
         avatar_img:"",
         error:false
