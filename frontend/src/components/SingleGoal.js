@@ -41,7 +41,6 @@ export default class SingleGoal extends Component {
           let newValue = res.data.subId.length ? res.data.subId[0].id : "" ;
           return this.setState({ loggedUserSubId: newValue });
       })
->>>>>>> single-goal
   }
 
   render(){
