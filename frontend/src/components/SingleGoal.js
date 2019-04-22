@@ -12,7 +12,7 @@ export default class SingleGoal extends Component {
   }
 
   isSubscribed() {
-    
+
   }
 
   render(){
