@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, Select } from 'react-materialize';
-import M from 'materialize-css';
+// import M from 'materialize-css';
 import { VisualPrediction } from  './VisualPrediction.js'
 
 //change the prediction text according to goal type.

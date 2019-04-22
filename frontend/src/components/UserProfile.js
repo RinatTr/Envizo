@@ -19,6 +19,7 @@ class UserProfile extends Component {
     this.getCommunityForAUser();
     console.log(this.props.match.params.id);
     this.props.fetchAllSubscriptionsForAUser(this.props.match.params.id);
+    console.log(this.props);
   }
 
   getCommunityForAUser = () => {
@@ -42,11 +43,8 @@ class UserProfile extends Component {
   // }
 
   render() {
-console.log(this.props);
-
     const { users, goals } = this.props;
     const { goalsForUser, community } = this.state;
-    console.log(goals)
     let imgUrl;
     const usersInfo = users.find(user => {
        return user.id === parseInt(this.props.match.params.id)
@@ -59,7 +57,7 @@ console.log(this.props);
     }
 
 
-    const goalsList = goalsForUser.length ? goalsForUser.map(goal => {
+    const goalsList = [].length ? [].map(goal => {
       return (
         <>
          <CollectionItem>
