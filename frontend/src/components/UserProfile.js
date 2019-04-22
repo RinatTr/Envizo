@@ -40,6 +40,10 @@ class UserProfile extends Component {
   }
 
   render() {
+    if(!this.props.isLoggedIn) {
+      console.log(this.props.currentUser)
+    }
+
     const { users, goals } = this.props;
     const { goalsForUser, community } = this.state;
     console.log(goals)

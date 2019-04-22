@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import M from 'materialize-css'
 import '../css/login.css'
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   state = {
@@ -18,6 +19,7 @@ class Login extends Component {
       [e.target.name]:e.target.value
     })
   }
+
   onSubmitLogIn = e => {
   e.preventDefault();
   let logInData = {
@@ -60,7 +62,7 @@ class Login extends Component {
             onChange={this.handleChange}
           />
           </div>
-          {this.props.isLoggedIn?<button className="btn waves-effect waves-light" onClick={this.logout}>LogOut</button>:<button className="btn waves-effect waves-light" type="submit" name="action">Login
+          {this.props.isLoggedIn? <Redirect to={`/profile/${this.props.auth.userId}`}></Redirect>:<button className="btn waves-effect waves-light" type="submit" name="action">Login
             <i className="material-icons right">send</i>
           </button>}
         </form>
