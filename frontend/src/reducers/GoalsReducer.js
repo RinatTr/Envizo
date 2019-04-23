@@ -25,8 +25,8 @@ const GoalsReducer = (oldState = {}, action) => {
     case RECEIVE_SUBMISSIONS_PER_GOAL:
       return { ...oldState, submissions: action.submissions}
     case RECEIVE_SUBSCRIPTIONS_PER_GOAL:
-      action.subscriptions.forEach(goal => { let normDesc = normalizeDescription(goal.description)
-                                                          goal.description = normDesc })
+      action.subscriptions.forEach(subscription => { let normDesc = normalizeDescription(subscription.description)
+                                                          subscription.description = normDesc })
       return { ...oldState, subscriptions: action.subscriptions}
 
     case RECEIVE_ALLGOALS_PER_COMM:

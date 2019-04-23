@@ -65,7 +65,7 @@ export default class SingleGoal extends Component {
           <Col s={12}>
             <h3>Your Contribution</h3>
             <h2>{countUserSubs}/{subscriptions[0].target_value}</h2>
-            <ProgressBar className={percUser > 99 ? "finished":'not-finished'} progress={percUser} />
+            <ProgressBar className={percUser > 99 ? "finished":'not-finished'} progress={+percUser} />
           </Col>
         </Row>
         : null }

@@ -67,10 +67,24 @@ const deleteSubmission = (req, res, next) => {
   .catch(err => next(err))
 }
 
+const countSubPerGoal = ( req, res, next) => {
+  let goalId = req.params.goalId;
+  db.one('SELECT COUNT(submissions.id) AS submissions_count, goal_id FROM submissionsWHERE goal_id = $1 GROUP BY goal_id',goalId)
+    .then(data => {
+      res.status(200).json({
+        status:'success',
+        message:'Received subs for a goal',
+        count:data
+      })
+    })
+    .catch(err => next(err))
+}
+
 module.exports = {
   getAllSubmissions,
   getAllSubmissionForSingleGoal,
   getAllSubmissionsPerUserPerGoal,
   createNewSubmission,
-  deleteSubmission
+  deleteSubmission,
+  countSubPerGoal
 }
