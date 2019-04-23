@@ -7,16 +7,18 @@ import '../css/user.css'
 class UserProfile extends Component {
 
   state = {
-    goalsForUser: [],
     community: []
   }
 
   componentDidMount() {
+    // const { userId } = this.props.match.params.id
     this.props.fetchAllGoals();
     this.props.checkAuthenticateStatus();
     this.props.fetchAllUsers();
+    this.props.fetchUserActivity(this.props.match.params.id);
     this.getCommunityForAUser();
-    this.getSubscriptionsForAUser();
+    this.props.fetchAllSubscriptionsForAUser(this.props.match.params.id);
+
   }
 
   getCommunityForAUser = () => {
@@ -29,37 +31,28 @@ class UserProfile extends Component {
     .catch(err => Error)
   }
 
-  getSubscriptionsForAUser = () => {
-    axios.get(`/subscriptions/user/${this.props.match.params.id}`)
-    .then(res => {
-      this.setState({
-        goalsForUser: res.data.subscripUser
-      })
-    })
-    .catch(err => Error)
-  }
-
   render() {
-    if(!this.props.isLoggedIn) {
-      console.log(this.props.currentUser)
-    }
+    console.log(this.props)
+    const { users } = this.props;
+    const { community } = this.state;
+    const { subscripUser } = this.props.subscriptions;
 
-    const { users, goals } = this.props;
-    const { goalsForUser, community } = this.state;
-    console.log(goals)
     let imgUrl;
-    const usersInfo = users.find(user => {
-       return user.id === parseInt(this.props.match.params.id)
-    })
 
-    if (usersInfo) {
-      imgUrl = usersInfo.avatar_img
-    } else {
-      imgUrl = ''
+    if ( users.users ) {
+      const usersInfo = users.users.find(user => {
+         return user.id === parseInt(this.props.match.params.id)
+      })
+
+      if (usersInfo) {
+        imgUrl = usersInfo.avatar_img
+      } else {
+        imgUrl = ''
+      }
     }
 
 
-    const goalsList = goalsForUser.length ? goalsForUser.map(goal => {
+    const goalsList = subscripUser.length ? subscripUser.map(goal => {
       return (
         <>
          <CollectionItem>
@@ -73,6 +66,7 @@ class UserProfile extends Component {
         </>
       )
     }) : <p>No subscriptions yet...</p>
+
 
     return (
       <>

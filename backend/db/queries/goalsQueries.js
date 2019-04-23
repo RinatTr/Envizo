@@ -84,6 +84,20 @@ const postGoal = (req, res, next) => {
   })
 }
 
+const getAllUsersPerGoal = (req, res, next ) => {
+  let goalId = req.params.id;
+  db.any('SELECT users.id ,users.username, community_id, goal_id FROM users JOIN subscriptions ON users.id = subscriptions.user_id WHERE goal_id = $1', goalId)
+    .then(data => {
+      res.status(200)
+      .json({
+        status:'Success',
+        message:'Retrieved All members of a goal with the id of ', goalId,
+        data:data
+      })
+    })
+    .catch(err => next(err))
+}
+
 
 // * `PATCH /goals/:goalId`
 // * Patches a specific goal based on goal_id
@@ -130,5 +144,6 @@ module.exports = {
   getAll,
   getAGoal,
   postGoal,
+  getAllUsersPerGoal,
   updateGoal
 }
