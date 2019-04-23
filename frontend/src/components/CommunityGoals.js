@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Col , Row, ProgressBar } from 'react-materialize'
 import { getSingleSubscriptionIdForUserAndGoal, addSubscription, deleteSubscription } from '../util/util';
+import GoalDisplay from './GoalDisplay'
 import '../css/singlegoal.css';
 
 export default class CommunityGoal extends Component {
   state = {
     loggedUser: {id: 28},
     submissions: [{id:2, goal_id:3, img_url:"https://cdn.nexternal.com/pjgh/images/Ehrlich%20Simple%20Water6.jpg"}, {id:3, goal_id:4, img_url:"https://cdn.nexternal.com/pjgh/images/Ehrlich%20Simple%20Water6.jpg"}],
-    subscriptions: [{id: 9, username:"LeoTheGreat", name:"Queens", title:"Cool Goal", target_value:600},{id: 9, username:"LeoTheGreat", name:"Queens", title:"Cool Goal", target_value:600}]
-
+    subscriptions: [{id: 9, username:"LeoTheGreat", name:"Queens", title:"Coolest Goal", target_value:600},{id: 9, username:"LeoTheGreatest", name:"Bronx", title:"Cool Goal", target_value:600}],
+    goals: [{id:3, title:"Coolest Goal", target_value:600, users:[{username:"ChooChoo", id:21}, {username:"Choo", id:23}]}, {id:4, title: "amazing goal", target_value:700, users:[{username:"Chen", id:26}, {username:"Chord", id:15}]}, {id:5, title: "great goal", target_value:600, users:[{username:"Chenchie", id:24}, {username:"Chordie", id:12}]}]
   }
 
   componentDidUpdate(prevProps) {
@@ -45,35 +46,45 @@ export default class CommunityGoal extends Component {
     //   })
   }
 
+  //make helper functions for each needed props:
+    calcProgress = (submissionCount, target) => {
+      let percentage = (submissionCount/target*100).toFixed(2);
+      return percentage;
+    }
+    //getUserNames
+    //isSubscribed
+    //subscriptionCount
   render(){
     // let { loggedUserSubId } = this.state
-    let { submissions, subscriptions, loggedUser } = this.props;
+    // let { submissions, subscriptions, loggedUser } = this.props;
+    let { submissions, subscriptions, loggedUser, goals, users } = this.state;
 
-    // let mapGoals
+    let mapGoals = goals ? goals.map(goal => {
+      return <GoalDisplay
+                title={goal.title}
+                goalId={goal.id}
+                usernames={goal.users}
+                percAll={this.calcProgress(submissions.length, goal.target_value)}
+                handleSubscribe={this.handleSubscribe}
+                isSubscribed={true}
+                subscriptionCount={subscriptions.length}
+             />
+    }) : null
 
-    // let percAll = submissions && subscriptions ? (submissions.length/+subscriptions[0].target_value*100).toFixed(2) : 0;
 
     return(
-      // submissions && subscriptions ? (
+      submissions && subscriptions ? (
       <div className="container">
         <div className="goal-header">
-          {/*<h3>Goals for {subscriptions[0].name}</h3>*/}
-
+          <h3>Goals for </h3>
         </div>
-        {/*<h4>{subscriptions[0].title}</h4>*/}
         <div className="subs">
           {/*<button className="btn waves-effect waves-light" onClick={this.handleSubscribe}> {loggedUserSubId ? "Unsubscribe " : "Subscribe "}{subscriptions ? subscriptions.length : null}</button>*/}
         </div>
-        <Row>
-          <Col s={12}>
-          {/*<h3>{subscriptions[0].name} Contributions</h3>
-          <h2>{percAll}%</h2>
-          <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={percAll} />*/}
-          </Col>
-        </Row>
+        {mapGoals}
 
       </div>
-    // ) : ""
+    ) : ""
     )
   }
 }

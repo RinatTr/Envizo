@@ -16,13 +16,16 @@ export default class Goals extends Component {
 
   componentDidMount() {
     let { match } = this.props;
+    this.props.checkAuthenticateStatus();
+
     if (match.params.goal_id) {
 
       this.props.fetchSubmissionsPerGoal(match.params.goal_id);
       this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
       //waiting for michell and leo to push so i know how to proceed
-      this.props.checkAuthenticateStatus()
       if (this.props.loggedUser.id) { this.props.fetchAllSubscriptionsPerUser(this.props.loggedUser.id) }
+    } else {
+
     }
   }
 
