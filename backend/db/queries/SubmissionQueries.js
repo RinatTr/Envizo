@@ -69,7 +69,7 @@ const deleteSubmission = (req, res, next) => {
 
 const countSubPerGoal = ( req, res, next) => {
   let goalId = req.params.goalId;
-  db.one('SELECT COUNT(submissions.id) AS submissions_count, goal_id FROM submissions WHERE goal_id = $1 GROUP BY goal_id',goalId)
+  db.any('SELECT COUNT(submissions.id) AS submissions_count, goal_id FROM submissions WHERE goal_id = $1 GROUP BY goal_id',goalId)
     .then(data => {
       res.status(200).json({
         status:'success',

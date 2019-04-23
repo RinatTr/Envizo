@@ -2,7 +2,7 @@ import { RECEIVE_ALLGOALS } from '../actions/GoalsActions';
 import { RECEIVE_SUBSCRIPTIONS_PER_GOAL } from '../actions/GoalsActions';
 import { RECEIVE_SUBMISSIONS_PER_GOAL } from '../actions/GoalsActions';
 import { RECEIVE_ALLGOALS_PER_COMM } from '../actions/GoalsActions';
-import { RECEIVE_ALLUSERS_PER_GOAL } from '../actions/GoalsActions';
+import { RECEIVE_ALLUSERS_PER_GOAL, RECEIVE_ALLSUBM_COUNT_PER_COMM } from '../actions/GoalsActions';
 
 //description splitter, it splits the string into description, initiative and slogan
 const normalizeDescription = (description) => {
@@ -29,10 +29,8 @@ const GoalsReducer = (oldState = {}, action) => {
                                                           subscription.description = normDesc })
       return { ...oldState, subscriptions: action.subscriptions}
 
-    
-
-      // case RECEIVE_SUBM_PER_COMM:
-      // return { }
+    case RECEIVE_ALLSUBM_COUNT_PER_COMM:
+    return { ...oldState, subCount: action.subCount}
 
     case RECEIVE_ALLGOALS_PER_COMM:
       return { ...oldState, goalsComm: action.goalsComm }

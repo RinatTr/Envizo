@@ -17,6 +17,7 @@ export default class Goals extends Component {
     this.props.checkAuthenticateStatus()
     this.props.fetchAllSubscriptionsForAUser(22);
     this.props.fetchAllSubscriptionsPerComm(4)
+    this.props.fetchAllSubmissionCountPerComm(4)
     if (match.params.goal_id) {
       this.props.fetchSubmissionsPerGoal(match.params.goal_id);
       this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
