@@ -73,7 +73,7 @@ export default class SingleGoal extends Component {
           <Col s={12}>
           <h3>{subscriptions[0].name} Contributions</h3>
           <h2>{percAll}%</h2>
-          <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={percAll} />
+          <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={+percAll} />
           </Col>
 
             <div className="container puzzle-container">
