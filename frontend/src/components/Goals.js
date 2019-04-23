@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import SingleGoal from './SingleGoal'
+import SingleGoal from './SingleGoal';
+import CommunityGoals from './CommunityGoals';
 
 export default class Goals extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ export default class Goals extends Component {
     let { match } = this.props;
     return (
       <React.Fragment>
-      {match.params.goal_id ? <SingleGoal {...this.props}/> : null}
+      {match.params.goal_id ? <SingleGoal {...this.props}/> : <CommunityGoals />}
       </React.Fragment>
       )
   }

@@ -5,16 +5,19 @@ import '../css/singlegoal.css';
 
 export default class CommunityGoal extends Component {
   state = {
-    loggedUserSubId: ""
+    loggedUser: {id: 28},
+    submissions: [{id:2, goal_id:3, img_url:"https://cdn.nexternal.com/pjgh/images/Ehrlich%20Simple%20Water6.jpg"}, {id:3, goal_id:4, img_url:"https://cdn.nexternal.com/pjgh/images/Ehrlich%20Simple%20Water6.jpg"}],
+    subscriptions: [{id: 9, username:"LeoTheGreat", name:"Queens", title:"Cool Goal", target_value:600},{id: 9, username:"LeoTheGreat", name:"Queens", title:"Cool Goal", target_value:600}]
+
   }
 
   componentDidUpdate(prevProps) {
-    let { loggedUser } = this.props;
-    if (loggedUser.id !== prevProps.loggedUser.id) {
-      let userId = loggedUser.id
+    // let { loggedUser } = this.props;
+    // if (loggedUser.id !== prevProps.loggedUser.id) {
+    //   let userId = loggedUser.id
       // let goalId = +this.props.match.params.goal_id
       // this.refreshSubscriptions(userId, goalId)
-    }
+    // }
   }
 
   handleSubscribe = (e) => {
@@ -23,52 +26,54 @@ export default class CommunityGoal extends Component {
     let userId = loggedUser.id;
     // let goalId = this.props.match.params.goal_id;
       if (e.target.innerText.slice(0,3) === "SUB") {
-        addSubscription({ user_id: userId , goal_id: goalId }).then((res) => {
+        // addSubscription({ user_id: userId , goal_id: goalId }).then((res) => {
           // this.refreshSubscriptions(userId, goalId);
-        })
+        // })
       } else {
-        deleteSubscription(loggedUserSubId).then((res) => {
+        // deleteSubscription(loggedUserSubId).then((res) => {
           // this.refreshSubscriptions(userId, goalId);
-        })
+        // })
       }
   }
 
   refreshSubscriptions = (userId, goalId) => {
-    getSingleSubscriptionIdForUserAndGoal(userId, goalId)
-      .then((res) => {
-          this.props.fetchSubscriptionsPerGoal(goalId);
-          let newValue = res.data.subId.length ? res.data.subId[0].id : "" ;
-          return this.setState({ loggedUserSubId: newValue });
-      })
+    // getSingleSubscriptionIdForUserAndGoal(userId, goalId)
+    //   .then((res) => {
+    //       this.props.fetchSubscriptionsPerGoal(goalId);
+    //       let newValue = res.data.subId.length ? res.data.subId[0].id : "" ;
+    //       return this.setState({ loggedUserSubId: newValue });
+    //   })
   }
 
   render(){
-    let { loggedUserSubId } = this.state
+    // let { loggedUserSubId } = this.state
     let { submissions, subscriptions, loggedUser } = this.props;
 
-    let percAll = submissions && subscriptions ? (submissions.length/+subscriptions[0].target_value*100).toFixed(2) : 0;
+    // let mapGoals
+
+    // let percAll = submissions && subscriptions ? (submissions.length/+subscriptions[0].target_value*100).toFixed(2) : 0;
 
     return(
-      submissions && subscriptions ? (
+      // submissions && subscriptions ? (
       <div className="container">
         <div className="goal-header">
-          <h3>Goals for {subscriptions[0].name}</h3>
+          {/*<h3>Goals for {subscriptions[0].name}</h3>*/}
 
         </div>
-        <h4>{subscriptions[0].title}</h4>
+        {/*<h4>{subscriptions[0].title}</h4>*/}
         <div className="subs">
-          <button className="btn waves-effect waves-light" onClick={this.handleSubscribe}> {loggedUserSubId ? "Unsubscribe " : "Subscribe "}{subscriptions ? subscriptions.length : null}</button>
+          {/*<button className="btn waves-effect waves-light" onClick={this.handleSubscribe}> {loggedUserSubId ? "Unsubscribe " : "Subscribe "}{subscriptions ? subscriptions.length : null}</button>*/}
         </div>
         <Row>
           <Col s={12}>
-          <h3>{subscriptions[0].name} Contributions</h3>
+          {/*<h3>{subscriptions[0].name} Contributions</h3>
           <h2>{percAll}%</h2>
-          <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={percAll} />
+          <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={percAll} />*/}
           </Col>
         </Row>
 
       </div>
-    ) : ""
+    // ) : ""
     )
   }
 }
