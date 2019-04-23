@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 import SingleGoal from './SingleGoal';
 import CommunityGoals from './CommunityGoals';
 
-// all goals per community //added on redux
-// Number of submissions// need to add count on some query
-// all member names for specific goal // added on redux
-// all subs per user
-<<<<<<< HEAD
-=======
-//subs per community
-//subm per community
->>>>>>> 2a2cf899cee840d4bd88debfb36b466cb391de47
-
 export default class Goals extends Component {
   constructor(props) {
     super(props)
