@@ -1,8 +1,8 @@
 import { RECEIVE_ALLGOALS } from '../actions/GoalsActions';
 import { RECEIVE_SUBSCRIPTIONS_PER_GOAL } from '../actions/GoalsActions';
 import { RECEIVE_SUBMISSIONS_PER_GOAL } from '../actions/GoalsActions';
-import { RECEIVE_ALLGOALS_PER_COMM } from '../actions/GoalActions';
-import { RECEIVE_ALLUSERS_PER_GOAL } from '../actions/GoalActions';
+import { RECEIVE_ALLGOALS_PER_COMM } from '../actions/GoalsActions';
+import { RECEIVE_ALLUSERS_PER_GOAL } from '../actions/GoalsActions';
 
 //description splitter, it splits the string into description, initiative and slogan
 const normalizeDescription = (description) => {

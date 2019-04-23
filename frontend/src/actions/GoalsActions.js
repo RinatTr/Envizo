@@ -13,13 +13,13 @@ export const receiveAllGoals = goals => {
     goals
   }
 }
-export const receiveAllGoalsPerCommunity = goals => {
+export const receiveAllGoalsPerCommunity = goalsComm => {
   return {
     type: RECEIVE_ALLGOALS_PER_COMM,
     goalsComm
   }
 }
-export const receiveAllUsersPerGoal = goals => {
+export const receiveAllUsersPerGoal = goalUsers => {
   return {
     type: RECEIVE_ALLUSERS_PER_GOAL,
     goalUsers
