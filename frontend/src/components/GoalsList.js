@@ -29,13 +29,13 @@ class GoalsList extends Component {
       return 0;
     }
   }
- 
+
   render() {
-    let { boroughId } = this.props.boroughId;
+    let { boroughId } = this.props;
 
     //first it filters on community id then maps the result
     //map through the goals array and present the goal in a collapsible card.
-    const goalsList = this.props.goals ? this.props.goals.data.filter(goal =>goal.community_id=== +this.props.boroughId).map(goal => {
+    const goalsList = this.props.goals ? this.props.goals.data.filter(goal =>goal.community_id=== +boroughId).map(goal => {
       return (
 
         <CollapsibleItem header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>

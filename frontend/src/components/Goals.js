@@ -9,9 +9,6 @@ import SingleGoal from './SingleGoal'
 //subm per community
 
 export default class Goals extends Component {
-  constructor(props) {
-    super(props)
-  }
   componentDidMount() {
     let { match } = this.props;
     this.props.checkAuthenticateStatus()
@@ -29,7 +26,6 @@ export default class Goals extends Component {
 
   render() {
     let { match } = this.props;
-    console.log('PROPS',this.props);
     return (
       <React.Fragment>
       {match.params.goal_id ? <SingleGoal {...this.props}/> : null}
