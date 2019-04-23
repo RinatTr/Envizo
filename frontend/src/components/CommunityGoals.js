@@ -51,38 +51,68 @@ export default class CommunityGoal extends Component {
       let percentage = (submissionCount/target*100).toFixed(2);
       return percentage;
     }
-    //getUserNames
+    getUserNames = (goalId) => {
+      let { community } = this.props;
+      let usernames = [];
+      if (community.subscriptions_per_goal) {
+        if (community.subscriptions_per_goal[goalId] !== undefined) {
+          let subs = community.subscriptions_per_goal[goalId]
+          subs.forEach(sub => usernames.push(sub.username))
+        }
+      }
+      return usernames;
+    }
     //isSubscribed
-    //subscriptionCount
-  render(){
-    // let { loggedUserSubId } = this.state
-    // let { submissions, subscriptions, loggedUser } = this.props;
-    let { submissions, subscriptions, loggedUser, goals, users } = this.state;
+    submissionCount = (goalId) => {
+      let { community } = this.props;
+      let count = 0;
+      if (community.submissions_count_per_goal) {
+        if (community.submissions_count_per_goal[goalId] !== undefined) {
+          count = community.submissions_count_per_goal[goalId][0].submissions_count
+        }
+      }
+      return count;
+    }
+    subscriptionCount = (goalId) => {
+      let { community } = this.props;
+      let count = 0;
+      if (community.subscriptions_per_goal) {
+        if (community.subscriptions_per_goal[goalId] !== undefined) {
+          count = Object.keys(community.subscriptions_per_goal[goalId]).length
+        }
+      }
+      return count;
+    }
 
-    let mapGoals = goals ? goals.map(goal => {
+  render() {
+    console.log('props===>',this.props);
+    // let { loggedUserSubId } = this.state
+    let { community } = this.props;
+    // let { submissions, subscriptions, loggedUser, goals, users } = this.state;
+
+    let mapGoals = community.goals ? community.goals.data.map(goal => {
       return <GoalDisplay
                 title={goal.title}
                 goalId={goal.id}
-                usernames={goal.users}
-                percAll={this.calcProgress(submissions.length, goal.target_value)}
+                usernames={this.getUserNames(goal.id)}
+                percAll={this.calcProgress(this.submissionCount(goal.id), goal.target_value)}
                 handleSubscribe={this.handleSubscribe}
-                isSubscribed={true}
-                subscriptionCount={subscriptions.length}
+                isSubscribed={false}
+                subscriptionCount={this.subscriptionCount(goal.id)}
              />
-    }) : null
+    }) : ""
 
 
     return(
-      submissions && subscriptions ? (
+      community ? (
       <div className="container">
         <div className="goal-header">
-          <h3>Goals for </h3>
+          {/*<h3>Goals for {community.goals.data[]}</h3>*/}
         </div>
         <div className="subs">
           {/*<button className="btn waves-effect waves-light" onClick={this.handleSubscribe}> {loggedUserSubId ? "Unsubscribe " : "Subscribe "}{subscriptions ? subscriptions.length : null}</button>*/}
         </div>
-        {mapGoals}
-
+        {mapGoals ? mapGoals : ""}
       </div>
     ) : ""
     )

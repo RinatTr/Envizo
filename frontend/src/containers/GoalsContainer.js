@@ -9,16 +9,14 @@ import { checkAuthenticateStatus } from '../actions/AuthActions';
 
 
 const mapStateToProps = (state, ownProps) => {
-  // console.log("state==>",state);
   return {
     loggedUser: state.auth.currentUser,
     submissions: state.goals.submissions,
     subscriptions: state.goals.subscriptions,
-    subsPerUser:state.subscriptions.subscripUser,
-    communityGoals:state.goals.goalsComm,
-    community:state.subscriptions.community,
-    count:state.goals.subCount
-
+    subsPerUser: state.subscriptions.subscripUser,
+    community: {  subscriptions_per_goal: state.subscriptions.community,
+                  submissions_count_per_goal: state.goals.subCount,
+                  goals: state.goals.goalsComm }
   }
 }
 

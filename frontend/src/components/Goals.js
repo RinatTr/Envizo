@@ -9,25 +9,22 @@ export default class Goals extends Component {
   componentDidMount() {
     let { match } = this.props;
     this.props.checkAuthenticateStatus()
+    if (this.props.loggedUser.id) { this.props.fetchAllSubscriptionsPerUser(this.props.loggedUser.id) }
     if (match.params.goal_id) {
       this.props.fetchSubmissionsPerGoal(match.params.goal_id);
       this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
-      //waiting for michell and leo to push so i know how to proceed
-      if (this.props.loggedUser.id) { this.props.fetchAllSubscriptionsPerUser(this.props.loggedUser.id) }
     } else {
-      this.props.fetchAllSubscriptionsForAUser(22);
-      this.props.fetchAllSubscriptionsPerComm(4)
-      this.props.fetchAllSubmissionCountPerComm(4)
-      this.props.fetchAllGoalsPerCommunity(2);
+      this.props.fetchAllSubscriptionsPerComm(match.params.community_id)
+      this.props.fetchAllSubmissionCountPerComm(match.params.community_id)
+      this.props.fetchAllGoalsPerCommunity(match.params.community_id);
     }
   }
 
   render() {
     let { match } = this.props;
-    console.log('PROPS',this.props);
     return (
       <React.Fragment>
-      {match.params.goal_id ? <SingleGoal {...this.props}/> : <CommunityGoals />}
+      {match.params.goal_id ? <SingleGoal {...this.props}/> : <CommunityGoals {...this.props}/>}
       </React.Fragment>
       )
   }
