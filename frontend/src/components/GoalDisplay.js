@@ -4,7 +4,7 @@ export default const GoalDisplay = ({communityName, title, usernames, percAll, h
   return (
     <div className="goal-display-container">
       <div className="goal-header">
-        <h4>{title}</h4>
+        <h4{title}</h4>
         <div className="subs">
           <button className="btn waves-effect waves-light" onClick={this.handleSubscribe}> {isSubscribed ? "Unsubscribe " : "Subscribe "}{subscriptionCount ? subscriptionCount : null}</button>
         </div>

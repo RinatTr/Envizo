@@ -20,6 +20,7 @@ class App extends Component {
           <Route path='/login' component={LoginContainer}/>
           <Route path='/profile/:id' component={UserContainer}/>
           <Route path='/goal/:goal_id' component={GoalsContainer}/>
+          <Route path='/goals/community/:community_id' component={GoalsContainer}/>
         </Switch>
       </div>
     );

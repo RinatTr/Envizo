@@ -7,7 +7,7 @@ import CommunityGoals from './CommunityGoals';
 // target_value // goals has this
 // Number of submissions per goal // can be gotten by seeing res.data.length of fetchSubmissionsPerGoal
 // all member names for specific goal // added on redux
-// all subs per user 
+// all subs per user
 
 export default class Goals extends Component {
   constructor(props) {
@@ -21,8 +21,8 @@ export default class Goals extends Component {
       this.props.fetchSubmissionsPerGoal(match.params.goal_id);
       this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
       //waiting for michell and leo to push so i know how to proceed
-      // this.props.fetchAllSubscriptionsPerUser(this.props.loggedUser.id)
       this.props.checkAuthenticateStatus()
+      if (this.props.loggedUser.id) { this.props.fetchAllSubscriptionsPerUser(this.props.loggedUser.id) }
     }
   }
 
