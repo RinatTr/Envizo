@@ -11,11 +11,14 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
+    // const { userId } = this.props.match.params.id
     this.props.fetchAllGoals();
     this.props.checkAuthenticateStatus();
     this.props.fetchAllUsers();
+    this.props.fetchUserActivity(this.props.match.params.id);
     this.getCommunityForAUser();
     this.props.fetchAllSubscriptionsForAUser(this.props.match.params.id);
+
   }
 
   getCommunityForAUser = () => {
@@ -29,20 +32,25 @@ class UserProfile extends Component {
   }
 
   render() {
+    console.log(this.props)
     const { users } = this.props;
     const { community } = this.state;
     const { subscripUser } = this.props.subscriptions;
 
     let imgUrl;
-    const usersInfo = users.find(user => {
-       return user.id === parseInt(this.props.match.params.id)
-    })
 
-    if (usersInfo) {
-      imgUrl = usersInfo.avatar_img
-    } else {
-      imgUrl = ''
+    if ( users.users ) {
+      const usersInfo = users.users.find(user => {
+         return user.id === parseInt(this.props.match.params.id)
+      })
+
+      if (usersInfo) {
+        imgUrl = usersInfo.avatar_img
+      } else {
+        imgUrl = ''
+      }
     }
+
 
     const goalsList = subscripUser.length ? subscripUser.map(goal => {
       return (

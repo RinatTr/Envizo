@@ -2,7 +2,7 @@ import UserProfile from '../components/UserProfile';
 import { connect } from 'react-redux';
 import { fetchAllGoals } from '../actions/GoalsActions';
 import { checkAuthenticateStatus } from '../actions/AuthActions';
-import { fetchAllUsers } from '../actions/UserActions';
+import { fetchAllUsers, fetchUserActivity } from '../actions/UserActions';
 import { fetchAllSubscriptionsForAUser } from '../actions/SubscriptionsActions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -20,7 +20,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchAllGoals: () => dispatch(fetchAllGoals()),
     checkAuthenticateStatus: () => dispatch(checkAuthenticateStatus()),
     fetchAllUsers: () => dispatch(fetchAllUsers()),
-    fetchAllSubscriptionsForAUser: (user_id) => dispatch(fetchAllSubscriptionsForAUser(user_id))
+    fetchAllSubscriptionsForAUser: (user_id) => dispatch(fetchAllSubscriptionsForAUser(user_id)),
+    fetchUserActivity: (user_id) => dispatch(fetchUserActivity(user_id))
   }
 }
 
