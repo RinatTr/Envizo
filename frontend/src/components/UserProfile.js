@@ -14,7 +14,6 @@ class UserProfile extends Component {
     // const { userId } = this.props.match.params.id
     this.props.fetchAllGoals();
     this.props.checkAuthenticateStatus();
-    this.props.fetchAllUsers();
     this.props.fetchUserActivity(this.props.match.params.id);
     this.getCommunityForAUser();
     this.props.fetchAllSubscriptionsForAUser(this.props.match.params.id);
@@ -39,9 +38,9 @@ class UserProfile extends Component {
 
     let imgUrl;
 
-    if ( users.users ) {
-      const usersInfo = users.users.find(user => {
-         return user.id === parseInt(this.props.match.params.id)
+    if ( subscripUser ) {
+      const usersInfo = subscripUser.find(user => {
+         return user.user_id === parseInt(this.props.match.params.id)
       })
 
       if (usersInfo) {
