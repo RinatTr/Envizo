@@ -1,13 +1,28 @@
 import * as Util from '../util/util';
 
 export const RECEIVE_ALLGOALS = 'RECEIVE_ALLGOALS';
+export const RECEIVE_ALLGOALS_PER_COMM = 'RECEIVE_ALLGOALS_PER_COMM';
 export const RECEIVE_SUBMISSIONS_PER_GOAL = 'RECEIVE_SUBMISSIONS_PER_GOAL';
 export const RECEIVE_SUBSCRIPTIONS_PER_GOAL = 'RECEIVE_SUBSCRIPTIONS_PER_GOAL';
+export const RECEIVE_ALLUSERS_PER_GOAL = 'RECEIVE_ALLUSERS_PER_GOAL';
+
 
 export const receiveAllGoals = goals => {
   return {
     type: RECEIVE_ALLGOALS,
     goals
+  }
+}
+export const receiveAllGoalsPerCommunity = goals => {
+  return {
+    type: RECEIVE_ALLGOALS_PER_COMM,
+    goalsComm
+  }
+}
+export const receiveAllUsersPerGoal = goals => {
+  return {
+    type: RECEIVE_ALLUSERS_PER_GOAL,
+    goalUsers
   }
 }
 
@@ -30,6 +45,22 @@ export const fetchAllGoals = () => dispatch => {
     return dispatch(receiveAllGoals(res.data))
   })
   .catch(err => console.log(err));
+}
+
+export const fetchAllGoalsPerCommunity = (comm_id) => dispatch => {
+  return Util.getAllGoalsPerCommunity(comm_id)
+              .then(res => {
+                  return dispatch(receiveAllGoalsPerCommunity(res.data))
+              })
+              .catch(err => console.log(err));
+}
+
+export const fetchAllUsersPerGoal = (goal_id) => dispatch => {
+  return Util.getAllUsersPerGoal(goal_id)
+            .then(res => {
+              return dispatch(receiveAllUsersPerGoal(res.data))
+            })
+            .catch(err => console.log(err));
 }
 
 export const fetchSubmissionsPerGoal = (goalId) => dispatch => {

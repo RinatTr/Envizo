@@ -4,6 +4,7 @@ const { getAllGoals,
         getAll,
         getAGoal,
         postGoal,
+        getAllUsersPerGoal,
         updateGoal } = require('../db/queries/goalsQueries.js')
 
 
@@ -14,6 +15,10 @@ router.get('/', getAll);
 // * `GET /goals/community/:community_id`
 // * Gets all goals for a community
 router.get('/community/:id', getAllGoals);
+
+//get /goals/:id/users
+// get all users per goal id
+router.get('/:id/users',getAllUsersPerGoal);
 
 // *`GET /goals/:goalId`
 // * Get a specific goal
