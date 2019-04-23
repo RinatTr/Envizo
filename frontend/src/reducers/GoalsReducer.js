@@ -29,6 +29,11 @@ const GoalsReducer = (oldState = {}, action) => {
                                                           subscription.description = normDesc })
       return { ...oldState, subscriptions: action.subscriptions}
 
+    
+
+      // case RECEIVE_SUBM_PER_COMM:
+      // return { }
+
     case RECEIVE_ALLGOALS_PER_COMM:
       return { ...oldState, goalsComm: action.goalsComm }
 
