@@ -5,11 +5,13 @@ const {
   getAllSubmissionForSingleGoal,
   getAllSubmissionsPerUserPerGoal,
   createNewSubmission,
-  deleteSubmission
+  deleteSubmission,
+  countSubPerGoal
 } = require('../db/queries/SubmissionQueries');
 
 
 router.get('/', getAllSubmissions);
+router.get('/count/:goalId',countSubPerGoal);
 router.get('/goal/:goalId', getAllSubmissionForSingleGoal);
 router.get('/user/:user_id/:goal_id', getAllSubmissionsPerUserPerGoal);
 router.post('/user/:user_id', createNewSubmission);
