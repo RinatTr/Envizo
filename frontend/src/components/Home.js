@@ -23,6 +23,7 @@ class Home extends Component {
     this.setState({
       [e.target.name]:e.target.value
     })
+    window.scroll(0,document.body.scrollHeight)
   }
 
     render() {
