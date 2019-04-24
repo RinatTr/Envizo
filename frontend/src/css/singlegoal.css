@@ -25,3 +25,7 @@
   display: flex;
   justify-content: space-between;
 }
+
+.progress {
+  height: 14px;
+}
