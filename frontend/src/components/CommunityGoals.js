@@ -104,10 +104,10 @@ export default class CommunityGoal extends Component {
 
 
     return(
-      community ? (
+      community.goals !== undefined ? (
       <div className="container">
         <div className="goal-header">
-          {/*<h3>Goals for {community.goals.data[]}</h3>*/}
+          <h3>Goals for {community.goals.data[0].community}</h3>
         </div>
         <div className="subs">
           {/*<button className="btn waves-effect waves-light" onClick={this.handleSubscribe}> {loggedUserSubId ? "Unsubscribe " : "Subscribe "}{subscriptions ? subscriptions.length : null}</button>*/}

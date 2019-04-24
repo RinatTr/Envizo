@@ -23,7 +23,6 @@ class Navbar extends Component {
   logout = (event) => {
     this.props.logout()
     window.location='/'
-
   }
 
 render(){
@@ -64,9 +63,9 @@ render(){
       </nav>
 
       <ul className="sidenav" id="mobile-demo">
-        <li><NavLink to='/signup'>Sign Up</NavLink></li>
-        <li><NavLink to='/login'>Login</NavLink></li>
-        <li><NavLink to='/aboutus'>About Us</NavLink></li>
+        <li class="sidenav-close"><NavLink to='/signup'>Sign Up</NavLink></li>
+        <li class="sidenav-close"><NavLink to='/login'>Login</NavLink></li>
+        <li class="sidenav-close"><NavLink to='/aboutus'>About Us</NavLink></li>
       </ul>
     </div>
   )
