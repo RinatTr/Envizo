@@ -6,19 +6,14 @@ import '../css/singlegoal.css';
 
 export default class CommunityGoal extends Component {
   state = {
-    loggedUser: {id: 28},
-    submissions: [{id:2, goal_id:3, img_url:"https://cdn.nexternal.com/pjgh/images/Ehrlich%20Simple%20Water6.jpg"}, {id:3, goal_id:4, img_url:"https://cdn.nexternal.com/pjgh/images/Ehrlich%20Simple%20Water6.jpg"}],
-    subscriptions: [{id: 9, username:"LeoTheGreat", name:"Queens", title:"Coolest Goal", target_value:600},{id: 9, username:"LeoTheGreatest", name:"Bronx", title:"Cool Goal", target_value:600}],
-    goals: [{id:3, title:"Coolest Goal", target_value:600, users:[{username:"ChooChoo", id:21}, {username:"Choo", id:23}]}, {id:4, title: "amazing goal", target_value:700, users:[{username:"Chen", id:26}, {username:"Chord", id:15}]}, {id:5, title: "great goal", target_value:600, users:[{username:"Chenchie", id:24}, {username:"Chordie", id:12}]}]
+    loggedUserSubId: ""
   }
 
   componentDidUpdate(prevProps) {
-    // let { loggedUser } = this.props;
-    // if (loggedUser.id !== prevProps.loggedUser.id) {
-    //   let userId = loggedUser.id
-      // let goalId = +this.props.match.params.goal_id
-      // this.refreshSubscriptions(userId, goalId)
-    // }
+    let { loggedUser } = this.props;
+    if (loggedUser.id !== prevProps.loggedUser.id) {
+      this.refreshProps()
+    }
   }
 
   handleSubscribe = (e) => {
@@ -37,15 +32,23 @@ export default class CommunityGoal extends Component {
       }
   }
 
-  refreshSubscriptions = (userId, goalId) => {
-    // getSingleSubscriptionIdForUserAndGoal(userId, goalId)
-    //   .then((res) => {
-    //       this.props.fetchSubscriptionsPerGoal(goalId);
-    //       let newValue = res.data.subId.length ? res.data.subId[0].id : "" ;
-    //       return this.setState({ loggedUserSubId: newValue });
-    //   })
-  }
-
+  // refreshSubscriptions = (userId, goalId) => {
+  //   getSingleSubscriptionIdForUserAndGoal(userId, goalId)
+  //     .then((res) => {
+  //         this.props.fetchSubscriptionsPerGoal(goalId);
+  //         let newValue = res.data.subId.length ? res.data.subId[0].id : "" ;
+  //         return this.setState({ loggedUserSubId: newValue });
+  //     })
+  // }
+    refreshProps = () => {
+      let {match} = this.props;
+      // if (this.props.loggedUser.id) {
+      //   this.props.fetchAllSubscriptionsPerUser(this.props.loggedUser.id);
+      // }
+      this.props.fetchAllSubscriptionsPerComm(match.params.community_id);
+      this.props.fetchAllSubmissionCountPerComm(match.params.community_id);
+      this.props.fetchAllGoalsPerCommunity(match.params.community_id);
+    }
   //make helper functions for each needed props:
     calcProgress = (submissionCount, target) => {
       let percentage = (submissionCount/target*100).toFixed(2);
@@ -62,7 +65,17 @@ export default class CommunityGoal extends Component {
       }
       return usernames;
     }
-    //isSubscribed
+    isSubscribed = (goalId) => {
+      let { community, loggedUser } = this.props;
+      let isSub = false;
+      if (community.subscriptions_per_goal && loggedUser.id ) {
+        if (community.subscriptions_per_goal[goalId] !== undefined) {
+          let userSub = community.subscriptions_per_goal[goalId].find(sub => sub.user_id === loggedUser.id);
+          isSub = userSub ? true : false ;
+        }
+      }
+      return isSub;
+    }
     submissionCount = (goalId) => {
       let { community } = this.props;
       let count = 0;
@@ -97,7 +110,7 @@ export default class CommunityGoal extends Component {
                 usernames={this.getUserNames(goal.id)}
                 percAll={this.calcProgress(this.submissionCount(goal.id), goal.target_value)}
                 handleSubscribe={this.handleSubscribe}
-                isSubscribed={false}
+                isSubscribed={this.isSubscribed(goal.id)}
                 subscriptionCount={this.subscriptionCount(goal.id)}
              />
     }) : ""
@@ -108,9 +121,6 @@ export default class CommunityGoal extends Component {
       <div className="container">
         <div className="goal-header">
           <h3>Goals for {community.goals.data[0].community}</h3>
-        </div>
-        <div className="subs">
-          {/*<button className="btn waves-effect waves-light" onClick={this.handleSubscribe}> {loggedUserSubId ? "Unsubscribe " : "Subscribe "}{subscriptions ? subscriptions.length : null}</button>*/}
         </div>
         {mapGoals ? mapGoals : ""}
       </div>

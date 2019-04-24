@@ -7,9 +7,9 @@ export default class Goals extends Component {
     super(props)
   }
   componentDidMount() {
-    let { match } = this.props;
+    let { match, loggedUser } = this.props;
     this.props.checkAuthenticateStatus()
-    if (this.props.loggedUser.id) { this.props.fetchAllSubscriptionsPerUser(this.props.loggedUser.id) }
+    if (loggedUser.id) { this.props.fetchAllSubscriptionsForAUser(loggedUser.id) }
     if (match.params.goal_id) {
       this.props.fetchSubmissionsPerGoal(match.params.goal_id);
       this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
@@ -25,10 +25,14 @@ export default class Goals extends Component {
   }
 
   refreshProps = (prevProps) => {
-    let { match } = this.props;
+    let { match, loggedUser } = this.props;
     if (match.path !== prevProps.match.path) {
       this.props.fetchSubmissionsPerGoal(match.params.goal_id);
       this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
+      this.props.checkAuthenticateStatus()
+      if (loggedUser.id) {
+        this.props.fetchAllSubscriptionsForAUser(loggedUser.id)
+      }
     }
   }
 
