@@ -63,9 +63,9 @@ render(){
       </nav>
 
       <ul className="sidenav" id="mobile-demo">
-        <li class="sidenav-close"><NavLink to='/signup'>Sign Up</NavLink></li>
-        <li class="sidenav-close"><NavLink to='/login'>Login</NavLink></li>
-        <li class="sidenav-close"><NavLink to='/aboutus'>About Us</NavLink></li>
+        <li className="sidenav-close"><NavLink to='/signup'>Sign Up</NavLink></li>
+        <li className="sidenav-close"><NavLink to='/login'>Login</NavLink></li>
+        <li className="sidenav-close"><NavLink to='/aboutus'>About Us</NavLink></li>
       </ul>
     </div>
   )

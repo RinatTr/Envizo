@@ -16,7 +16,6 @@ export default class SingleGoal extends Component {
       let goalId = +this.props.match.params.goal_id
       this.refreshSubscriptions(userId, goalId)
     }
-    // if (match.)
   }
 
   handleSubscribe = (e) => {
@@ -44,13 +43,8 @@ export default class SingleGoal extends Component {
       })
   }
 
-  refreshProps = () => {
-    let { match } = this.props;
-    this.props.fetchSubmissionsPerGoal(match.params.goal_id);
-    this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
-  }
-
   render(){
+    console.log(this.props);
     let { loggedUserSubId } = this.state
     let { submissions, subscriptions, loggedUser } = this.props;
 

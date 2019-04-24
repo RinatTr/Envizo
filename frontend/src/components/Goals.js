@@ -20,6 +20,18 @@ export default class Goals extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    this.refreshProps(prevProps)
+  }
+
+  refreshProps = (prevProps) => {
+    let { match } = this.props;
+    if (match.path !== prevProps.match.path) {
+      this.props.fetchSubmissionsPerGoal(match.params.goal_id);
+      this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
+    }
+  }
+
   render() {
     let { match } = this.props;
     return (
