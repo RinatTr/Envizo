@@ -10,12 +10,13 @@ export default class SingleGoal extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    let { loggedUser } = this.props;
+    let { loggedUser, match } = this.props;
     if (loggedUser.id !== prevProps.loggedUser.id) {
       let userId = loggedUser.id
       let goalId = +this.props.match.params.goal_id
       this.refreshSubscriptions(userId, goalId)
     }
+    // if (match.)
   }
 
   handleSubscribe = (e) => {
@@ -41,6 +42,12 @@ export default class SingleGoal extends Component {
           let newValue = res.data.subId.length ? res.data.subId[0].id : "" ;
           return this.setState({ loggedUserSubId: newValue });
       })
+  }
+
+  refreshProps = () => {
+    let { match } = this.props;
+    this.props.fetchSubmissionsPerGoal(match.params.goal_id);
+    this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
   }
 
   render(){
