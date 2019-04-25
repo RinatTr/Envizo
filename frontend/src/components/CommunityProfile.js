@@ -122,7 +122,7 @@ class CommunityProfile extends Component {
               { goalsList }
               <CollectionItem>
                   <Button type="submit" waves="light">
-                  <a href={`/goal/commmunity/${this.props.match.params.id}`} className='secondary-content'>
+                  <a href={`/goals/community/${this.props.match.params.id}`} className='secondary-content'>
                       <div className='white-text'>
                       Community Goals 
                       <Icon right>
