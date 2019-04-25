@@ -19,6 +19,7 @@ class Prediction extends Component {
     }
   }
 
+
   componentDidMount() {
     let { currentGoal } = this.props;
     this.setState({

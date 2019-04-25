@@ -30,6 +30,7 @@ class GoalsList extends Component {
     }
   }
 
+
   render() {
     let { boroughId } = this.props;
     //first it filters on community id then maps the result
@@ -37,7 +38,7 @@ class GoalsList extends Component {
     const goalsList = this.props.goals ? this.props.goals.data.filter(goal =>goal.community_id=== +boroughId).map(goal => {
       return (
 
-        <CollapsibleItem header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>
+        <CollapsibleItem node='h5' header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>
             <div className="container">
             <p className='flow-text'>{goal.description.initiative}</p>
 
@@ -57,6 +58,7 @@ class GoalsList extends Component {
           </div>
 
         </CollapsibleItem>
+
       )
     })
      : <div className="container">
@@ -74,12 +76,12 @@ class GoalsList extends Component {
       </div>;
 
     return (
-      <div>
+      <>
 
         <Collapsible>
           {goalsList}
         </Collapsible>
-      </div>
+      </>
     )
   }
 }
