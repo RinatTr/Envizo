@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Row, Col, Collection, CollectionItem, Icon, Modal, Button } from 'react-materialize';
+import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom'
 import '../css/user.css'
 import {
@@ -10,8 +10,6 @@ import {
   TwitterShareButton,
   TumblrIcon,
   TumblrShareButton,
-  PinterestIcon,
-  PinterestShareButton
 } from 'react-share'
 
 class UserProfile extends Component {
@@ -21,13 +19,11 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
-    // const { userId } = this.props.match.params.id
     this.props.fetchAllGoals();
     this.props.checkAuthenticateStatus();
     this.getCommunityForAUser();
     this.props.fetchAllSubscriptionsForAUser(this.props.match.params.id);
     this.props.fetchUserActivity(this.props.match.params.id);
-
   }
 
   getCommunityForAUser = () => {
@@ -173,11 +169,8 @@ class UserProfile extends Component {
       )
     }) : <p>No subscriptions yet...</p>
 
-    //loop through activities for the user
-
-
     return (
-      <>
+      <div className='user_profile'>
         <Row className='center'>
 
           {/* User side */}
@@ -201,13 +194,12 @@ class UserProfile extends Component {
           {/* Activities side */}
           <Col l={5} className="teal offset-l2 black-text">
             <Collection>
-
               {this.getActivities()}
 
             </Collection>
           </Col>
         </Row>
-      </>
+      </div>
     )
   }
 }

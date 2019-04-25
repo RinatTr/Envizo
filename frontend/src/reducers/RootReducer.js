@@ -4,6 +4,7 @@ import DataReducer from './DataReducer';
 import GoalsReducer from './GoalsReducer';
 import SubscriptionsReducer from './SubscriptionsReducer';
 import UserReducer from './UserReducer'
+import CommunityReducer from './CommunityReducer'
 
 
 const RootReducer = combineReducers({
@@ -11,7 +12,8 @@ const RootReducer = combineReducers({
   data: DataReducer,
   goals: GoalsReducer,
   subscriptions: SubscriptionsReducer,
-  users: UserReducer
+  users: UserReducer,
+  activity: CommunityReducer
 })
 
 export default RootReducer;
