@@ -11,6 +11,10 @@ class Home extends Component {
     this.state = {
       borough:0
     }
+    
+  }
+  componentDidUpdate(){
+    window.scroll(0,document.body.scrollHeight)
   }
   componentDidMount() {
     this.props.fetchTonnage();
@@ -48,7 +52,7 @@ class Home extends Component {
             </Tab>
           </Tabs>
           </div>
-          <div className="container borough-select">
+          <div  className="container borough-select">
           <div className ='input-field col s6'>
           <select name='borough' onChange={this.handleChange}>
             <option value='0'>Select Borough</option>
