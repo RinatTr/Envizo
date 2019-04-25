@@ -149,20 +149,19 @@ class Signup extends Component {
           </div>
 
           <div className="file-field input-field">
-
-          <div className="btn-small waves-effect waves-light">
-            <span>Upload</span>
-              <input
-                type="file"
-                name="avatar"
-                accept=".jpg, .jpeg, .png"
-                onChange={this.upload}/>
+            <div className="btn-small waves-effect waves-light">
+              <span>Upload</span>
+                <input
+                  type="file"
+                  name="avatar"
+                  accept=".jpg, .jpeg, .png"
+                  onChange={this.upload}/>
+            </div>
+            {this.state.didUpload ? "Photo Uploaded!" : "Choose Photo and Wait to Load ..."}
+            <div className="file-path-wrapper">
+              <input className="file-path validate" name='avatarpath' type="text" />
+            </div>
           </div>
-          {this.state.didUpload ? "Photo Uploaded!" : "Choose Photo and Wait to Load ..."}
-          <div className="file-path-wrapper">
-            <input className="file-path validate" name='avatarpath' type="text" />
-          </div>
-        </div>
 
           <button className="btn-small waves-effect waves-light" type="submit" name="action">Sign Up
             <i className="material-icons right">send</i>

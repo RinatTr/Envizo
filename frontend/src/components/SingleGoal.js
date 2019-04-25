@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Col , Row, ProgressBar } from 'react-materialize'
 import { getSingleSubscriptionIdForUserAndGoal, addSubscription, deleteSubscription } from '../util/util';
+import { addSubmission } from '../util/util'
 import Puzzle from './Puzzle'
 import '../css/singlegoal.css';
 import ReactS3 from 'react-s3';
@@ -47,7 +48,7 @@ export default class SingleGoal extends Component {
     let { loggedUser, match } = this.props;
     let { loggedUserSubId } = this.state;
     let userId = loggedUser.id;
-    let goalId = this.props.match.params.goal_id;
+    let goalId = match.params.goal_id;
       if (e.target.innerText.slice(0,3) === "SUB") {
         addSubscription({ user_id: userId , goal_id: goalId }).then((res) => {
           this.refreshSubscriptions(userId, goalId);
@@ -60,14 +61,17 @@ export default class SingleGoal extends Component {
   }
 
   handleUpload = (e) => {
+    let { loggedUser, match } = this.props;
+    let sub = { img_url:"" , goal_id: match.params.goal_id }
+
     ReactS3.uploadFile(e.target.files[0], config)
             .then((res) => {
+              sub.img_url = res.location;
               this.setState({ didUpload: true })
+              addSubmission(loggedUser.id, sub)
+              this.props.fetchSubmissionsPerGoal(match.params.goal_id)
             })
             .catch(err => console.log(err))
-    //Util post
-    //refresh submissions
-
   }
 
   refreshSubscriptions = (userId, goalId) => {
@@ -113,7 +117,20 @@ export default class SingleGoal extends Component {
             <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={+percAll} />
           </Col>
           <div className="container puzzle-area">
-            <button className="btn waves-effect waves-light" onClick={this.handleUpload}>Upload Photo</button>
+            <div className="file-field input-field">
+              <div className="btn-small waves-effect waves-light">
+                <span>Upload photo</span>
+                  <input
+                    type="file"
+                    name="avatar"
+                    accept=".jpg, .jpeg, .png"
+                    onChange={this.handleUpload}
+                  />
+              </div>
+              <div className="file-path-wrapper">
+                <input className="file-path validate" name='avatarpath' type="text" />
+              </div>
+            </div>
             <Puzzle submissions={submissions} />
           </div>
         </Row>
