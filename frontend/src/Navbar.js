@@ -14,6 +14,7 @@ class Navbar extends Component {
   }
 
   componentDidMount(){
+    this.props.checkAuthenticateStatus();
     document.addEventListener('DOMContentLoaded', function () {
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
@@ -26,11 +27,9 @@ class Navbar extends Component {
   }
 
 render(){
-  console.log(this.props.auth);
   // if(!this.props.isLoggedIn) {
   //   return <Redirect to='/'></Redirect>
   // }
-
   const navbarTernary = this.props.auth.isLoggedIn ? (
     <ul id="nav-mobile" className="right hide-on-med-and-down">
       <div className='navbar_registration'>
@@ -61,12 +60,19 @@ render(){
             {navbarTernary}
         </div>
       </nav>
-
+      {this.props.auth.isLoggedIn ?
       <ul className="sidenav" id="mobile-demo">
+        <li><NavLink exact to='/'>Home</NavLink></li>
+        <li><NavLink to={`/profile/${this.props.auth.userId}`}>My Profile</NavLink></li>
+        <li><NavLink to='/aboutus'>About Us</NavLink></li>
+      </ul> :
+      <ul className="sidenav" id="mobile-demo">
+
         <li className="sidenav-close"><NavLink to='/signup'>Sign Up</NavLink></li>
         <li className="sidenav-close"><NavLink to='/login'>Login</NavLink></li>
         <li className="sidenav-close"><NavLink to='/aboutus'>About Us</NavLink></li>
       </ul>
+
     </div>
   )
 }

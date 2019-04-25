@@ -3,9 +3,6 @@ import SingleGoal from './SingleGoal';
 import CommunityGoals from './CommunityGoals';
 
 export default class Goals extends Component {
-  constructor(props) {
-    super(props)
-  }
   componentDidMount() {
     let { match, loggedUser } = this.props;
     this.props.checkAuthenticateStatus()
@@ -38,6 +35,7 @@ export default class Goals extends Component {
 
   render() {
     let { match } = this.props;
+
     return (
       <React.Fragment>
       {match.params.goal_id ? <SingleGoal {...this.props}/> : <CommunityGoals {...this.props}/>}

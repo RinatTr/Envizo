@@ -29,7 +29,7 @@ export default class SingleGoal extends Component {
     let { loggedUser, match } = this.props;
     let { loggedUserSubId } = this.state;
     let userId = loggedUser.id;
-    let goalId = this.props.match.params.goal_id;
+    let goalId = match.params.goal_id;
       if (e.target.innerText.slice(0,3) === "SUB") {
         addSubscription({ user_id: userId , goal_id: goalId }).then((res) => {
           this.refreshSubscriptions(userId, goalId);

@@ -22,8 +22,8 @@ nav .brand-logo {
 
 a.active {
  background: lightgreen;
- border-bottom: 0;
- font-size: 15px;
+ border-bottom: 0px;
+ font-size: 32px;
 }
 
 .chip {
