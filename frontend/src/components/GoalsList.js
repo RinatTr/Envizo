@@ -32,7 +32,6 @@ class GoalsList extends Component {
 
   render() {
     let { boroughId } = this.props;
-
     //first it filters on community id then maps the result
     //map through the goals array and present the goal in a collapsible card.
     const goalsList = this.props.goals ? this.props.goals.data.filter(goal =>goal.community_id=== +boroughId).map(goal => {
@@ -49,16 +48,30 @@ class GoalsList extends Component {
 
             <Prediction currentGoal={goal.title}/>
 
-            <button className="btn-small subscribe">
-              <a href='/login' className='subscribe-link white-text'>Subscribe</a>
-            </button>
+            {this.props.isLoggedIn?<button className="btn-small subscribe">
+              <a href={`/goal/${goal.id}`} className='subscribe-link white-text'>Learn More</a>
+            </button>:<button className="btn-small subscribe">
+              <a href={`/signup`} className='subscribe-link white-text'>Learn More</a>
+            </button>}
             <SubscriberCount count={this.calcSubscribers(goal.id)}/>
           </div>
 
         </CollapsibleItem>
       )
     })
-     : <p>Loading...</p>;
+     : <div className="container">
+         <div className="preloader-wrapper big active">
+            <div className="spinner-layer spinner-blue-only">
+             <div className="circle-clipper left">
+               <div className="circle"></div>
+             </div><div class="gap-patch">
+               <div className="circle"></div>
+             </div><div className="circle-clipper right">
+               <div className="circle"></div>
+             </div>
+            </div>
+        </div>
+      </div>;
 
     return (
       <div>

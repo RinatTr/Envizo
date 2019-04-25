@@ -26,6 +26,7 @@ export default class Goals extends Component {
 
   render() {
     let { match } = this.props;
+    console.log('AT GOAL',this.props);
     return (
       <React.Fragment>
       {match.params.goal_id ? <SingleGoal {...this.props}/> : null}

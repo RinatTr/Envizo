@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import M from 'materialize-css';
 import '../css/signup.css';
 import ReactS3 from 'react-s3';
+import { Redirect } from 'react-router-dom'
 // import { uploadFile } from 'react-s3';
 // let aws = require('../util/secret.json')
 
@@ -84,7 +85,7 @@ class Signup extends Component {
   }
 
   render(){
-    // console.log(this.props);
+    console.log(this.props);
     return (
       <div className='container SignUpContainer'>
       <div className='container'>
@@ -98,7 +99,6 @@ class Signup extends Component {
             type='text'
             className="validate"
             id="'signup_email'"
-            className='signup_email'
             name='email'
             value={this.state.emailInput}
             onChange={this.handleChange}
@@ -162,15 +162,15 @@ class Signup extends Component {
             <input className="file-path validate" name='avatarpath' type="text" />
           </div>
         </div>
+        {this.props.isLoggedIn? <Redirect to={`/profile/${this.props.auth.userId}`}></Redirect>:<button className="btn-small waves-effect waves-light" type="submit" name="action">Sign Up
+          <i className="material-icons right">send</i>
+        </button>}
 
-          <button className="btn-small waves-effect waves-light" type="submit" name="action">Sign Up
-            <i className="material-icons right">send</i>
-          </button>
         </form>
         {this.state.error?<p>Check Input Entries</p>:null}
 
         <div className="container">
-        <p className="flow-text">Already a member? <button className="btn-small waves-effect waves-light"><a href="login">Login</a></button></p>
+        <h3>Already a member? <a href="/login">Login</a></h3>
         </div>
       </div>
     )

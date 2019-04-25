@@ -66,7 +66,7 @@ export const newUser = newUserData => dispatch => {
           })
         })
       .then(()=> {
-        console.log('in new User');
+        // console.log('in new User');
         checkAuthenticateStatus()
       })
     })
@@ -77,7 +77,7 @@ export const logIn = logInData => dispatch => {
   axios
   .post("/sessions/login", logInData)
     .then(res => {
-      console.log('res of login', res.data);
+      // console.log('res of login', res.data);
       Auth.authenticateUser(res.data.id);
       dispatch({
         type:LOG_IN,

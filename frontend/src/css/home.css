@@ -12,7 +12,9 @@
   /* color: #8EE4AF; */
   background-color: #8EE4AF;
 }
-
+a {
+  width:auto;
+}
 a.active {
   border-bottom: 2px solid blue;
 }
@@ -22,10 +24,27 @@ div#content {
   justify-content: center;
 }
 .tabs .indicator {
+    width:auto;
     background-color: #07356B
+}
+
+.tabs {
+  display:flex;
+  justify-content: space-around;
+  width:auto;
+
 }
 
 .borough-select {
   width:45%;
 
+}
+#visual-header {
+  color: #969b01;
+  background-color: rgba(255, 255, 255, 0.8);
+  text-shadow:
+   -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 }

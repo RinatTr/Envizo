@@ -20,3 +20,6 @@
   display: flex;
   flex-direction: row;
 }
+.share_buttons:hover {
+  cursor:pointer;
+}
