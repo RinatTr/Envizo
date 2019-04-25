@@ -1,17 +1,20 @@
 import { fetchAllCommunityActivity } from '../actions/CommunityAction'
+import { fetchAllGoalsPerCommunity } from '../actions/GoalsActions'
 import { connect } from 'react-redux';
 import CommunityProfile from '../components/CommunityProfile'
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state)
+  console.log(state.goals.goalsComm)
   return {
-    activity: state.activity
+    activity: state.activity,
+    community: state.goals.goalsComm
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchAllCommunityActivity: (community_id) => dispatch(fetchAllCommunityActivity(community_id))
+    fetchAllCommunityActivity: (community_id) => dispatch(fetchAllCommunityActivity(community_id)),
+    fetchAllGoalsPerCommunity: (community_id) => dispatch(fetchAllGoalsPerCommunity(community_id))
   }
 }
 

@@ -169,7 +169,7 @@ class UserProfile extends Component {
     }) : <p>No subscriptions yet...</p>
 
     return (
-      <>
+      <div className='user_profile'>
         <Row className='center'>
 
           {/* User side */}
@@ -197,7 +197,7 @@ class UserProfile extends Component {
             </Collection>
           </Col>
         </Row>
-      </>
+      </div>
     )
   }
 }
