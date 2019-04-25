@@ -73,7 +73,7 @@ class UserProfile extends Component {
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
 
-                  <TwitterShareButton url='www.twitter.com' className="button">
+                  <TwitterShareButton url='/' className="button">
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
 
@@ -140,6 +140,7 @@ class UserProfile extends Component {
     const { community } = this.state;
     const { subscripUser } = this.props.subscriptions;
     const { users } = this.props;
+    console.log(community);
 
     //loop through subscritionsForAUser and get goals that the user subscribed
     let imgUrl;
@@ -181,7 +182,7 @@ class UserProfile extends Component {
               <CollectionItem>
                 <img src={imgUrl} alt="" className="circle"></img>
                 <div>
-                  <Link to='/community/:id'>
+                  <Link to={community.length ?  `/community/${community[0].id}` : 'undefined'}>
                     { community.length ? community[0].name : 'Loading'}
                   </Link>
                 </div>
