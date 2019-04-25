@@ -155,11 +155,12 @@ class UserProfile extends Component {
     }
 
     const goalsList = subscripUser.length ? subscripUser.map(goal => {
+      console.log(goal)
       return (
         <>
          <CollectionItem>
             { goal.title }
-            <a href="javascript:void(0)" className="secondary-content">
+            <a href={`/goal/${goal.goal_id}`} className='secondary-content'>
               <Icon>
                 send
               </Icon>
