@@ -46,16 +46,13 @@ export const fetchAllSubscriptionsForAUser = (user_id) => dispatch => {
 }
 
 export const fetchAllSubscriptionsPerComm = (comm_id) => dispatch => {
-
   Util.getAllGoalsPerCommunity(comm_id)
     .then(res => {
       let promises = [];
-
       res.data.data.forEach(goal => {
         let req = axios({
           url:`/subscriptions/goal/${goal.id}`
         })
-
         promises.push(req)
       })
       return Promise.all(promises)
@@ -63,8 +60,8 @@ export const fetchAllSubscriptionsPerComm = (comm_id) => dispatch => {
                 let subObj = {}
                 //res in an array of responses
                 res.forEach((promise, i ) => {
-                  if(promise.data.subscriptions.length){
-                    subObj[promise.data.subscriptions[0].goal_id] = promise.data.subscriptions
+                  if(promise.data.subscriptions.length) {
+                    subObj[promise.data.subscriptions[i].goal_id] = promise.data.subscriptions
                   }
                 })
                 return dispatch(receiveSubscriptionsPerComm(subObj))

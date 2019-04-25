@@ -17,7 +17,7 @@ module.exports = () => {
       userId: userId
     })
       .then(user => {
-        console.log('in deserial then, this is user ',user);
+        // console.log('in deserial then, this is user ',user);
         //took out username from user.
         done(null, user.id);
       })

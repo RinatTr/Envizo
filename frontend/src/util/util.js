@@ -11,6 +11,7 @@ export const getAllUsers = () => axios.get('/users')
 export const getAllSubmissionsPerGoal = (id) => axios.get(`/submissions/goal/${id}`)
 export const getAllSubscriptionsPerGoal = (id) => axios.get(`/subscriptions/goal/${id}`)
 
+export const addSubmission = (userId, sub) => axios.post(`/submissions/user/${userId}`, sub)
 
 //User
 export const getSingleSubscriptionIdForUserAndGoal = (userId, goalId) => axios.get(`/subscriptions/${userId}/${goalId}`)

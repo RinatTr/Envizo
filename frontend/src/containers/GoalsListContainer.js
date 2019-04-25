@@ -5,6 +5,7 @@ import { fetchAllSubscriptions } from '../actions/SubscriptionsActions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    isLoggedIn:state.auth.isLoggedIn,
     goals: state.goals.goals,
     subscriptions: state.subscriptions.subscriptions
   }

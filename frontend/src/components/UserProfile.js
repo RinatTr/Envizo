@@ -41,7 +41,7 @@ class UserProfile extends Component {
 
     if (users.activity) {
       const activityList = users.activity.map(activity => {
-  
+
         if(activity.type === 'joined') {
           return (
             <CollectionItem className='l2'>
@@ -51,7 +51,7 @@ class UserProfile extends Component {
                   <FacebookShareButton url='www.facebook.com' className="button">
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
-              
+
                   <TwitterShareButton url='www.twitter.com' className="button">
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
@@ -62,7 +62,7 @@ class UserProfile extends Component {
                 </div>
               </div>
             </CollectionItem>
-          ) 
+          )
           } else if(activity.type === 'uploaded') {
           return (
             <CollectionItem className='l2'>
@@ -72,7 +72,7 @@ class UserProfile extends Component {
                   <FacebookShareButton url='www.facebook.com' className="button">
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
-              
+
                   <TwitterShareButton url='www.twitter.com' className="button">
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
@@ -93,7 +93,7 @@ class UserProfile extends Component {
                   <FacebookShareButton url='www.facebook.com' className="button">
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
-              
+
                   <TwitterShareButton url='www.twitter.com' className="button">
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
@@ -114,7 +114,7 @@ class UserProfile extends Component {
                   <FacebookShareButton url='www.facebook.com' className="button">
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
-              
+
                   <TwitterShareButton url='www.twitter.com' className="button">
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
@@ -139,7 +139,8 @@ class UserProfile extends Component {
     console.log(this.props.users.activity)
     const { community } = this.state;
     const { subscripUser } = this.props.subscriptions;
-    
+    const { users } = this.props;
+
     //loop through subscritionsForAUser and get goals that the user subscribed
     let imgUrl;
     if ( subscripUser ) {
@@ -152,7 +153,7 @@ class UserProfile extends Component {
         imgUrl = ''
       }
     }
-    
+
     const goalsList = subscripUser.length ? subscripUser.map(goal => {
       return (
         <>
@@ -194,6 +195,7 @@ class UserProfile extends Component {
           <Col l={5} className="teal offset-l2 black-text">
             <Collection>
               {this.getActivities()}
+
             </Collection>
           </Col>
         </Row>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import HomeContainer from './containers/HomeContainer';
-import Navbar from './Navbar'
+// import Navbar from './Navbar'
 import SignUpContainer from './containers/SignUpContainer'
 import LoginContainer from './containers/LoginContainer'
 import UserContainer from './containers/UserContainer';
@@ -22,6 +22,7 @@ class App extends Component {
           <Route path='/profile/:id' component={UserContainer}/>
           <Route path='/goal/:goal_id' component={GoalsContainer}/>
           <Route path='/community/:id' component={CommunityContainer}/>
+          <Route path='/goals/community/:community_id' component={GoalsContainer}/>
         </Switch>
       </div>
     );

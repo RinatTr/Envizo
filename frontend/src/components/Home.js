@@ -11,6 +11,11 @@ class Home extends Component {
     this.state = {
       borough:0
     }
+
+  }
+
+  componentDidUpdate(){
+    window.scroll(0,document.body.scrollHeight)
   }
   componentDidMount() {
     this.props.fetchTonnage();
@@ -23,14 +28,18 @@ class Home extends Component {
     this.setState({
       [e.target.name]:e.target.value
     })
+    window.scroll(0,document.body.scrollHeight)
   }
 
     render() {
       return (
         <>
-          <Tabs className="tab-demo z-depth-1" active>
+        <div className="col s6">
+          <Tabs className=" tab-demo z-depth-1" options={{swipeable: true}}>
             <Tab title="Monthly Tonnage">
-              <h1>Take a dive in NYC's trash pile.</h1>
+            <div className="container">
+              <h1 id='visual-header'>Take a dive in NYC's trash pile.</h1>
+              </div>
                 <div id="demo">
                 <VisualDisplay />
                 <p>* Each circle represents Monthly Tonnage for each borough between 2018-2019, according to NYC Open Data API.</p>
@@ -43,7 +52,8 @@ class Home extends Component {
               Energy Consumption
             </Tab>
           </Tabs>
-          <div className="container borough-select">
+          </div>
+          <div  className="container borough-select">
           <div className ='input-field col s6'>
           <select name='borough' onChange={this.handleChange}>
             <option value='0'>Select Borough</option>

@@ -24,3 +24,8 @@
 .user_profile {
   margin-top: 80px;
 }
+
+.share_buttons:hover {
+  cursor:pointer;
+}
+
