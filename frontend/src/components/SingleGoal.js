@@ -8,7 +8,8 @@ import ReactS3 from 'react-s3';
 import { uploadFile } from 'react-s3';
 // let aws = require('../util/secret.json')
 
-//fake key to prevent errors
+
+// fake key to prevent errors
 let aws = {
   "AWSAccessKeyId":123,
   "AWSSecretKey":123

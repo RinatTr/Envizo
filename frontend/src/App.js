@@ -8,6 +8,7 @@ import LoginContainer from './containers/LoginContainer'
 import UserContainer from './containers/UserContainer';
 import GoalsContainer from './containers/GoalsContainer'
 import NavbarContainer from './containers/NavbarContainer'
+import CommunityContainer from './containers/CommunityContainer'
 import './App.css';
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path='/aboutus' component={AboutUs}/>
           <Route path='/profile/:id' component={UserContainer}/>
           <Route path='/goal/:goal_id' component={GoalsContainer}/>
+          <Route path='/community/:id' component={CommunityContainer}/>
           <Route path='/goals/community/:community_id' component={GoalsContainer}/>
         </Switch>
       </div>
