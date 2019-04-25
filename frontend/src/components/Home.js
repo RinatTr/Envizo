@@ -11,8 +11,9 @@ class Home extends Component {
     this.state = {
       borough:0
     }
-    
+
   }
+
   componentDidUpdate(){
     window.scroll(0,document.body.scrollHeight)
   }
