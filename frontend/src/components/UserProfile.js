@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Row, Col, Collection, CollectionItem, Icon, Modal, Button } from 'react-materialize';
+import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom'
 import '../css/user.css'
 import {
@@ -10,8 +10,6 @@ import {
   TwitterShareButton,
   TumblrIcon,
   TumblrShareButton,
-  PinterestIcon,
-  PinterestShareButton
 } from 'react-share'
 
 class UserProfile extends Component {
@@ -21,13 +19,11 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
-    // const { userId } = this.props.match.params.id
     this.props.fetchAllGoals();
     this.props.checkAuthenticateStatus();
     this.getCommunityForAUser();
     this.props.fetchAllSubscriptionsForAUser(this.props.match.params.id);
     this.props.fetchUserActivity(this.props.match.params.id);
-
   }
 
   getCommunityForAUser = () => {
@@ -45,7 +41,7 @@ class UserProfile extends Component {
 
     if (users.activity) {
       const activityList = users.activity.map(activity => {
-  
+
         if(activity.type === 'joined') {
           return (
             <CollectionItem className='l2'>
@@ -55,7 +51,7 @@ class UserProfile extends Component {
                   <FacebookShareButton url='www.facebook.com' className="button">
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
-              
+
                   <TwitterShareButton url='www.twitter.com' className="button">
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
@@ -66,7 +62,7 @@ class UserProfile extends Component {
                 </div>
               </div>
             </CollectionItem>
-          ) 
+          )
           } else if(activity.type === 'uploaded') {
           return (
             <CollectionItem className='l2'>
@@ -76,7 +72,7 @@ class UserProfile extends Component {
                   <FacebookShareButton url='www.facebook.com' className="button">
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
-              
+
                   <TwitterShareButton url='www.twitter.com' className="button">
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
@@ -97,7 +93,7 @@ class UserProfile extends Component {
                   <FacebookShareButton url='www.facebook.com' className="button">
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
-              
+
                   <TwitterShareButton url='www.twitter.com' className="button">
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
@@ -118,7 +114,7 @@ class UserProfile extends Component {
                   <FacebookShareButton url='www.facebook.com' className="button">
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
-              
+
                   <TwitterShareButton url='www.twitter.com' className="button">
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
@@ -144,7 +140,7 @@ class UserProfile extends Component {
     const { community } = this.state;
     const { subscripUser } = this.props.subscriptions;
     const { users } = this.props;
-    
+
     //loop through subscritionsForAUser and get goals that the user subscribed
     let imgUrl;
     if ( subscripUser ) {
@@ -157,13 +153,14 @@ class UserProfile extends Component {
         imgUrl = ''
       }
     }
-    
+
     const goalsList = subscripUser.length ? subscripUser.map(goal => {
+      console.log(goal)
       return (
         <>
          <CollectionItem>
             { goal.title }
-            <a href="javascript:void(0)" className="secondary-content">
+            <a href={`/goal/${goal.goal_id}`} className='secondary-content'>
               <Icon>
                 send
               </Icon>
@@ -173,11 +170,8 @@ class UserProfile extends Component {
       )
     }) : <p>No subscriptions yet...</p>
 
-    //loop through activities for the user
-
-
     return (
-      <>
+      <div className='user_profile'>
         <Row className='center'>
 
           {/* User side */}
@@ -201,13 +195,12 @@ class UserProfile extends Component {
           {/* Activities side */}
           <Col l={5} className="teal offset-l2 black-text">
             <Collection>
-
               {this.getActivities()}
-                
+
             </Collection>
           </Col>
         </Row>
-      </>
+      </div>
     )
   }
 }

@@ -35,7 +35,7 @@ class Login extends Component {
   }
 
   render(){
-    console.log(this.props);
+
     return (
       <div className='container LogInContainer'>
       <div className='input-field col s6'>
@@ -62,11 +62,18 @@ class Login extends Component {
             onChange={this.handleChange}
           />
           </div>
-          {this.props.isLoggedIn? <Redirect to={`/profile/${this.props.auth.userId}`}></Redirect>:<button className="btn waves-effect waves-light" type="submit" name="action">Login
+          {this.props.isLoggedIn? <Redirect to={`/profile/${this.props.auth.userId}`}></Redirect>:
+          <div className="container">
+          <button className="btn waves-effect waves-light" type="submit" name="action">Login
             <i className="material-icons right">send</i>
-          </button>}
+          </button>
+        </div>}
         </form>
-        {this.props.isLoggedIn?<img src="https://media1.tenor.com/images/8d9e656f141cb596b9196287197bea37/tenor.gif?itemid=11705959" alt="logintest" />:<h1>You're Logged out</h1>}
+        {this.props.isLoggedIn ?
+          <img src="https://media1.tenor.com/images/8d9e656f141cb596b9196287197bea37/tenor.gif?itemid=11705959" alt="logintest" />
+            :<div className="container">
+                <h3>Not a member?<a href='/signup'>Sign up</a></h3>
+              </div>}
       </div>
     )
   }

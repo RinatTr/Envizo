@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Iframe from 'react-iframe';
+
+
 
 export const VisualDisplay = () => {
 

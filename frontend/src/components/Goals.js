@@ -3,13 +3,10 @@ import SingleGoal from './SingleGoal';
 import CommunityGoals from './CommunityGoals';
 
 export default class Goals extends Component {
-  constructor(props) {
-    super(props)
-  }
   componentDidMount() {
-    let { match } = this.props;
+    let { match, loggedUser } = this.props;
     this.props.checkAuthenticateStatus()
-    if (this.props.loggedUser.id) { this.props.fetchAllSubscriptionsPerUser(this.props.loggedUser.id) }
+    if (loggedUser.id) { this.props.fetchAllSubscriptionsForAUser(loggedUser.id) }
     if (match.params.goal_id) {
       this.props.fetchSubmissionsPerGoal(match.params.goal_id);
       this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
@@ -20,8 +17,25 @@ export default class Goals extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    this.refreshProps(prevProps)
+  }
+
+  refreshProps = (prevProps) => {
+    let { match, loggedUser } = this.props;
+    if (match.path !== prevProps.match.path) {
+      this.props.fetchSubmissionsPerGoal(match.params.goal_id);
+      this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
+      this.props.checkAuthenticateStatus()
+      if (loggedUser.id) {
+        this.props.fetchAllSubscriptionsForAUser(loggedUser.id)
+      }
+    }
+  }
+
   render() {
     let { match } = this.props;
+
     return (
       <React.Fragment>
       {match.params.goal_id ? <SingleGoal {...this.props}/> : <CommunityGoals {...this.props}/>}

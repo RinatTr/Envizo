@@ -27,6 +27,8 @@ export const normalizeData = (info) => {
         case "Staten Island":
           data.staten_island.push(entry);
           break;
+          default:
+           return null
       }
     });
     console.log("data==>",data)
