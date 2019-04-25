@@ -1,11 +1,29 @@
 import React, { Component } from 'react';
 import { Col , Row, ProgressBar } from 'react-materialize'
 import { getSingleSubscriptionIdForUserAndGoal, addSubscription, deleteSubscription } from '../util/util';
+import Puzzle from './Puzzle'
 import '../css/singlegoal.css';
+import ReactS3 from 'react-s3';
+import { uploadFile } from 'react-s3';
+let aws = require('../util/secret.json')
+
+//fake key to prevent errors
+// let aws = {
+//   "AWSAccessKeyId":123,
+//   "AWSSecretKey":123
+// }
+
+const config = {
+    bucketName: 'envizo-img',
+    region: 'us-east-1',
+    accessKeyId: aws["AWSAccessKeyId"],
+    secretAccessKey: aws["AWSSecretKey"]
+}
 
 export default class SingleGoal extends Component {
   state = {
-    loggedUserSubId: ""
+    loggedUserSubId: "",
+    didUpload: false
   }
 
   componentDidMount() {
@@ -15,7 +33,7 @@ export default class SingleGoal extends Component {
     let goalId = this.props.match.params.goal_id;
     this.refreshSubscriptions(userId, goalId)
   }
-  
+
   componentDidUpdate(prevProps) {
     let { loggedUser, match } = this.props;
     if (loggedUser.id !== prevProps.loggedUser.id) {
@@ -39,6 +57,17 @@ export default class SingleGoal extends Component {
           this.refreshSubscriptions(userId, goalId);
         })
       }
+  }
+
+  handleUpload = (e) => {
+    ReactS3.uploadFile(e.target.files[0], config)
+            .then((res) => {
+              this.setState({ didUpload: true })
+            })
+            .catch(err => console.log(err))
+    //Util post
+    //refresh submissions
+
   }
 
   refreshSubscriptions = (userId, goalId) => {
@@ -79,20 +108,14 @@ export default class SingleGoal extends Component {
         : null }
         <Row>
           <Col s={12}>
-          <h3>{subscriptions[0].name} Contributions</h3>
-          <h2>{percAll}%</h2>
-          <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={+percAll} />
+            <h3>{subscriptions[0].name} Contributions</h3>
+            <h2>{percAll}%</h2>
+            <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={+percAll} />
           </Col>
-
-            <div className="container puzzle-container">
-          <img
-              src="https://2.bp.blogspot.com/-h0-yckGhOGI/T_nO4vP-6UI/AAAAAAAACD0/gqYb6lg50pQ/s1600/Fresh+Nature.jpg"
-              alt="placeholder"
-          />
-          <button className="btn waves-effect waves-light" onClick={this.goUp}>Upload</button>
-
-            </div>
-
+          <div className="container puzzle-area">
+            <button className="btn waves-effect waves-light" onClick={this.handleUpload}>Upload Photo</button>
+            <Puzzle submissions={submissions} />
+          </div>
         </Row>
 
       </div>
