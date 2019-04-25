@@ -1,0 +1,24 @@
+.container-puzzle {
+  display: grid;
+  width: 750px;
+  height: 600px;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(25, 30px);
+  grid-template-rows: repeat(20, 30px);
+  background-color: #e6e5e5;
+  transform: rotateY(180deg);
+}
+
+.container-puzzle .user-sub-img {
+  width: 29px;
+  height: 29px;
+}
+
+div .sub-img-wrapper {
+  width: 30px;
+  height: 30px;
+  border: 1px solid lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
