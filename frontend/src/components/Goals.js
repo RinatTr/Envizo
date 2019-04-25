@@ -1,35 +1,44 @@
 import React, { Component } from 'react';
-import SingleGoal from './SingleGoal'
-
-// all goals per community //added on redux
-// Number of submissions// need to add count on some query
-// all member names for specific goal // added on redux
-// all subs per user
-//subs per community
-//subm per community
+import SingleGoal from './SingleGoal';
+import CommunityGoals from './CommunityGoals';
 
 export default class Goals extends Component {
   componentDidMount() {
-    let { match } = this.props;
+    let { match, loggedUser } = this.props;
     this.props.checkAuthenticateStatus()
-    this.props.fetchAllSubscriptionsForAUser(22);
-    this.props.fetchAllSubscriptionsPerComm(4)
-    this.props.fetchAllSubmissionCountPerComm(4)
+    if (loggedUser.id) { this.props.fetchAllSubscriptionsForAUser(loggedUser.id) }
     if (match.params.goal_id) {
       this.props.fetchSubmissionsPerGoal(match.params.goal_id);
       this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
-      //new
-    }else {
-      this.props.fetchAllGoalsPerCommunity(2);
+    } else {
+      this.props.fetchAllSubscriptionsPerComm(match.params.community_id)
+      this.props.fetchAllSubmissionCountPerComm(match.params.community_id)
+      this.props.fetchAllGoalsPerCommunity(match.params.community_id);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    this.refreshProps(prevProps)
+  }
+
+  refreshProps = (prevProps) => {
+    let { match, loggedUser } = this.props;
+    if (match.path !== prevProps.match.path) {
+      this.props.fetchSubmissionsPerGoal(match.params.goal_id);
+      this.props.fetchSubscriptionsPerGoal(match.params.goal_id);
+      this.props.checkAuthenticateStatus()
+      if (loggedUser.id) {
+        this.props.fetchAllSubscriptionsForAUser(loggedUser.id)
+      }
     }
   }
 
   render() {
     let { match } = this.props;
-    console.log('AT GOAL',this.props);
+
     return (
       <React.Fragment>
-      {match.params.goal_id ? <SingleGoal {...this.props}/> : null}
+      {match.params.goal_id ? <SingleGoal {...this.props}/> : <CommunityGoals {...this.props}/>}
       </React.Fragment>
       )
   }

@@ -5,12 +5,19 @@ import '../css/singlegoal.css';
 
 export default class SingleGoal extends Component {
   state = {
-    // loggedUser: { id: 22 }
     loggedUserSubId: ""
   }
 
+  componentDidMount() {
+    let { loggedUser, match } = this.props;
+    let { loggedUserSubId } = this.state;
+    let userId = loggedUser.id;
+    let goalId = this.props.match.params.goal_id;
+    this.refreshSubscriptions(userId, goalId)
+  }
+  
   componentDidUpdate(prevProps) {
-    let { loggedUser } = this.props;
+    let { loggedUser, match } = this.props;
     if (loggedUser.id !== prevProps.loggedUser.id) {
       let userId = loggedUser.id
       let goalId = +this.props.match.params.goal_id
@@ -44,6 +51,7 @@ export default class SingleGoal extends Component {
   }
 
   render(){
+    console.log(this.props);
     let { loggedUserSubId } = this.state
     let { submissions, subscriptions, loggedUser } = this.props;
 
