@@ -42,8 +42,10 @@ class Home extends Component {
               </div>
                 <div id="demo">
                 <VisualDisplay />
-                <p>* Each circle represents Monthly Tonnage for each borough between 2018-2019, according to NYC Open Data API.</p>
+                <div className="container">
+                  <p>* Each circle represents Monthly Tonnage for each borough between 2018-2019, according to NYC Open Data API.</p>
                 </div>
+              </div>
             </Tab>
             <Tab title="Air Pollution">
               Air Pollution
