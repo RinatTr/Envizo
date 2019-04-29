@@ -1,10 +1,10 @@
-import { RECEIVE_ALLUSERS } from '../actions/UserActions';
+import { RECEIVE_USERACTIVITY } from '../actions/UserActions';
 
 const UserReducer = (oldState = [], action) => {
   Object.freeze(oldState);
   switch(action.type) {
-    case RECEIVE_ALLUSERS:
-      return [...oldState, ...action.users]
+    case RECEIVE_USERACTIVITY:
+      return [...oldState, ...action.activity]
     default:
       return oldState;
   }

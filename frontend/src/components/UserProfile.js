@@ -21,6 +21,7 @@ class UserProfile extends Component {
 
   componentDidMount() {
     this.props.fetchAllGoals();
+    this.props.fetchAllUsers();
     this.props.checkAuthenticateStatus();
     this.getCommunityForAUser();
     this.props.fetchAllSubscriptionsForAUser(this.props.match.params.id);
@@ -38,17 +39,20 @@ class UserProfile extends Component {
   }
 
   getActivities = () => {
-
-    const { users } = this.props;
+    const { auth, users, userActivity } = this.props;
+    const routeId = parseInt(this.props.match.params.id);
+    const theUser = users.find(user => user.id === routeId)
+    const userName = theUser ? (auth.currentUser.id === routeId ? 'You' : theUser.username) : null;
     let activityList;
-    if (users.length) {
-      activityList = users.map(activity => {
+
+    if (userActivity.length) {
+      activityList = userActivity.map(activity => {
         if(activity.type === 'joined') {
           return (
             <CollectionItem className='l2' key={activity.id}>
               <div className='joined'>
                 <div>
-                  <p>You have joined the community.</p>
+                  <p>{userName} have joined the community.</p>
                   <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
                 </div>
                 <div className='share_buttons'>
@@ -72,7 +76,7 @@ class UserProfile extends Component {
           <CollectionItem className='l2' key={activity.id}>
             <div className='joined'>
               <div>
-                <p>You have uploaded a photo.</p>
+                <p>{userName} have uploaded a photo.</p>
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
               <div className='share_buttons'>
@@ -96,7 +100,7 @@ class UserProfile extends Component {
           <CollectionItem className='l2' key={activity.id}>
             <div className='joined'>
               <div>
-                <p>You have subscribed to a goal.</p>
+                <p>{userName} have subscribed to a goal.</p>
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
               <div className='share_buttons'>
@@ -120,7 +124,7 @@ class UserProfile extends Component {
             <CollectionItem className='l2' key={activity.id}>
               <div className='joined'>
                 <div>
-                  <p>You have reached a milestone.</p>
+                  <p>{userName} have reached a milestone.</p>
                   <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
                 </div>
                 <div className='share_buttons'>

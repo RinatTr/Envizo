@@ -170,10 +170,10 @@ export default class SingleGoal extends Component {
 
 
 //       </div>
-//     ) : ""
-//     )
-//   }
-// }
+    ) : ""
+    )
+  }
+}
 
 // // subscribe function
 // // photo upload
