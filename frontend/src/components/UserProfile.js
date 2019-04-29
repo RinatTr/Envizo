@@ -44,7 +44,6 @@ class UserProfile extends Component {
     const routeId = parseInt(this.props.match.params.id);
     const theUser = users.find(user => user.id === routeId)
     const userName = theUser ? (auth.currentUser.id === routeId ? 'You' : theUser.username) : null;
-    const communityName = community.length ? community[0].name : 'the community'
     let activityList;
 
     if (userActivity.length) {
@@ -54,7 +53,12 @@ class UserProfile extends Component {
             <CollectionItem className='l2' key={activity.id}>
               <div className='joined'>
                 <div>
-                  <p>{userName} have joined {communityName} community.</p>
+                  <p>
+                    {userName} have joined      
+                    <Link to={community.length ?  `/community/${community[0].id}` : null }>
+                      {' '}{ community.length ? community[0].name : 'Loading'}
+                    </Link> community.
+                  </p>
                   <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
                 </div>
                 <div className='share_buttons'>
@@ -150,7 +154,7 @@ class UserProfile extends Component {
     } else {
       activityList = (
         <CollectionItem className='l2' >
-          <p>No Activities yet</p>
+          <p>No Activities yet...</p>
         </CollectionItem>
       )
     }
@@ -188,7 +192,11 @@ class UserProfile extends Component {
           </a>
         </CollectionItem>
       )
-    }) : <p>No subscriptions yet...</p>
+    }) : (
+      <CollectionItem>
+        <p>No subscriptions yet...</p>
+      </CollectionItem>
+    )
 
     return (
       <div className='user_profile'>
@@ -201,7 +209,7 @@ class UserProfile extends Component {
               <CollectionItem>
                 <img src={imgUrl} alt="" className="circle"></img>
                 <div>
-                  <Link to={community.length ?  `/community/${community[0].id}` : 'undefined'}>
+                  <Link to={community.length ?  `/community/${community[0].id}` : null }>
                     { community.length ? community[0].name : 'Loading'}
                   </Link>
                 </div>
