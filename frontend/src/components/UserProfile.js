@@ -39,10 +39,12 @@ class UserProfile extends Component {
   }
 
   getActivities = () => {
+    const { community } = this.state;
     const { auth, users, userActivity } = this.props;
     const routeId = parseInt(this.props.match.params.id);
     const theUser = users.find(user => user.id === routeId)
     const userName = theUser ? (auth.currentUser.id === routeId ? 'You' : theUser.username) : null;
+    const communityName = community.length ? community[0].name : 'the community'
     let activityList;
 
     if (userActivity.length) {
@@ -52,7 +54,7 @@ class UserProfile extends Component {
             <CollectionItem className='l2' key={activity.id}>
               <div className='joined'>
                 <div>
-                  <p>{userName} have joined the community.</p>
+                  <p>{userName} have joined {communityName} community.</p>
                   <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
                 </div>
                 <div className='share_buttons'>
@@ -158,7 +160,7 @@ class UserProfile extends Component {
   render() {
     console.log("props",this.props)
     const { community } = this.state;
-    // console.log('community'.community);
+   
     const { subscripUser } = this.props.subscriptions;
     // const { users } = this.props;
 
