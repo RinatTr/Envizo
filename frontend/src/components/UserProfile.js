@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
-import { Link } from 'react-router-dom'
-import '../css/user.css'
+import { Link } from 'react-router-dom';
+import '../css/user.css';
 import {
   FacebookIcon,
   FacebookShareButton,
@@ -10,7 +10,8 @@ import {
   TwitterShareButton,
   TumblrIcon,
   TumblrShareButton,
-} from 'react-share'
+} from 'react-share';
+import Timeago from 'react-timeago';
 
 class UserProfile extends Component {
 
@@ -37,16 +38,19 @@ class UserProfile extends Component {
   }
 
   getActivities = () => {
+
     const { users } = this.props;
-
-    if (users.activity) {
-      const activityList = users.activity.map(activity => {
-
+    let activityList;
+    if (users.length) {
+      activityList = users.map(activity => {
         if(activity.type === 'joined') {
           return (
-            <CollectionItem className='l2'>
+            <CollectionItem className='l2' key={activity.id}>
               <div className='joined'>
-                <p>You have joined the community.</p>
+                <div>
+                  <p>You have joined the community.</p>
+                  <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
+                </div>
                 <div className='share_buttons'>
                   <FacebookShareButton url='www.facebook.com' className="button">
                     <FacebookIcon size={32} round={true} />
@@ -63,84 +67,96 @@ class UserProfile extends Component {
               </div>
             </CollectionItem>
           )
-          } else if(activity.type === 'uploaded') {
-          return (
-            <CollectionItem className='l2'>
-              <div className='joined'>
+        } else if(activity.type === 'uploaded') {
+        return (
+          <CollectionItem className='l2' key={activity.id}>
+            <div className='joined'>
+              <div>
                 <p>You have uploaded a photo.</p>
-                <div className='share_buttons'>
-                  <FacebookShareButton url='www.facebook.com' className="button">
-                    <FacebookIcon size={32} round={true} />
-                  </FacebookShareButton>
-
-                  <TwitterShareButton url='/' className="button">
-                    <TwitterIcon size={32} round={true} />
-                  </TwitterShareButton>
-
-                  <TumblrShareButton url='www.tumblr.com' className="button">
-                    <TumblrIcon size={32} round={true} />
-                  </TumblrShareButton>
-                </div>
+                <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
-            </CollectionItem>
-          )
+              <div className='share_buttons'>
+                <FacebookShareButton url='www.facebook.com' className="button">
+                  <FacebookIcon size={32} round={true} />
+                </FacebookShareButton>
+
+                <TwitterShareButton url='/' className="button">
+                  <TwitterIcon size={32} round={true} />
+                </TwitterShareButton>
+
+                <TumblrShareButton url='www.tumblr.com' className="button">
+                  <TumblrIcon size={32} round={true} />
+                </TumblrShareButton>
+              </div>
+            </div>
+          </CollectionItem>
+        )
         } else if(activity.type === 'subscribed') {
-          return (
-            <CollectionItem className='l2'>
-              <div className='joined'>
+        return (
+          <CollectionItem className='l2' key={activity.id}>
+            <div className='joined'>
+              <div>
                 <p>You have subscribed to a goal.</p>
-                <div className='share_buttons'>
-                  <FacebookShareButton url='www.facebook.com' className="button">
-                    <FacebookIcon size={32} round={true} />
-                  </FacebookShareButton>
-
-                  <TwitterShareButton url='www.twitter.com' className="button">
-                    <TwitterIcon size={32} round={true} />
-                  </TwitterShareButton>
-
-                  <TumblrShareButton url='www.tumblr.com' className="button">
-                    <TumblrIcon size={32} round={true} />
-                  </TumblrShareButton>
-                </div>
+                <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
-            </CollectionItem>
-          )
-        } else if(activity.type === 'milestone') {
-          return (
-            <CollectionItem className='l2'>
-             <div className='joined'>
-                <p>You have reached a milestone.</p>
-                <div className='share_buttons'>
-                  <FacebookShareButton url='www.facebook.com' className="button">
-                    <FacebookIcon size={32} round={true} />
-                  </FacebookShareButton>
+              <div className='share_buttons'>
+                <FacebookShareButton url='www.facebook.com' className="button">
+                  <FacebookIcon size={32} round={true} />
+                </FacebookShareButton>
 
-                  <TwitterShareButton url='www.twitter.com' className="button">
-                    <TwitterIcon size={32} round={true} />
-                  </TwitterShareButton>
+                <TwitterShareButton url='www.twitter.com' className="button">
+                  <TwitterIcon size={32} round={true} />
+                </TwitterShareButton>
 
-                  <TumblrShareButton url='www.tumblr.com' className="button">
-                    <TumblrIcon size={32} round={true} />
-                  </TumblrShareButton>
-                </div>
+                <TumblrShareButton url='www.tumblr.com' className="button">
+                  <TumblrIcon size={32} round={true} />
+                </TumblrShareButton>
               </div>
-            </CollectionItem>
-          )
+            </div>
+          </CollectionItem>
+        )
         } else {
-          return (<p>No Activities yet</p>)
-        };
-      })
-      return activityList;
-      }
-    }
+          return (
+            <CollectionItem className='l2' key={activity.id}>
+              <div className='joined'>
+                <div>
+                  <p>You have reached a milestone.</p>
+                  <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
+                </div>
+                <div className='share_buttons'>
+                  <FacebookShareButton url='www.facebook.com' className="button">
+                    <FacebookIcon size={32} round={true} />
+                  </FacebookShareButton>
 
+                  <TwitterShareButton url='www.twitter.com' className="button">
+                    <TwitterIcon size={32} round={true} />
+                  </TwitterShareButton>
+
+                  <TumblrShareButton url='www.tumblr.com' className="button">
+                    <TumblrIcon size={32} round={true} />
+                  </TumblrShareButton>
+                </div>
+              </div>
+            </CollectionItem>
+          )
+        } 
+      })
+    } else {
+      activityList = (
+        <CollectionItem className='l2' >
+          <p>No Activities yet</p>
+        </CollectionItem>
+      )
+    }
+    return activityList;
+  }
 
   render() {
     console.log("props",this.props)
     const { community } = this.state;
+    // console.log('community'.community);
     const { subscripUser } = this.props.subscriptions;
-    const { users } = this.props;
-    console.log(community);
+    // const { users } = this.props;
 
     //loop through subscritionsForAUser and get goals that the user subscribed
     let imgUrl;
@@ -156,18 +172,15 @@ class UserProfile extends Component {
     }
 
     const goalsList = subscripUser.length ? subscripUser.map(goal => {
-      console.log(goal)
       return (
-        <>
-         <CollectionItem>
-            { goal.title }
-            <a href={`/goal/${goal.goal_id}`} className='secondary-content'>
-              <Icon>
-                send
-              </Icon>
-            </a>
-          </CollectionItem>
-        </>
+        <CollectionItem key={goal.id}>
+          { goal.title }
+          <a href={`/goal/${goal.goal_id}`} className='secondary-content'>
+            <Icon>
+              send
+            </Icon>
+          </a>
+        </CollectionItem>
       )
     }) : <p>No subscriptions yet...</p>
 
@@ -190,16 +203,15 @@ class UserProfile extends Component {
               </CollectionItem>
               { goalsList }
             </Collection>
-
           </Col>
 
           {/* Activities side */}
           <Col l={5} className="teal offset-l2 black-text">
             <Collection>
               {this.getActivities()}
-
             </Collection>
           </Col>
+
         </Row>
       </div>
     )
