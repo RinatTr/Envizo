@@ -62,9 +62,11 @@ render(){
       </nav>
       {this.props.auth.isLoggedIn ?
       <ul className="sidenav" id="mobile-demo">
-        <li className="sidenav-close"><NavLink exact to='/'>Home</NavLink></li>
-        <li className="sidenav-close"><NavLink to={`/profile/${this.props.auth.userId}`}>My Profile</NavLink></li>
-        <li className="sidenav-close"><NavLink to='/aboutus'>About Us</NavLink></li>
+
+        <li className="sidenav-close" ><NavLink exact to='/'>Home</NavLink></li>
+        <li className="sidenav-close" ><NavLink to={`/profile/${this.props.auth.userId}`}>My Profile</NavLink></li>
+        <li className="sidenav-close" ><NavLink to='/aboutus'>About Us</NavLink></li>
+
       </ul> :
       <ul className="sidenav" id="mobile-demo">
         <li className="sidenav-close" ><NavLink to='/signup'>Sign Up</NavLink></li>

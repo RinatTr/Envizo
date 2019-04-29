@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, ProgressBar } from 'react-materialize';
+import { Col, ProgressBar } from 'react-materialize';
 import { Link } from 'react-router-dom';
 
 const GoalDisplay = ({title, usernames, goalId, percAll, handleSubscribe, isSubscribed, subscriptionCount }) => {
