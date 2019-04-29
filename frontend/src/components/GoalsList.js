@@ -52,7 +52,7 @@ class GoalsList extends Component {
             {this.props.isLoggedIn?<button className="btn-small subscribe">
               <a href={`/goal/${goal.id}`} className='subscribe-link white-text'>Learn More</a>
             </button>:<button className="btn-small subscribe">
-              <a href={`/signup`} className='subscribe-link white-text'>Learn More</a>
+              <a href={`/login`} className='subscribe-link white-text'>Learn More</a>
             </button>}
             <SubscriberCount count={this.calcSubscribers(goal.id)}/>
           </div>

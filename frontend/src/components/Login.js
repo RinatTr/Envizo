@@ -5,8 +5,8 @@ import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   state = {
-    username:'',
-    password:''
+    username:'dudette',
+    password:'12345'
           }
 
   componentDidMount(){
@@ -72,7 +72,7 @@ class Login extends Component {
         {this.props.isLoggedIn ?
           <img src="https://media1.tenor.com/images/8d9e656f141cb596b9196287197bea37/tenor.gif?itemid=11705959" alt="logintest" />
             :<div className="container">
-                <h3>Not a member?<a href='/signup'>Sign up</a></h3>
+                <h4>Not a member? <a href='/signup'>Sign up</a></h4>
               </div>}
       </div>
     )

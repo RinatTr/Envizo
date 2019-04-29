@@ -136,7 +136,7 @@ class UserProfile extends Component {
 
 
   render() {
-    console.log(this.props.users.activity)
+    console.log("props",this.props)
     const { community } = this.state;
     const { subscripUser } = this.props.subscriptions;
     const { users } = this.props;

@@ -168,7 +168,7 @@ class Signup extends Component {
         {this.state.error?<p>Check Input Entries</p>:null}
 
         <div className="container">
-          <h3>Already a member? <a href="/login">Login</a></h3>
+          <h4>Already a member? <a href="/login">Login</a></h4>
         </div>
       </div>
     )

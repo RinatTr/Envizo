@@ -25,7 +25,7 @@ class CommunityProfile extends Component {
                 <br />
                 <p className='left'><Timeago date= {activity.time_stamp}/></p>
             </CollectionItem>
-          ) 
+          )
           } else if(activity.type === 'uploaded') {
           return (
             <CollectionItem className='avatar'>
@@ -67,7 +67,7 @@ class CommunityProfile extends Component {
       }
     }
 
-    
+
   render() {
     console.log(this.props)
     let goalsList;
@@ -105,7 +105,7 @@ class CommunityProfile extends Component {
               </>
             )
           })
-    } 
+    }
 
 
     return (
@@ -114,9 +114,9 @@ class CommunityProfile extends Component {
           {/* Communityside */}
           <Col l={4} className='teal push-l1 black-text'>
             <Collection className='avatar'>
-              <CollectionItem> 
+              <CollectionItem>
                 <h5>{communityName}</h5><br />
-                <img src={imgUrl} className='circle'></img>
+                  <div className="avatar-wrapper"><img src={imgUrl} className='circle'></img></div>
                 <h5>About ?</h5>
               </CollectionItem>
               { goalsList }
@@ -124,7 +124,7 @@ class CommunityProfile extends Component {
                   <Button type="submit" waves="light">
                   <a href={`/goals/community/${this.props.match.params.id}`} className='secondary-content'>
                       <div className='white-text'>
-                      Community Goals 
+                      Community Goals
                       <Icon right>
                       send
                       </Icon>

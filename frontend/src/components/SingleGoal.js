@@ -10,11 +10,12 @@ import axios from 'axios'
 // let aws = require('../util/secret.json')
 
 
+
 // fake key to prevent errors
-let aws = {
-  "AWSAccessKeyId":123,
-  "AWSSecretKey":123
-}
+// let aws = {
+//   "AWSAccessKeyId":123,
+//   "AWSSecretKey":123
+// }
 
 const config = {
     bucketName: 'envizo-img',
