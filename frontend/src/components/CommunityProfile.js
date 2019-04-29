@@ -23,7 +23,7 @@ class CommunityProfile extends Component {
                 <a href={`/profile/${activity.usersid}` }>{activity.username}</a> has joined the community.
                 </p>
                 <br />
-                <p className='left'><Timeago date= {activity.time_stamp}/></p>
+                <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
             </CollectionItem>
           )
           } else if(activity.type === 'uploaded') {
@@ -34,7 +34,7 @@ class CommunityProfile extends Component {
                 <a href={`/profile/${activity.usersid}` }>{activity.username}</a> has uploaded a photo.
                 </p>
                 <br />
-                <p className='left'><Timeago date= {activity.time_stamp}/></p>
+                <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
             </CollectionItem>
           )
         } else if(activity.type === 'subscribed') {
@@ -45,7 +45,7 @@ class CommunityProfile extends Component {
                 <a href={`/profile/${activity.usersid}` }>{activity.username}</a> has subscribed to a goal.
                 </p>
                 <br />
-                <p className='left'><Timeago date= {activity.time_stamp}/></p>
+                <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
             </CollectionItem>
           )
         } else if(activity.type === 'milestone') {
@@ -56,7 +56,7 @@ class CommunityProfile extends Component {
                 <a href={`/profile/${activity.usersid}` }>{activity.name}</a> has reached the milestone
                 </p>
                 <br />
-                <p className='left'><Timeago date= {activity.time_stamp}/></p>
+                <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
             </CollectionItem>
           )
         } else {
