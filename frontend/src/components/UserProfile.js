@@ -12,6 +12,7 @@ import {
   TumblrShareButton,
 } from 'react-share';
 import Timeago from 'react-timeago';
+
 let borough = {
   1:'https://img3.goodfon.com/wallpaper/nbig/a/9b/new-york-city-new-york-1271.jpg',
   2:'https://pbs.twimg.com/media/Drb0hVBWwAUvJSr.jpg',
@@ -45,13 +46,13 @@ class UserProfile extends Component {
     .catch(err => Error)
   }
 
-
   getActivities = () => {
     const { community } = this.state;
     const { auth, users, userActivity } = this.props;
     const routeId = parseInt(this.props.match.params.id);
     const theUser = users.find(user => user.id === routeId)
     const userName = theUser ? (auth.currentUser.id === routeId ? 'You' : theUser.username) : null;
+    const communityName = community.length ? community[0].name : null;
     let activityList;
 
     if (userActivity.length) {
@@ -138,7 +139,11 @@ class UserProfile extends Component {
             <CollectionItem className='l2' key={activity.id}>
               <div className='joined'>
                 <div>
-                  <p>{userName} have reached a milestone.</p>
+                  <p>
+                    <Link to={community.length ?  `/community/${community[0].id}` : null }>
+                      {' '}{ community.length ? community[0].name : 'Loading'}
+                    </Link> have reached a milestone.
+                   </p>
                   <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
                 </div>
                 <div className='share_buttons'>
@@ -226,8 +231,6 @@ class UserProfile extends Component {
 
           {/* User side */}
           <Col l={4} className="push-l1 m8 s12 black-text z-depth-3 try">
-
-
 
                 <div className="pic-container">
                 <img src={community[0]?borough[community[0].id]:null} alt="borough" className='borough responsive-img' />
