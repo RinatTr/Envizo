@@ -67,7 +67,7 @@ const getAllUsersPerCommunity = (req, res, next) => {
 //   * Get all activity for a user
 const getActivityPerUser = (req, res, next) => {
   let user_id = parseInt(req.params.user_id);
-  db.any('SELECT * FROM activity WHERE user_id=$1', user_id)
+  db.any('SELECT * FROM activity WHERE user_id=$1 ORDER BY activity.time_stamp DESC', user_id)
     .then(data => {
       res.status(200)
       .json({

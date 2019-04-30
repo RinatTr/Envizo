@@ -46,7 +46,7 @@ render(){
     </ul> ) :
   <ul id="nav-mobile" className="right hide-on-med-and-down">
     <div className='navbar_registration'>
-    <li><NavLink to="/signup" className='signup'>Signup</NavLink></li>
+    <li><NavLink to="/signup" className='signup'>Sign Up</NavLink></li>
     <li><NavLink to="/login" className='login'>Login</NavLink></li>
     <li><NavLink to="/aboutus" className='aboutus'>About Us</NavLink></li>
     </div>
@@ -62,9 +62,11 @@ render(){
       </nav>
       {this.props.auth.isLoggedIn ?
       <ul className="sidenav" id="mobile-demo">
-        <li><NavLink exact to='/'>Home</NavLink></li>
-        <li><NavLink to={`/profile/${this.props.auth.userId}`}>My Profile</NavLink></li>
-        <li><NavLink to='/aboutus'>About Us</NavLink></li>
+
+        <li className="sidenav-close" ><NavLink exact to='/'>Home</NavLink></li>
+        <li className="sidenav-close" ><NavLink to={`/profile/${this.props.auth.userId}`}>My Profile</NavLink></li>
+        <li className="sidenav-close" ><NavLink to='/aboutus'>About Us</NavLink></li>
+
       </ul> :
       <ul className="sidenav" id="mobile-demo">
         <li className="sidenav-close" ><NavLink to='/signup'>Sign Up</NavLink></li>

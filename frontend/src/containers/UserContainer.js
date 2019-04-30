@@ -6,12 +6,13 @@ import { fetchAllUsers, fetchUserActivity } from '../actions/UserActions';
 import { fetchAllSubscriptionsForAUser } from '../actions/SubscriptionsActions';
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state)
+  // console.log(state)
   return {
     auth: state.auth,
     goals: state.goals.goals,
     users: state.users,
-    subscriptions: state.subscriptions
+    subscriptions: state.subscriptions,
+    userActivity: state.userActivity
   }
 }
 

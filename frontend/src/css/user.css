@@ -14,18 +14,56 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
 }
 
 .share_buttons {
   display: flex;
   flex-direction: row;
+
+}
+.user-profile li{
+  list-style: none;
+  padding:3%
 }
 
 .user_profile {
   margin-top: 80px;
+}
+.user-profile .row .center{
+  /* margin:auto; */
 }
 
 .share_buttons:hover {
   cursor:pointer;
 }
 
+p {
+  margin: 0 0;
+}
+.pic-container {
+  position:relative;
+  width:100%;
+}
+.borough {
+  width:100%
+}
+.profile-pic {
+  position:absolute;
+  left:30%;
+  top:65%
+}
+/* .col .row {
+  float:left;
+} */
+.try .row .col {
+  padding:0px
+}
+.try {
+  padding:0px;
+}
+/* @media only screen and (max-width: 992px){
+  .col .row {
+    float:none
+  }
+} */

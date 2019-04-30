@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { Col , Row, ProgressBar } from 'react-materialize'
 import { getSingleSubscriptionIdForUserAndGoal, addSubscription, deleteSubscription } from '../util/util';
@@ -6,10 +7,12 @@ import Puzzle from './Puzzle'
 import '../css/singlegoal.css';
 import ReactS3 from 'react-s3';
 import { uploadFile } from 'react-s3';
+import axios from 'axios'
 // let aws = require('../util/secret.json')
 
 
-// fake key to prevent errors
+
+// // fake key to prevent errors
 let aws = {
   "AWSAccessKeyId":123,
   "AWSSecretKey":123
@@ -25,7 +28,8 @@ const config = {
 export default class SingleGoal extends Component {
   state = {
     loggedUserSubId: "",
-    didUpload: false
+    didUpload: false,
+    goalInfo:[]
   }
 
   componentDidMount() {
@@ -33,8 +37,11 @@ export default class SingleGoal extends Component {
     let { loggedUserSubId } = this.state;
     let userId = loggedUser.id;
     let goalId = this.props.match.params.goal_id;
+    this.getGoal()
     this.refreshSubscriptions(userId, goalId)
+
   }
+
 
   componentDidUpdate(prevProps) {
     let { loggedUser, match } = this.props;
@@ -60,6 +67,28 @@ export default class SingleGoal extends Component {
         })
       }
   }
+  getGoal = () => {
+    axios.
+      get(`/goals/${this.props.match.params.goal_id}`)
+        .then(res=> {
+          this.setState({
+            goalInfo:[res.data.data]
+          })
+        })
+        
+
+  }
+  //normalized desc
+  nd = (description) => {
+   let arr = (description).split('@$'),
+    obj = {
+     description: arr[0],
+     initiative: arr[1],
+     slogan: arr[2]
+   }
+   return obj
+  }
+
 
   handleUpload = (e) => {
     let { loggedUser, match } = this.props;
@@ -85,35 +114,36 @@ export default class SingleGoal extends Component {
   }
 
   render(){
-    console.log(this.props);
-    let { loggedUserSubId } = this.state
-    let { submissions, subscriptions, loggedUser } = this.props;
 
-    let percAll = submissions && subscriptions ? (submissions.length/+subscriptions[0].target_value*100).toFixed(2) : 0;
+
+    let { loggedUserSubId, goalInfo } = this.state
+    let { submissions, subscriptions, loggedUser,match } = this.props;
+
+    let percAll = submissions && subscriptions ? (submissions.length/+goalInfo[0].target_value*100).toFixed(2) : 0;
     let countUserSubs = submissions ? (submissions.filter(el => el.user_id === loggedUser.id)).length : null
-    let percUser = submissions && subscriptions ? (countUserSubs/+subscriptions[0].target_value*100).toFixed(2) : 0 ;
+    let percUser = submissions && subscriptions ? (countUserSubs/+goalInfo[0].target_value*100).toFixed(2) : 0 ;
     return(
       submissions && subscriptions ? (
       <div className="container">
         <div className="goal-header">
-          <h3>{subscriptions[0].title}</h3>
+          <h3>{goalInfo[0].title}</h3>
             <div className="subs">
               <button className="btn waves-effect waves-light" onClick={this.handleSubscribe}> {loggedUserSubId ? "Unsubscribe " : "Subscribe "}{subscriptions ? subscriptions.length : null}</button>
             </div>
         </div>
-        <h4>{subscriptions[0].description.description}</h4>
+        <h4>{this.nd(goalInfo[0].description).description}</h4>
         { loggedUser.id && loggedUserSubId ?
         <Row>
           <Col s={12}>
             <h3>Your Contribution</h3>
-            <h2>{countUserSubs}/{subscriptions[0].target_value}</h2>
+            <h2>{countUserSubs}/{goalInfo[0].target_value}</h2>
             <ProgressBar className={percUser > 99 ? "finished":'not-finished'} progress={+percUser} />
           </Col>
         </Row>
         : null }
         <Row>
           <Col s={12}>
-            <h3>{subscriptions[0].name} Contributions</h3>
+            <h3>{goalInfo[0].community} Contributions</h3>
             <h2>{percAll}%</h2>
             <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={+percAll} />
           </Col>
@@ -136,11 +166,12 @@ export default class SingleGoal extends Component {
           </div>
         </Row>
 
+
       </div>
     ) : ""
     )
   }
 }
 
-// subscribe function
-// photo upload
+// // subscribe function
+// // photo upload

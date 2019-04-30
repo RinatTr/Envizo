@@ -16,7 +16,7 @@ const getAllCommunities = (req, res, next) => {
 
 const getAllActivityForACommunity = (req, res, next) => {
   const communityId = parseInt(req.params.id)
-  db.any('SELECT activity.id, activity.user_id as usersId, type, time_stamp, username, avatar_img, communities.* FROM activity JOIN users ON users.id = activity.user_id JOIN communities ON communities.id = users.community_id WHERE communities.id=$1 order by time_stamp desc', communityId)
+  db.any('SELECT activity.id, activity.user_id as usersId, type, time_stamp, username, avatar_img, communities.* FROM activity JOIN users ON users.id = activity.user_id JOIN communities ON communities.id = users.community_id WHERE communities.id=$1 ORDER BY activity.time_stamp DESC', communityId)
     .then(activity => {
       res.status(200).json({
         activity: activity
