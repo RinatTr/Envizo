@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { VisualDisplay } from './VisualDisplay'
-import { Tab, Tabs } from 'react-materialize'
+import { Tab, Tabs, Select } from 'react-materialize'
 import '../css/home.css';
 import GoalsListContainer from '../containers/GoalsListContainer';
 import M from 'materialize-css'
@@ -19,14 +19,10 @@ class Home extends Component {
   }
   componentDidMount() {
     this.props.fetchTonnage();
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    M.FormSelect.init(elems);
-  });
   }
   handleChange = e => {
     this.setState({
-      [e.target.name]:e.target.value
+      borough:e.target.value
     })
     window.scroll(0,document.body.scrollHeight)
   }
@@ -58,14 +54,14 @@ class Home extends Component {
           </div>
           <div  className="container borough-select">
           <div className ='input-field col s6'>
-          <select name='borough' onChange={this.handleChange}>
+          <Select name='borough' onChange={this.handleChange}>
             <option value='0'>Select Borough</option>
             <option value='1'>Manhattan</option>
             <option value='2'>Queens</option>
             <option value='3'>Bronx</option>
             <option value='4'>Brooklyn</option>
             <option value='5'>Staten Island</option>
-          </select>
+          </Select>
           </div>
           </div>
 
