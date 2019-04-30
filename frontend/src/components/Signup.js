@@ -90,7 +90,7 @@ class Signup extends Component {
     return (
       <div className='container SignUpContainer'>
         <div className='container'>
-          <h1>Sign Up</h1>
+          <h4>Sign Up</h4>
         </div>
         <form className='input-field col s6 FormContainer' onSubmit={this.onSubmitNewUser}>
           <div className='input-field col s6'>

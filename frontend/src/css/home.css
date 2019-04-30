@@ -39,12 +39,3 @@ div#content {
   width:45%;
 
 }
-#visual-header {
-  color: #969b01;
-  background-color: rgba(255, 255, 255, 0.8);
-  text-shadow:
-   -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-     1px 1px 0 #000;
-}

@@ -36,16 +36,16 @@ class Home extends Component {
         <>
         <div className="col s6">
           <Tabs className=" tab-demo z-depth-1" options={{swipeable: true}}>
-            <Tab title="Monthly Tonnage">
+            <Tab title="Monthly Tonnage" active>
             <div className="container">
-              <h1 id='visual-header'>Take a dive in NYC's trash pile.</h1>
+              <h4 id='bold'>Take a dive in NYC's trash pile.</h4>
               </div>
                 <div id="demo">
                 <VisualDisplay />
                 <div className="container">
                   <p>* Each circle represents Monthly Tonnage for each borough between 2018-2019, according to NYC Open Data API.</p>
                 </div>
-                <h2 id='visual-header'>OK. How Can I Help?</h2>
+                <h4 className="center" id="bold">OK. How Can I Help?</h4>
               </div>
             </Tab>
             <Tab title="Air Pollution">

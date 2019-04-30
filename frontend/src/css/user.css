@@ -51,16 +51,33 @@ p {
 .profile-pic {
   position:absolute;
   left:37%;
-  top:75%
+  top:75%;
+  border: 2px solid white;
+}
+
+.borough-title {
+  position: absolute;
+  left: 5%;
+  top: 0%;
+}
+
+.borough-title h4 {
+  color: white;
+}
+
+h5 {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 /* .col .row {
   float:left;
 } */
-.row .col.try  {
-  padding:0px
+.row .col.no-pad  {
+  padding:0px;
 }
-.try {
-  padding:0px
+.no-pad {
+  margin:0px;
+  padding:0px;
 }
 @media only screen and (max-width: 1140px){
   .circle {

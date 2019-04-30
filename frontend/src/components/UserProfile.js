@@ -179,6 +179,10 @@ class UserProfile extends Component {
     const { community } = this.state;
     const communityId = community.length ? community[0].id : null;
     const { subscripUser } = this.props.subscriptions;
+    const { users, match } = this.props;
+    const routeId = parseInt(match.params.id);
+    const userObj = users.find(user => user.id === routeId)
+    const userName = userObj ? userObj.username : "";
     // const { users } = this.props;
 
     //loop through subscritionsForAUser and get goals that the user subscribed
@@ -230,28 +234,31 @@ class UserProfile extends Component {
         <Row className='center'>
 
           {/* User side */}
-          <Col l={4} className="push-l1 m8 s12 black-text z-depth-3 try">
+          <Col l={4} className="white push-l1 m8 s12 black-text z-depth-3 no-pad">
 
                 <div className="pic-container">
-                <img src={community[0]?borough[community[0].id]:null} alt="borough" className='borough responsive-img' />
-                <img src={imgUrl} alt="" className="circle profile-pic"></img>
+                  <img src={community[0]?borough[community[0].id]:null} alt="borough" className='borough responsive-img' />
+                  <span className="borough-title">
+                    <Link to={community.length ?  `/community/${community[0].id}` : null }>
+                      { community.length ? <h4 id="bold">{community[0].name}</h4> : 'Loading'}
+                    </Link>
+                  </span>
+                  <img src={imgUrl} alt="" className="circle profile-pic z-depth-3"></img>
                 </div>
                 <div>
-                  <Link to={community.length ?  `/community/${community[0].id}` : null }>
-                    { community.length ? <h2>{community[0].name}</h2> : 'Loading'}
-                  </Link>
+                  <h4>{userName}</h4>
                 </div>
                 <h5>What Motivates You?</h5>
-              <Collection>
+              <Collection className="no-pad">
               { goalsList }
               </Collection>
 
           </Col>
 
           {/* Activities side */}
-          <Col l={5} className="offset-l2 m8 s12 black-text z-depth-3">
+          <Col l={5} className="offset-l2 m8 s12 black-text z-depth-3 no-pad">
 
-              <Collection header='Feed'>
+              <Collection header='Feed' className="no-pad">
               {this.getActivities()}
               </Collection>
           </Col>

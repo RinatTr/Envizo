@@ -4,7 +4,7 @@ const CommunityReducer = (oldState = [], action) => {
   Object.freeze(oldState);
   switch(action.type) {
     case RECEIVE_ALLACTIVITY_FORACOMMUNITY:
-    return [ ...oldState, ...action.activity.activity ]
+    return action.activity.activity
     default:
     return oldState;
   }

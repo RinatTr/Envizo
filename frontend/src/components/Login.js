@@ -39,7 +39,7 @@ class Login extends Component {
     return (
       <div className='container LogInContainer'>
       <div className='input-field col s6'>
-        <h1>Log In</h1>
+        <h4>Log In</h4>
       </div>
         <form onSubmit={this.onSubmitLogIn}>
         <div className='input-field col s6'>

@@ -120,7 +120,7 @@ export default class CommunityGoal extends Component {
       community.goals !== undefined ? (
       <div className="container">
         <div className="goal-header">
-          <h3>Goals for {community.goals.data[0].community}</h3>
+          <h4 id="bold">Goals for {community.goals.data[0].community}</h4>
         </div>
         {mapGoals ? mapGoals : ""}
       </div>
