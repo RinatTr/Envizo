@@ -13,17 +13,17 @@ import axios from 'axios'
 
 
 // // fake key to prevent errors
-// // let aws = {
-// //   "AWSAccessKeyId":123,
-// //   "AWSSecretKey":123
-// // }
+let aws = {
+  "AWSAccessKeyId":123,
+  "AWSSecretKey":123
+}
 
-// const config = {
-//     bucketName: 'envizo-img',
-//     region: 'us-east-1',
-//     accessKeyId: aws["AWSAccessKeyId"],
-//     secretAccessKey: aws["AWSSecretKey"]
-// }
+const config = {
+    bucketName: 'envizo-img',
+    region: 'us-east-1',
+    accessKeyId: aws["AWSAccessKeyId"],
+    secretAccessKey: aws["AWSSecretKey"]
+}
 
 export default class SingleGoal extends Component {
   state = {
@@ -43,14 +43,14 @@ export default class SingleGoal extends Component {
   }
 
 
-//   componentDidUpdate(prevProps) {
-//     let { loggedUser, match } = this.props;
-//     if (loggedUser.id !== prevProps.loggedUser.id) {
-//       let userId = loggedUser.id
-//       let goalId = +this.props.match.params.goal_id
-//       this.refreshSubscriptions(userId, goalId)
-//     }
-//   }
+  componentDidUpdate(prevProps) {
+    let { loggedUser, match } = this.props;
+    if (loggedUser.id !== prevProps.loggedUser.id) {
+      let userId = loggedUser.id
+      let goalId = +this.props.match.params.goal_id
+      this.refreshSubscriptions(userId, goalId)
+    }
+  }
 
   handleSubscribe = (e) => {
     let { loggedUser, match } = this.props;
@@ -75,9 +75,7 @@ export default class SingleGoal extends Component {
             goalInfo:[res.data.data]
           })
         })
-        .then(()=> {
-          this.nd(this.state.goalInfo[0].description)
-        })
+        
 
   }
   //normalized desc
@@ -92,28 +90,28 @@ export default class SingleGoal extends Component {
   }
 
 
-//   handleUpload = (e) => {
-//     let { loggedUser, match } = this.props;
-//     let sub = { img_url:"" , goal_id: match.params.goal_id }
+  handleUpload = (e) => {
+    let { loggedUser, match } = this.props;
+    let sub = { img_url:"" , goal_id: match.params.goal_id }
 
-//     ReactS3.uploadFile(e.target.files[0], config)
-//             .then((res) => {
-//               sub.img_url = res.location;
-//               this.setState({ didUpload: true })
-//               addSubmission(loggedUser.id, sub)
-//               this.props.fetchSubmissionsPerGoal(match.params.goal_id)
-//             })
-//             .catch(err => console.log(err))
-//   }
+    ReactS3.uploadFile(e.target.files[0], config)
+            .then((res) => {
+              sub.img_url = res.location;
+              this.setState({ didUpload: true })
+              addSubmission(loggedUser.id, sub)
+              this.props.fetchSubmissionsPerGoal(match.params.goal_id)
+            })
+            .catch(err => console.log(err))
+  }
 
-//   refreshSubscriptions = (userId, goalId) => {
-//     getSingleSubscriptionIdForUserAndGoal(userId, goalId)
-//       .then((res) => {
-//           this.props.fetchSubscriptionsPerGoal(goalId);
-//           let newValue = res.data.subId.length ? res.data.subId[0].id : "" ;
-//           return this.setState({ loggedUserSubId: newValue });
-//       })
-//   }
+  refreshSubscriptions = (userId, goalId) => {
+    getSingleSubscriptionIdForUserAndGoal(userId, goalId)
+      .then((res) => {
+          this.props.fetchSubscriptionsPerGoal(goalId);
+          let newValue = res.data.subId.length ? res.data.subId[0].id : "" ;
+          return this.setState({ loggedUserSubId: newValue });
+      })
+  }
 
   render(){
 
@@ -169,7 +167,7 @@ export default class SingleGoal extends Component {
         </Row>
 
 
-//       </div>
+      </div>
     ) : ""
     )
   }

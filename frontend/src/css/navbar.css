@@ -24,6 +24,7 @@ a.active {
  background: lightgreen;
  border-bottom: 0px;
  font-size: 32px;
+ color:white;
 }
 
 .chip {
