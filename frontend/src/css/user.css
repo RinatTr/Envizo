@@ -50,20 +50,53 @@ p {
 }
 .profile-pic {
   position:absolute;
-  left:30%;
-  top:65%
+  left:37%;
+  top:75%
 }
 /* .col .row {
   float:left;
 } */
-.try .row .col {
+.row .col.try  {
   padding:0px
 }
 .try {
   padding:0px;
 }
-/* @media only screen and (max-width: 992px){
-  .col .row {
-    float:none
+@media only screen and (max-width: 1140px){
+  .circle {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
   }
-} */
+}
+@media only screen and (max-width: 992px){
+  .circle {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+  }
+  .profile-pic {
+    position:absolute;
+    left:41%;
+    top:84%
+  }
+}
+@media only screen and (max-width: 902px){
+  .circle {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
+}
+@media only screen and (max-width: 447px){
+  .profile-pic {
+    position:absolute;
+    left:38%;
+    top:80%
+  }
+  .circle {
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+  }
+}

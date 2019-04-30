@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import M from 'materialize-css';
-import { Chip } from 'react-materialize'
+import { Chip, Navbar as Nav } from 'react-materialize'
 import logo from './navbarLogo.png'
 import './css/navbar.css'
 
@@ -41,9 +41,11 @@ render(){
             </Chip>
           </Link>
         </li>
-        <li><NavLink to="/" className='logout' onClick={this.logout}>Logout</NavLink></li>
+        <li><NavLink to={`/community/${this.props.auth.currentUser.community_id}`} className='nav-commmunity'>My Community</NavLink></li>
+        <li><NavLink exact to="/" className='logout' onClick={this.logout}>Logout</NavLink></li>
       </div>
-    </ul> ) :
+    </ul>
+    ) :
   <ul id="nav-mobile" className="right hide-on-med-and-down">
     <div className='navbar_registration'>
     <li><NavLink to="/signup" className='signup'>Sign Up</NavLink></li>
@@ -65,6 +67,7 @@ render(){
 
         <li className="sidenav-close" ><NavLink exact to='/'>Home</NavLink></li>
         <li className="sidenav-close" ><NavLink to={`/profile/${this.props.auth.userId}`}>My Profile</NavLink></li>
+        <li className="sidenav-close" ><NavLink to={`/community/${this.props.auth.currentUser.community_id}`} className='nav-commmunity'>My Community</NavLink></li>
         <li className="sidenav-close" ><NavLink to='/aboutus'>About Us</NavLink></li>
 
       </ul> :
@@ -72,6 +75,7 @@ render(){
         <li className="sidenav-close" ><NavLink to='/signup'>Sign Up</NavLink></li>
         <li className="sidenav-close" ><NavLink to='/login'>Login</NavLink></li>
         <li className="sidenav-close" ><NavLink to='/aboutus'>About Us</NavLink></li>
+
       </ul> }
 
     </div>
