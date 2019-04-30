@@ -48,10 +48,15 @@ p {
 .borough {
   width:100%
 }
-.profile-pic {
+/* .profile-pic {
   position:absolute;
-  left:37%;
+  left:35%;
   top:75%;
+  border: 2px solid white;
+} */
+.profile-pic {
+  z-index: 5;
+  margin-top: -70px;
   border: 2px solid white;
 }
 
@@ -61,8 +66,13 @@ p {
   top: 0%;
 }
 
+
 .borough-title h4 {
   color: white;
+}
+
+h4.username {
+  margin-top: 10px;
 }
 
 h5 {
@@ -79,7 +89,7 @@ h5 {
   margin:0px;
   padding:0px;
 }
-@media only screen and (max-width: 1140px){
+/* @media only screen and (max-width: 1140px){
   .circle {
     border-radius: 50%;
     width: 100px;
@@ -116,4 +126,4 @@ h5 {
     width: 90px;
     height: 90px;
   }
-}
+} */

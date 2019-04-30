@@ -243,10 +243,10 @@ class UserProfile extends Component {
                       { community.length ? <h4 id="bold">{community[0].name}</h4> : 'Loading'}
                     </Link>
                   </span>
-                  <img src={imgUrl} alt="" className="circle profile-pic z-depth-3"></img>
+                  <img src={imgUrl} alt="" className="circle profile-pic z-depth-3 center"></img>
                 </div>
                 <div>
-                  <h4>{userName}</h4>
+                  <h4 className="username">{userName}</h4>
                 </div>
                 <h5>What Motivates You?</h5>
               <Collection className="no-pad">

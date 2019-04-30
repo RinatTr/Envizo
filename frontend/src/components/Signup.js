@@ -36,16 +36,16 @@ class Signup extends Component {
 
   componentDidMount(){
   this.props.checkAuthenticateStatus()
-  // document.addEventListener('DOMContentLoaded', function() {
-  //     var elems = document.querySelectorAll('select');
-  //     M.FormSelect.init(elems);
-  //     M.updateTextFields()
-  //   });
   }
 
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
+    })
+  }
+  handleSelect = e => {
+    this.setState({
+      borough: e.target.value
     })
   }
 
@@ -115,7 +115,7 @@ class Signup extends Component {
               />
             </div>
             <div className ='input-field col s6'>
-              <Select name='borough' onChange={this.handleChange}>
+              <Select name='borough' onChange={this.handleSelect}>
                 <option value='0'>Select Borough</option>
                 <option value='1'>Manhattan</option>
                 <option value='2'>Queens</option>
