@@ -12,6 +12,13 @@ import {
   TumblrShareButton,
 } from 'react-share';
 import Timeago from 'react-timeago';
+let borough = {
+  1:'https://img3.goodfon.com/wallpaper/nbig/a/9b/new-york-city-new-york-1271.jpg',
+  2:'https://pbs.twimg.com/media/Drb0hVBWwAUvJSr.jpg',
+  3:'https://cdn-assets.alltrails.com/uploads/photo/image/19326941/extra_large_a08958fc25b15bb98cf4e1d17f1443c1.jpg',
+  4:'http://s1.1zoom.net/big0/603/Australia_Rivers_Boats_Brooklyn_Hawkesbury_River_540885_1280x800.jpg',
+  5:'https://cdn2.vox-cdn.com/uploads/chorus_asset/file/6695497/07_Kensinger_Mill_Creek_DSC_8839.0.jpg'
+}
 
 class UserProfile extends Component {
 
@@ -38,6 +45,7 @@ class UserProfile extends Component {
     .catch(err => Error)
   }
 
+
   getActivities = () => {
     const { community } = this.state;
     const { auth, users, userActivity } = this.props;
@@ -54,7 +62,7 @@ class UserProfile extends Component {
               <div className='joined'>
                 <div>
                   <p>
-                    {userName} have joined      
+                    {userName} have joined
                     <Link to={community.length ?  `/community/${community[0].id}` : null }>
                       {' '}{ community.length ? community[0].name : 'Loading'}
                     </Link> community.
@@ -149,7 +157,7 @@ class UserProfile extends Component {
               </div>
             </CollectionItem>
           )
-        } 
+        }
       })
     } else {
       activityList = (
@@ -162,9 +170,10 @@ class UserProfile extends Component {
   }
 
   render() {
-    console.log("props",this.props)
+    // let boroughid = this.props.auth.currentUser.community_id
+    console.log(borough[1]);
     const { community } = this.state;
-   
+
     const { subscripUser } = this.props.subscriptions;
     // const { users } = this.props;
 
@@ -203,27 +212,32 @@ class UserProfile extends Component {
         <Row className='center'>
 
           {/* User side */}
-          <Col l={4} className="teal push-l1 black-text">
+          <Col l={4} className="push-l1 m8 s12 black-text z-depth-3 try">
 
-            <Collection className='avatar'>
-              <CollectionItem>
-                <img src={imgUrl} alt="" className="circle"></img>
+
+
+                <div className="pic-container">
+                <img src={community[0]?borough[community[0].id]:null} alt="borough" className='borough responsive-img' />
+                <img src={imgUrl} alt="" className="circle profile-pic"></img>
+                </div>
                 <div>
                   <Link to={community.length ?  `/community/${community[0].id}` : null }>
-                    { community.length ? community[0].name : 'Loading'}
+                    { community.length ? <h2>{community[0].name}</h2> : 'Loading'}
                   </Link>
                 </div>
                 <h5>What Motivates You?</h5>
-              </CollectionItem>
+              <Collection>
               { goalsList }
-            </Collection>
+              </Collection>
+
           </Col>
 
           {/* Activities side */}
-          <Col l={5} className="teal offset-l2 black-text">
-            <Collection>
+          <Col l={5} className="offset-l2 m8 s12 black-text z-depth-3">
+
+              <Collection header='Feed'>
               {this.getActivities()}
-            </Collection>
+              </Collection>
           </Col>
 
         </Row>
