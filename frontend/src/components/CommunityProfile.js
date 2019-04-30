@@ -3,6 +3,14 @@ import { Row, Col, Collection, CollectionItem, Icon, Button } from 'react-materi
 import '../css/community.css'
 import Timeago from 'react-timeago';
 
+let borough = {
+  1:'https://img3.goodfon.com/wallpaper/nbig/a/9b/new-york-city-new-york-1271.jpg',
+  2:'https://pbs.twimg.com/media/Drb0hVBWwAUvJSr.jpg',
+  3:'https://cdn-assets.alltrails.com/uploads/photo/image/19326941/extra_large_a08958fc25b15bb98cf4e1d17f1443c1.jpg',
+  4:'http://s1.1zoom.net/big0/603/Australia_Rivers_Boats_Brooklyn_Hawkesbury_River_540885_1280x800.jpg',
+  5:'https://cdn2.vox-cdn.com/uploads/chorus_asset/file/6695497/07_Kensinger_Mill_Creek_DSC_8839.0.jpg'
+}
+
 class CommunityProfile extends Component {
   componentDidMount() {
     this.props.fetchAllCommunityActivity(this.props.match.params.id);
@@ -77,16 +85,16 @@ class CommunityProfile extends Component {
       imgUrl = 'https://img3.goodfon.com/wallpaper/nbig/a/9b/new-york-city-new-york-1271.jpg'
       communityName = 'Manhattan';
     } else if (this.props.match.params.id == 2) {
-      imgUrl = 'https://lh4.googleusercontent.com/proxy/wFzYqDFVO8MdySYztyb0lfZ4X2lGKIRPQfOG0MK4OK-hhu5SMaWioUsLvjH8HFnd2gQrDGM71Cl3vM2hAMOiVFKpg-DC7gzJOgwdaWhFguBOtQIHUD_3HcwEDBuU9WYwiWBWQlWFxgzDFyPWebkJX35u8SA=w100-h134-n-k-no'
+      imgUrl = 'https://pbs.twimg.com/media/Drb0hVBWwAUvJSr.jpg'
       communityName = 'Queens';
     } else if (this.props.match.params.id == 3) {
-      imgUrl = 'https://lh4.googleusercontent.com/-gPwo34QaDBQ/W3x_jw9ZYXI/AAAAAAAAIxA/Wvnpd-MzoZg6tn5FgfQ_10GG7Hd6bUs5wCLIBGAYYCw/w100-h134-n-k-no/'
+      imgUrl = 'https://cdn-assets.alltrails.com/uploads/photo/image/19326941/extra_large_a08958fc25b15bb98cf4e1d17f1443c1.jpg'
       communityName = 'Bronx';
     } else if (this.props.match.params.id == 4) {
-      imgUrl = 'https://lh3.googleusercontent.com/proxy/pFj8y2-5LEdGMGl9Zj29meMpsAuDk9RLtCAk9AWxacqVXuXzkS3iFyCjsjLqpiuPRTI2ELA6kE_JC9bIB9mkCkOrDR7UMortMtdGYd_cG-EtWugRxPhAKiEh7gssc9yG9bklK7duwviO0ogGQNFnKgerUXg=w100-h134-n-k-no'
+      imgUrl = 'http://s1.1zoom.net/big0/603/Australia_Rivers_Boats_Brooklyn_Hawkesbury_River_540885_1280x800.jpg'
       communityName = 'Brooklyn';
     } else if (this.props.match.params.id == 5) {
-      imgUrl = 'https://lh4.googleusercontent.com/proxy/Shgm80IWPINGqlsPTiFbrYRMrNqCAg8r3xJXS2L_XA2CBXDf7Z_UbwFtj1lU74bDTiP7kpNPHVY49dOY00O8Kj6ZHa8pnMb1RTP37fLHciFjn2r0OdXPRB7dhWMXYe32J5wbh5U6E6n6VCPPATuYbW9u5MU=w100-h134-n-k-no'
+      imgUrl = 'https://cdn2.vox-cdn.com/uploads/chorus_asset/file/6695497/07_Kensinger_Mill_Creek_DSC_8839.0.jpg'
       communityName = 'Staten Island';
     }
 
@@ -112,11 +120,13 @@ class CommunityProfile extends Component {
       <div className='community_profile'>
         <Row className='center'>
           {/* Communityside */}
-          <Col l={4} className='teal push-l1 black-text'>
+          <Col l={4} className='teal push-l1 black-text try'>
             <Collection className='avatar'>
               <CollectionItem>
+              <div className="pic-container">
+                <img src={imgUrl} alt="borough" className='borough responsive-img' />
+              </div>
                 <h5>{communityName}</h5><br />
-                  <div className="avatar-wrapper"><img src={imgUrl} className='circle'></img></div>
                 <h5>About ?</h5>
               </CollectionItem>
               { goalsList }
