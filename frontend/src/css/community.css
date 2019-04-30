@@ -1,3 +1,20 @@
 .community_profile {
   margin-top: 80px;
 }
+
+.pic-container {
+  position:relative;
+  width:100%;
+}
+
+.borough {
+  width:100%
+}
+
+.row .col.try {
+  padding:0px;
+  margin: 0px;
+}
+.try {
+  padding:0px;
+}
