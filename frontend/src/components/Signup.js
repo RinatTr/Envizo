@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import M from 'materialize-css';
 import '../css/signup.css';
 import ReactS3 from 'react-s3';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import { Select } from 'react-materialize';
 // import { uploadFile } from 'react-s3';
 // let aws = require('../util/secret.json')
 
@@ -35,11 +36,11 @@ class Signup extends Component {
 
   componentDidMount(){
   this.props.checkAuthenticateStatus()
-  document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('select');
-      M.FormSelect.init(elems);
-      M.updateTextFields()
-    });
+  // document.addEventListener('DOMContentLoaded', function() {
+  //     var elems = document.querySelectorAll('select');
+  //     M.FormSelect.init(elems);
+  //     M.updateTextFields()
+  //   });
   }
 
   handleChange = e => {
@@ -86,7 +87,6 @@ class Signup extends Component {
   }
 
   render(){
-    console.log(this.props);
     return (
       <div className='container SignUpContainer'>
         <div className='container'>
@@ -115,14 +115,14 @@ class Signup extends Component {
               />
             </div>
             <div className ='input-field col s6'>
-              <select name='borough' onChange={this.handleChange}>
+              <Select name='borough' onChange={this.handleChange}>
                 <option value='0'>Select Borough</option>
                 <option value='1'>Manhattan</option>
                 <option value='2'>Queens</option>
                 <option value='3'>Bronx</option>
                 <option value='4'>Brooklyn</option>
                 <option value='5'>Staten Island</option>
-              </select>
+              </Select>
             </div>
             <div className='input-field col s6'>
               <label htmlFor="password">Password</label>
