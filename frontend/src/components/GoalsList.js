@@ -39,16 +39,13 @@ class GoalsList extends Component {
       return (
 
         <CollapsibleItem node='h5' header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>
-            <div className="container">
+          <div className="container">
             <p className='flow-text'>{goal.description.initiative}</p>
-
             <h4>Task:</h4><h5>{goal.description.description}</h5>
-            </div>
+          </div>
 
           <div className='container leButtons'>
-
             <Prediction currentGoal={goal.title}/>
-
             {this.props.isLoggedIn?<button className="btn-small subscribe">
               <a href={`/goal/${goal.id}`} className='subscribe-link white-text'>Learn More</a>
             </button>:<button className="btn-small subscribe">
