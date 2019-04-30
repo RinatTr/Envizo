@@ -204,7 +204,7 @@ class UserProfile extends Component {
           { goal.title }
           <a href={`/goal/${goal.goal_id}`} className='secondary-content'>
             <Icon>
-              send
+              arrow_forward
             </Icon>
           </a>
         </CollectionItem>

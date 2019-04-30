@@ -31,7 +31,6 @@ class Prediction extends Component {
   setStory = (currentGoal) => {
     let stories = { ["Reusable Grocery Bag"]: ["I shop for groceries","times per week, and use","plastic bags on average each time.","plastic bags"],
                     ["Drink Tap Water"]: ["I drink a bottled or canned beverage","times per week.","","bottles and/or cans"],
-
                     ["Recycle"]: ["I dispose about","paper, metal, plastic and glass items per week, and recycle about","precentage of it.","paper, metal, plastic and glass items"] }
 
     return stories[currentGoal];

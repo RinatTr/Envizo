@@ -34,6 +34,10 @@ li, p {
 time {
   font-size: 13px;
 }
+
+img {
+  object-fit: cover;
+}
 /*
 h1 {
   color: #003668;
