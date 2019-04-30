@@ -42,7 +42,7 @@ class CommunityProfile extends Component {
             <CollectionItem className='avatar'>
               <img src={activity.avatar_img} alt="" className="circle" />
                 <p className = "title left" >
-                <a href={`/profile/${activity.usersid}` }>{activity.username}</a> has subscribed to a goal.
+                <a href={`/profile/${activity.usersid}` }>{activity.username}</a> has subscribed to {activity.title}.
                 </p>
                 <br />
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
@@ -74,7 +74,7 @@ class CommunityProfile extends Component {
     let imgUrl;
     let communityName;
     if (this.props.match.params.id == 1) {
-      imgUrl = 'https://lh3.googleusercontent.com/proxy/St6LIl5bJgeazlZGUlSJKCV0dMSBsyvDlEjFm1-RG14tp9M6m_OouMdNYWznNE_2YeJF2A8s7Y0i7iuUTupvTk_bia_crzi5Bz5d_0W5VwxDTxBSsrvSjDqR7vej0MuTLB-4Qwi3zKP0-8P417gY5pa-ETw=w100-h134-n-k-no'
+      imgUrl = 'https://img3.goodfon.com/wallpaper/nbig/a/9b/new-york-city-new-york-1271.jpg'
       communityName = 'Manhattan';
     } else if (this.props.match.params.id == 2) {
       imgUrl = 'https://lh4.googleusercontent.com/proxy/wFzYqDFVO8MdySYztyb0lfZ4X2lGKIRPQfOG0MK4OK-hhu5SMaWioUsLvjH8HFnd2gQrDGM71Cl3vM2hAMOiVFKpg-DC7gzJOgwdaWhFguBOtQIHUD_3HcwEDBuU9WYwiWBWQlWFxgzDFyPWebkJX35u8SA=w100-h134-n-k-no'
