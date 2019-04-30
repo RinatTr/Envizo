@@ -31,6 +31,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
   <body>
+    <img src="cathedral.jpg" id="the-img" style="max-width: 200px;"/><br>
+    <p id="pic-info"></p>
+    <p id="map-link"></p>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
+     <script>
+      document.getElementById("the-img").onclick = function() {
+      EXIF.getData(this, function() {
+        myData = this;
+        console.log(myData.exifdata);
+      });
+      }
+      
+     </script>
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

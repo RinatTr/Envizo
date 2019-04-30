@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
+import { Row, Col, Collection, CollectionItem, Icon, Button } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import '../css/user.css';
 import {
@@ -171,9 +171,8 @@ class UserProfile extends Component {
 
   render() {
     // let boroughid = this.props.auth.currentUser.community_id
-    console.log(borough[1]);
     const { community } = this.state;
-
+    const communityId = community.length ? community[0].id : null;
     const { subscripUser } = this.props.subscriptions;
     // const { users } = this.props;
 
@@ -202,9 +201,23 @@ class UserProfile extends Component {
         </CollectionItem>
       )
     }) : (
+      <>
       <CollectionItem>
-        <p>No subscriptions yet...</p>
+        <h6>No subscriptions...please click to subscribe ;)</h6>
       </CollectionItem>
+      <CollectionItem>
+        <Button type="submit" waves="light">
+          <a href={`/goals/community/${communityId}`} className='secondary-content'>
+            <div className='white-text'>
+              Subscribe
+              <Icon right>
+              send
+              </Icon>
+            </div>
+          </a>
+        </Button>
+      </CollectionItem>
+      </>
     )
 
     return (
