@@ -78,6 +78,7 @@ class GoalsList extends Component {
         <Collapsible>
           {goalsList}
         </Collapsible>
+        
       </>
     )
   }
