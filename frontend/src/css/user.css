@@ -85,45 +85,31 @@ h5 {
 .row .col.no-pad  {
   padding:0px;
 }
+
+.boroughName {
+  font-size: 40px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  transition: all .5s ease-in-out
+}
+.boroughName:hover {
+  color:#8ee4af;
+}
+
 .no-pad {
   margin:0px;
   padding:0px;
 }
-/* @media only screen and (max-width: 1140px){
-  .circle {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-  }
-}
+
 @media only screen and (max-width: 992px){
-  .circle {
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-  }
-  .profile-pic {
-    position:absolute;
-    left:41%;
-    top:84%
-  }
+    .row.center {
+      margin-left: 25%;
+    }
+
 }
-@media only screen and (max-width: 902px){
-  .circle {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-  }
+@media only screen and (max-width: 600px){
+    .row.center {
+      margin-left: 0%;
+    }
+
 }
-@media only screen and (max-width: 447px){
-  .profile-pic {
-    position:absolute;
-    left:38%;
-    top:80%
-  }
-  .circle {
-    border-radius: 50%;
-    width: 90px;
-    height: 90px;
-  }
-} */
