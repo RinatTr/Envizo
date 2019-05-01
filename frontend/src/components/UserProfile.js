@@ -61,7 +61,7 @@ class UserProfile extends Component {
             <CollectionItem className='l2' key={activity.id}>
               <div className='joined'>
                 <div className='text'>
-                  <p className='left'>{userName} have joined
+                  <p className='left'>{userName} has joined
                     <Link to={community.length ?  `/community/${community[0].id}` : null }>
                       {' '}{ community.length ? community[0].name : 'Loading'}
                     </Link> community.
@@ -89,7 +89,7 @@ class UserProfile extends Component {
           <CollectionItem className='l2' key={activity.id}>
             <div className='joined'>
               <div>
-                <p className='left'>{userName} have uploaded a photo.</p><br/>
+                <p className='left'>{userName} has uploaded a photo.</p><br/>
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
               <div className='share_buttons'>
@@ -113,7 +113,7 @@ class UserProfile extends Component {
           <CollectionItem className='l2' key={activity.id}>
             <div className='joined'>
               <div>
-                <p className='left'>{userName} have subscribed to a goal.</p><br/>
+                <p className='left'>{userName} has subscribed to a goal.</p><br/>
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
               <div className='share_buttons'>
@@ -139,7 +139,7 @@ class UserProfile extends Component {
                 <div>
                   <Link to={community.length ?  `/community/${community[0].id}` : null }>
                     { community.length ? community[0].name : 'Loading'}
-                  </Link> have reached a milestone.<br/>
+                  </Link> has reached a milestone.<br/>
                   <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
                 </div>
                 <div className='share_buttons'>
