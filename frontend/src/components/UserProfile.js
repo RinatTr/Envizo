@@ -236,7 +236,7 @@ class UserProfile extends Component {
                   <img src={community[0]?borough[community[0].id]:null} alt="borough" className='borough responsive-img' />
                   <span className="borough-title">
                     <Link to={community.length ?  `/community/${community[0].id}` : null }>
-                      { community.length ? <h4 id="bold">{community[0].name}</h4> : 'Loading'}
+                      { community.length ? <h4 className ='boroughName' id="bold">{community[0].name}</h4> : 'Loading'}
                     </Link>
                   </span>
                   <img src={imgUrl} alt="" className="circle profile-pic z-depth-3 center"></img>
