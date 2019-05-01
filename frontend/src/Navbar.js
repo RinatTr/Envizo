@@ -64,18 +64,15 @@ render(){
       </nav>
       {this.props.auth.isLoggedIn ?
       <ul className="sidenav" id="mobile-demo">
-
         <li className="sidenav-close" ><NavLink exact to='/'>Home</NavLink></li>
         <li className="sidenav-close" ><NavLink to={`/profile/${this.props.auth.userId}`}>My Profile</NavLink></li>
         <li className="sidenav-close" ><NavLink to={`/community/${this.props.auth.currentUser.community_id}`} className='nav-commmunity'>My Community</NavLink></li>
         <li className="sidenav-close" ><NavLink to='/aboutus'>About Us</NavLink></li>
-
       </ul> :
       <ul className="sidenav" id="mobile-demo">
         <li className="sidenav-close" ><NavLink to='/signup'>Sign Up</NavLink></li>
         <li className="sidenav-close" ><NavLink to='/login'>Login</NavLink></li>
         <li className="sidenav-close" ><NavLink to='/aboutus'>About Us</NavLink></li>
-
       </ul> }
 
     </div>

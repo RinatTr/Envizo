@@ -30,11 +30,14 @@ a.active {
 .chip {
   font-size: 15px;
   height: 41px;
-  line-height: 37px;
+  line-height: 40px;
   background-color: #8EE4AF;
   color: white;
 }
 
+.chip:hover {
+  background-color: rgba(0,0,0,0.1);
+}
 .chip>img {
   width: 40px;
   height: 40px;
