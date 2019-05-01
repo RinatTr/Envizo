@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
 import { Collapsible, CollapsibleItem } from 'react-materialize';
 import '../css/goalsList.css';
 import Prediction from './Prediction';
 import SubscriberCount from './SubscriberCount';
 
 class GoalsList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
 
     }
@@ -16,10 +17,13 @@ class GoalsList extends Component {
     this.props.fetchAllGoals();
     this.props.fetchAllSubscriptions();
   }
-
+  handleClick = (e) => {
+    this.props.isLoggedIn
+    ? this.props.history.push(`/goal/${e.target.id}`)
+    : this.props.history.push(`/login`)
+  }
   //Input: all subsciptions fetched from backend; Output: number of subscribers for each goal
   calcSubscribers = (id) => {
-
     if (this.props.subscriptions) {
       const { subscriptions } = this.props.subscriptions;
       let count = 0;
@@ -46,11 +50,9 @@ class GoalsList extends Component {
 
           <div className='container leButtons'>
             <Prediction currentGoal={goal.title}/>
-            {this.props.isLoggedIn?<button className="btn-small subscribe">
-              <a href={`/goal/${goal.id}`} className='subscribe-link white-text'>Learn More</a>
-            </button>:<button className="btn-small subscribe">
-              <a href={`/login`} className='subscribe-link white-text'>Learn More</a>
-            </button>}
+            <button className="btn-small subscribe" id={goal.id} onClick={this.handleClick}>
+              Learn More
+            </button>
             <SubscriberCount count={this.calcSubscribers(goal.id)}/>
           </div>
 
@@ -83,4 +85,4 @@ class GoalsList extends Component {
   }
 }
 
-export default GoalsList;
+export default withRouter(GoalsList);

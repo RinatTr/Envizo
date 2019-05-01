@@ -15,13 +15,29 @@
 }
 .leButtons {
   display:flex;
-
+  justify-content: space-around;
 }
 .leButtons span {
   margin:auto;
 }
 
+.sub-count {
+  color: #05386b;
+  font-weight: 400;
+  border-left: 2px solid white;
+  padding-left: 10px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* margin-left: 20vw; */
+  /* color: #5cdb95; */
+}
+
+.sub-count span.text-count {
+  color:#05386b8c;
+  font-weight: 300;
+}
 /* .row {
   margin-top: 80px;
 } */
-

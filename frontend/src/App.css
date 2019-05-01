@@ -38,6 +38,23 @@ time {
 img {
   object-fit: cover;
 }
+
+button.btn-small {
+  color: #EDF5E1;
+  background: #05386b;
+}
+
+button.btn-small a {
+  color: #EDF5E1;
+}
+
+button.btn-small a:hover {
+  color: #05386b;
+}
+button.btn-small:hover {
+  color: #05386b;
+  background: #5cdb95;
+}
 /*
 h1 {
   color: #003668;

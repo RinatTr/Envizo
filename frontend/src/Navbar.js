@@ -48,9 +48,9 @@ render(){
     ) :
   <ul id="nav-mobile" className="right hide-on-med-and-down">
     <div className='navbar_registration'>
-    <li><NavLink to="/signup" className='signup'>Sign Up</NavLink></li>
-    <li><NavLink to="/login" className='login'>Login</NavLink></li>
-    <li><NavLink to="/aboutus" className='aboutus'>About Us</NavLink></li>
+    <li><NavLink to="/signup" className='signup'><h5 id="beige">Sign Up</h5></NavLink></li>
+    <li><NavLink to="/login" className='login'><h5 id="beige">Login</h5></NavLink></li>
+    <li><NavLink to="/aboutus" className='aboutus'><h5 id="beige">About Us</h5></NavLink></li>
     </div>
   </ul>
   return (

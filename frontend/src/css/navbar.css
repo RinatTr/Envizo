@@ -12,10 +12,10 @@ nav .brand-logo {
   font-weight: bold;
 }
 
-.signup, .login, .aboutus {
-  font-size: 32px;
+h5#beige {
+  /* color: white; */
+  font-weight: 400;
 }
-
 .btn-small {
   background-color: #8EE4AF;
 }
@@ -37,20 +37,4 @@ a.active {
   height: 40px;
   object-fit: cover;
   margin-right: 5px;
-}
-
-.chip {
-  font-size: 15px;
-  height: 41px;
-  line-height: 40px;
-  background-color: #8EE4AF;
-  color: white;
-}
-
-.chip:hover {
-  background-color: rgba(0,0,0,0.1);
-}
-.chip>img {
-  width: 40px;
-  height: 40px;
 }
