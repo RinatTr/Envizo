@@ -230,7 +230,7 @@ class UserProfile extends Component {
         <Row className='center'>
 
           {/* User side */}
-          <Col l={4} className="white push-l1 m8 s12 black-text z-depth-3 no-pad">
+          <Col l={4} className="white push-l1 m10 s12 black-text z-depth-3 no-pad">
 
                 <div className="pic-container">
                   <img src={community[0]?borough[community[0].id]:null} alt="borough" className='borough responsive-img' />
@@ -252,7 +252,7 @@ class UserProfile extends Component {
           </Col>
 
           {/* Activities side */}
-          <Col l={5} className="offset-l2 m8 s12 black-text z-depth-3 no-pad">
+          <Col l={5} className="offset-l2 m10 s12 black-text z-depth-3 no-pad">
 
               <Collection header='Feed' className="no-pad">
               {this.getActivities()}
