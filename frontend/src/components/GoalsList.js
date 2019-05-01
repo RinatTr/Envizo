@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
-import { Collapsible, CollapsibleItem } from 'react-materialize';
+import { Collapsible, CollapsibleItem} from 'react-materialize';
 import '../css/goalsList.css';
 import Prediction from './Prediction';
 import SubscriberCount from './SubscriberCount';
@@ -42,7 +42,7 @@ class GoalsList extends Component {
     const goalsList = this.props.goals ? this.props.goals.data.filter(goal =>goal.community_id=== +boroughId).map(goal => {
       return (
 
-        <CollapsibleItem node='h5' header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>
+        <CollapsibleItem  node='h5' header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>
           <div className="container">
             <p className='flow-text'>{goal.description.initiative}</p>
             <h4>Task:</h4><h5>{goal.description.description}</h5>
@@ -60,7 +60,7 @@ class GoalsList extends Component {
 
       )
     })
-     : <div className="container">
+     : <div className="container center">
          <div className="preloader-wrapper big active">
             <div className="spinner-layer spinner-blue-only">
              <div className="circle-clipper left">
@@ -77,9 +77,10 @@ class GoalsList extends Component {
     return (
       <>
 
-        <Collapsible>
+        <Collapsible className='container collap'>
           {goalsList}
         </Collapsible>
+
       </>
     )
   }

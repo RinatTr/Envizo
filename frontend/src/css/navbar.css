@@ -15,6 +15,7 @@ nav .brand-logo {
 h5#beige {
   /* color: white; */
   font-weight: 400;
+  font-size: 20px;
 }
 h5#beige:hover {
   color: #EDF5E1;
@@ -52,4 +53,5 @@ a.signup.active h5, a.login.active h5, a.aboutus.active h5 {
   height: 40px;
   object-fit: cover;
   margin-right: 5px;
+  border: 1px solid #EDF5E1;
 }

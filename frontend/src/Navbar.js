@@ -37,12 +37,12 @@ render(){
           <Link to={`/profile/${this.props.auth.currentUser.id}`}>
               <div className="usernav-img-wrapper">
                 <img src={this.props.auth.currentUser.avatar_img} className="responsive-img circle" alt="Contact Person" />
-                {this.props.auth.currentUser.username}
+                  <h5 id="beige">{this.props.auth.currentUser.username}</h5>
               </div>
           </Link>
         </li>
-        <li><NavLink to={`/community/${this.props.auth.currentUser.community_id}`} className='nav-commmunity'>My Community</NavLink></li>
-        <li><NavLink exact to="/" className='logout' onClick={this.logout}>Logout</NavLink></li>
+        <li><NavLink to={`/community/${this.props.auth.currentUser.community_id}`} className='nav-commmunity'><h5 id="beige">My Community</h5></NavLink></li>
+        <li><NavLink exact to="/" className='logout' onClick={this.logout}><h5 id="beige">Logout</h5></NavLink></li>
       </div>
     </ul>
     ) :

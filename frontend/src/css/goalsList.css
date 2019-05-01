@@ -38,6 +38,18 @@
   color:#05386b8c;
   font-weight: 300;
 }
+input.select-dropdown.dropdown-trigger {
+  margin-bottom:40px;
+}
+h5.collapsible-header{
+  margin:0px
+}
+ul.container.collap.collapsible {
+  margin:auto
+}
+.collap {
+  width:90%
+}
 /* .row {
   margin-top: 80px;
 } */
