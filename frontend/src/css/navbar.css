@@ -27,6 +27,18 @@ a.active {
  color:white;
 }
 
+.usernav-img-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.usernav-img-wrapper img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 5px;
+}
+
 .chip {
   font-size: 15px;
   height: 41px;

@@ -33,12 +33,12 @@ render(){
   const navbarTernary = this.props.auth.isLoggedIn ? (
     <ul id="nav-mobile" className="right hide-on-med-and-down">
       <div className='navbar_registration'>
-        <li>
+        <li className="usernav-userinfo">
           <Link to={`/profile/${this.props.auth.currentUser.id}`}>
-            <Chip>
-              <img src={this.props.auth.currentUser.avatar_img} className="responsive-img" alt="Contact Person" />
+              <div className="usernav-img-wrapper">
+                <img src={this.props.auth.currentUser.avatar_img} className="responsive-img circle" alt="Contact Person" />
               {this.props.auth.currentUser.username}
-            </Chip>
+              </div>
           </Link>
         </li>
         <li><NavLink to={`/community/${this.props.auth.currentUser.community_id}`} className='nav-commmunity'>My Community</NavLink></li>
