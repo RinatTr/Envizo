@@ -37,7 +37,7 @@ render(){
           <Link to={`/profile/${this.props.auth.currentUser.id}`}>
               <div className="usernav-img-wrapper">
                 <img src={this.props.auth.currentUser.avatar_img} className="responsive-img circle" alt="Contact Person" />
-              {this.props.auth.currentUser.username}
+                {this.props.auth.currentUser.username}
               </div>
           </Link>
         </li>

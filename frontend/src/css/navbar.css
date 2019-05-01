@@ -16,15 +16,30 @@ h5#beige {
   /* color: white; */
   font-weight: 400;
 }
+h5#beige:hover {
+  color: #EDF5E1;
+  font-weight: 400;
+
+}
 .btn-small {
   background-color: #8EE4AF;
 }
 
-a.active {
- background: lightgreen;
+a.active:hover {
+ background: #8EE4AF;
  border-bottom: 0px;
- font-size: 32px;
  color:white;
+}
+a.active {
+  border-bottom: 0px
+}
+a.signup.active h5, a.login.active h5, a.aboutus.active h5 {
+  color: #edf5e1;
+  border-bottom: 0px;
+
+}
+.navbar_registration li a:hover {
+  background: #8EE4AF;
 }
 
 .usernav-img-wrapper {
