@@ -50,7 +50,7 @@ class Prediction extends Component {
     //b - precentage 0.5
     let weeks = (frequency === "month") ? 4.345 : 52.142
     let result = (currentGoal === "Recycle")
-      ? input_a_parse - (input_a_parse * input_b_parse/100)
+      ? (input_a_parse - (input_a_parse * input_b_parse/100))*weeks.toFixed(1)
       : (input_a_parse * input_b_parse * weeks).toFixed(1)
 
     if (!isNaN(result)) {
