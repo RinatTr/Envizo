@@ -11,10 +11,42 @@
   width:100%
 }
 
-.row .col.try {
+.collection-item {
   padding:0px;
   margin: 0px;
 }
 .try {
   padding:0px;
+}
+.row .col.l4 {
+  padding-left: 0px;
+  padding-right:0px;
+}
+.collection-item.pic-container {
+  padding:0px;
+}
+
+.row .col.l5.community-activity {
+  height: 75vh;
+  overflow: scroll;
+}
+
+.row .col.l5::-webkit-scrollbar {
+  width: 10px;
+}
+
+.row .col.l5::-webkit-scrollbar-track {
+  border-radius: 10px;
+  box-shadow: black;
+}
+li.collection-item.try {
+  padding:0px
+}
+
+.row .col.l5::-webkit-scrollbar-thumb {
+background-image: linear-gradient(to bottom right,#00f281, #621389);
+border-radius: 15px;
+}
+.row .col.l5::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(to bottom right, #621389, #00f281);
 }

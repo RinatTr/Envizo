@@ -76,11 +76,9 @@ class GoalsList extends Component {
 
     return (
       <>
-
         <Collapsible className='container collap'>
           {goalsList}
         </Collapsible>
-
       </>
     )
   }

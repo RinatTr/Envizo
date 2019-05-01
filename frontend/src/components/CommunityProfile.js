@@ -120,7 +120,7 @@ class CommunityProfile extends Component {
       <div className='community_profile'>
         <Row className='center'>
           {/* Communityside */}
-          <Col l={4} className='teal push-l1 black-text try'>
+          <Col l={4} className='push-l1 black-text z-depth-3 try'>
             <Collection className='avatar'>
               <CollectionItem>
               <div className="pic-container">
@@ -145,7 +145,7 @@ class CommunityProfile extends Component {
             </Collection>
           </Col>
           {/* Activityside */}
-          <Col l={5} className='teal offset-l2 black-text'>
+          <Col l={5} className='offset-l2 black-text z-depth-3 community-activity'>
             <Collection>
             {this.getActivities()}
             </Collection>

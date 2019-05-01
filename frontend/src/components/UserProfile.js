@@ -52,6 +52,7 @@ class UserProfile extends Component {
     const routeId = parseInt(this.props.match.params.id);
     const theUser = users.find(user => user.id === routeId)
     const userName = theUser ? (auth.currentUser.id === routeId ? 'You' : theUser.username) : null;
+    const userWord = theUser ? (auth.currentUser.id === routeId ? 'have' : 'has') : null;
     let activityList;
 
     if (userActivity.length) {
@@ -61,7 +62,7 @@ class UserProfile extends Component {
             <CollectionItem className='l2' key={activity.id}>
               <div className='joined'>
                 <div className='text'>
-                  <p className='left'>{userName} has joined
+                  <p className='left'>{userName} {userWord} joined
                     <Link to={community.length ?  `/community/${community[0].id}` : null }>
                       {' '}{ community.length ? community[0].name : 'Loading'}
                     </Link> community.
@@ -89,7 +90,7 @@ class UserProfile extends Component {
           <CollectionItem className='l2' key={activity.id}>
             <div className='joined'>
               <div>
-                <p className='left'>{userName} has uploaded a photo.</p><br/>
+                <p className='left'>{userName} {userWord} uploaded a photo.</p><br/>
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
               <div className='share_buttons'>
@@ -113,7 +114,7 @@ class UserProfile extends Component {
           <CollectionItem className='l2' key={activity.id}>
             <div className='joined'>
               <div>
-                <p className='left'>{userName} has subscribed to a goal.</p><br/>
+                <p className='left'>{userName} {userWord} subscribed to a goal.</p><br/>
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
               <div className='share_buttons'>
@@ -139,7 +140,7 @@ class UserProfile extends Component {
                 <div>
                   <Link to={community.length ?  `/community/${community[0].id}` : null }>
                     { community.length ? community[0].name : 'Loading'}
-                  </Link> has reached a milestone.<br/>
+                  </Link> {userWord} reached a milestone.<br/>
                   <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
                 </div>
                 <div className='share_buttons'>
@@ -236,7 +237,7 @@ class UserProfile extends Component {
                   <img src={community[0]?borough[community[0].id]:null} alt="borough" className='borough responsive-img' />
                   <span className="borough-title">
                     <Link to={community.length ?  `/community/${community[0].id}` : null }>
-                      { community.length ? <h4 id="bold">{community[0].name}</h4> : 'Loading'}
+                      { community.length ? <h4 className ='boroughName' id="bold">{community[0].name}</h4> : 'Loading'}
                     </Link>
                   </span>
                   <img src={imgUrl} alt="" className="circle profile-pic z-depth-3 center"></img>
