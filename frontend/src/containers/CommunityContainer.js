@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import CommunityProfile from '../components/CommunityProfile'
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state.goals.goalsComm)
   return {
     activity: state.activity,
     community: state.goals.goalsComm
