@@ -49,6 +49,7 @@ ul.collection.avatar {
 .row .col.l5.community-activity {
   height: 74.5vh;
   overflow: scroll;
+  text-align: left;
 }
 
 .row .col.l5::-webkit-scrollbar {
@@ -83,7 +84,7 @@ transition:all 1s ease-in-out
 
 .communityActivity_link {
   color: #8EE4AF;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .communityActivity_link:hover {

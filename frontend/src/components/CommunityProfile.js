@@ -19,7 +19,6 @@ class CommunityProfile extends Component {
 
   getActivities = () => {
     const { activity } = this.props;
-    console.log(activity);
 
     if (activity) {
       const activityList = activity.map(activity => {
