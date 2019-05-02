@@ -77,7 +77,6 @@ class CommunityProfile extends Component {
 
 
   render() {
-    console.log(this.props)
     let goalsList;
     let imgUrl;
     let communityName;
