@@ -37,17 +37,16 @@ class GoalsList extends Component {
 
   render() {
     let { boroughId } = this.props;
+
     //first it filters on community id then maps the result
     //map through the goals array and present the goal in a collapsible card.
     const goalsList = this.props.goals ? this.props.goals.data.filter(goal =>goal.community_id=== +boroughId).map(goal => {
       return (
-
         <CollapsibleItem  node='h5' header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>
           <div className="container">
             <p className='flow-text'>{goal.description.initiative}</p>
             <h4>Task:</h4><h5>{goal.description.description}</h5>
           </div>
-
           <div className='container leButtons'>
             <Prediction currentGoal={goal.title}/>
             <button className="btn-small subscribe" id={goal.id} onClick={this.handleClick}>
@@ -55,9 +54,7 @@ class GoalsList extends Component {
             </button>
             <SubscriberCount count={this.calcSubscribers(goal.id)}/>
           </div>
-
         </CollapsibleItem>
-
       )
     })
      : <div className="container center">
