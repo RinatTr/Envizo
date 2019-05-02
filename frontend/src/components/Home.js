@@ -45,14 +45,14 @@ class Home extends Component {
               </div>
             </Tab>
             <Tab title="Air Pollution">
-              Air Pollution
+              <div className="container"><h5>Coming soon ...</h5></div>
             </Tab>
             <Tab title="Energy Consumption">
-              Energy Consumption
+              <div className="container"><h5>Coming soon ...</h5></div>
             </Tab>
           </Tabs>
           </div>
-          <div  className="container borough-select">
+          <div className="container borough-select">
           <div className ='input-field col s6'>
           <Select name='borough' onChange={this.handleChange}>
             <option value='0'>Select Borough</option>
