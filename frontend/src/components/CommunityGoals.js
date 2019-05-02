@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col , Row, ProgressBar } from 'react-materialize'
+import {ProgressBar } from 'react-materialize'
 import { getSingleSubscriptionIdForUserAndGoal, addSubscription, deleteSubscription } from '../util/util';
 import GoalDisplay from './GoalDisplay'
 import '../css/singlegoal.css';

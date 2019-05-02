@@ -8,7 +8,7 @@ const Puzzle = ({submissions}) => {
   // 500 - target value
   for (let i = 0; i < 500; i++ ) {
     if (i < submissions.length) {
-      mapSubs.push(<div className="sub-img-wrapper"><img className="user-sub-img" src={submissions[i].img_url}/></div>)
+      mapSubs.push(<div className="sub-img-wrapper"><img className="user-sub-img" src={submissions[i].img_url} alt="puzzle piece"/></div>)
     } else {
       mapSubs.push(<div className="sub-img-wrapper"></div>)
     }

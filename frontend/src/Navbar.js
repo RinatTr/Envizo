@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import M from 'materialize-css';
-import { Chip, Navbar as Nav } from 'react-materialize'
+// import { Chip, Navbar as Nav } from 'react-materialize'
 import logo from './navbarLogo.png'
 import './css/navbar.css'
 

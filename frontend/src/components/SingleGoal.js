@@ -114,16 +114,16 @@ export default class SingleGoal extends Component {
   }
 
   render(){
-
+    console.log(this.state.goalInfo[0]);
 
     let { loggedUserSubId, goalInfo } = this.state
     let { submissions, subscriptions, loggedUser,match } = this.props;
 
-    let percAll = submissions && subscriptions ? (submissions.length/+goalInfo[0].target_value*100).toFixed(2) : 0;
+    let percAll = submissions && goalInfo[0] ? (submissions.length/+goalInfo[0].target_value*100).toFixed(2) : 0;
     let countUserSubs = submissions ? (submissions.filter(el => el.user_id === loggedUser.id)).length : null
-    let percUser = submissions && subscriptions ? (countUserSubs/+goalInfo[0].target_value*100).toFixed(2) : 0 ;
+    let percUser = submissions && goalInfo[0] ? (countUserSubs/+goalInfo[0].target_value*100).toFixed(2) : 0 ;
     return(
-      submissions && subscriptions ? (
+      submissions && goalInfo[0] ? (
       <div className="container">
         <div className="goal-header">
           <h3>{goalInfo[0].title}</h3>

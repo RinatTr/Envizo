@@ -119,15 +119,16 @@ class CommunityProfile extends Component {
       <div className='community_profile'>
         <Row className='center'>
           {/* Communityside */}
-          <Col l={4} className='push-l1 black-text z-depth-3 try'>
+          <Col l={4} className='push-l1  m10 s12 black-text z-depth-3 try'>
             <Collection className='avatar'>
-              <CollectionItem>
+
               <div className="pic-container">
                 <img src={imgUrl} alt="borough" className='borough responsive-img' />
+                <h4>{communityName}</h4>
+                <h5>Goals</h5>
               </div>
-                <h5>{communityName}</h5><br />
-                <h5>About ?</h5>
-              </CollectionItem>
+
+
               { goalsList }
               <CollectionItem>
                   <Button type="submit" waves="light">
@@ -144,8 +145,8 @@ class CommunityProfile extends Component {
             </Collection>
           </Col>
           {/* Activityside */}
-          <Col l={5} className='offset-l2 black-text z-depth-3 community-activity'>
-            <Collection>
+          <Col l={5} className='offset-l2 m10 s12 z-depth-3 community-activity'>
+            <Collection header='Community Feed'>
             {this.getActivities()}
             </Collection>
           </Col>

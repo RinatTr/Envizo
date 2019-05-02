@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import M from 'materialize-css';
 import '../css/signup.css';
 import ReactS3 from 'react-s3';
 import { Redirect } from 'react-router-dom';
