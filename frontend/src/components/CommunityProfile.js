@@ -19,6 +19,7 @@ class CommunityProfile extends Component {
 
   getActivities = () => {
     const { activity } = this.props;
+    console.log(activity);
 
     if (activity) {
       const activityList = activity.map(activity => {
@@ -28,7 +29,7 @@ class CommunityProfile extends Component {
             <CollectionItem className='avatar'>
               <img src={activity.avatar_img} alt="" className="circle" />
                 <p className = "title left" >
-                <a href={`/profile/${activity.usersid}` }>{activity.username}</a> has joined the community.
+                <a href={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</a> has joined the community.
                 </p>
                 <br />
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
@@ -39,7 +40,7 @@ class CommunityProfile extends Component {
             <CollectionItem className='avatar'>
               <img src={activity.avatar_img} alt="" className="circle" />
                 <p className = "title left" >
-                <a href={`/profile/${activity.usersid}` }>{activity.username}</a> has uploaded a photo.
+                <a href={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</a> uploaded a photo to <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a>.
                 </p>
                 <br />
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
@@ -50,7 +51,7 @@ class CommunityProfile extends Component {
             <CollectionItem className='avatar'>
               <img src={activity.avatar_img} alt="" className="circle" />
                 <p className = "title left" >
-                <a href={`/profile/${activity.usersid}` }>{activity.username}</a> has subscribed to {activity.title}.
+                <a href={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</a> has subscribed to <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a>.
                 </p>
                 <br />
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
@@ -61,7 +62,7 @@ class CommunityProfile extends Component {
             <CollectionItem className='avatar'>
               <img src={activity.avatar_img} alt="" className="circle" />
                 <p className = "title left" >
-                <a href={`/profile/${activity.usersid}` }>{activity.name}</a> has reached the milestone
+                <a href={`/profile/${activity.usersid}` }>{activity.name}</a> has completed <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a> goal.
                 </p>
                 <br />
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>

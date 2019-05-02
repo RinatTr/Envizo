@@ -42,6 +42,9 @@ ul.collection.avatar {
   padding:0px
 }
 
+/* .row .col.l5 {
+  width: 46%;
+} */
 
 .row .col.l5.community-activity {
   height: 74.5vh;
@@ -68,4 +71,21 @@ transition:all 1s ease-in-out
 .row .col.l5::-webkit-scrollbar-thumb:hover {
   visibility: visible;
   background:#8ee4af
+}
+
+/* .communityActivity_username {
+  color: #01356B;
+}
+
+.communityActivity_username:hover {
+  color: #8EE4AF
+} */
+
+.communityActivity_link {
+  color: #8EE4AF;
+  font-weight: bold;
+}
+
+.communityActivity_link:hover {
+  color: #01356B;
 }
