@@ -57,6 +57,7 @@ export const fetchAllSubscriptionsPerComm = (comm_id) => dispatch => {
       })
       return Promise.all(promises)
               .then(res => {
+                console.log(res);
                 let subObj = {}
                 //res in an array of responses
                 res.forEach((promise, i ) => {

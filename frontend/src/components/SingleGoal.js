@@ -114,8 +114,6 @@ export default class SingleGoal extends Component {
   }
 
   render(){
-    console.log(this.state.goalInfo[0]);
-
     let { loggedUserSubId, goalInfo } = this.state
     let { submissions, subscriptions, loggedUser,match } = this.props;
 

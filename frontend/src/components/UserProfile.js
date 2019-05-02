@@ -57,13 +57,14 @@ class UserProfile extends Component {
 
     if (userActivity.length) {
       activityList = userActivity.map(activity => {
+        console.log(activity);
         if(activity.type === 'joined') {
           return (
-            <CollectionItem className='l2' key={activity.id}>
+            <CollectionItem className='l2' key={activity.activity_id}>
               <div className='joined'>
                 <div className='text'>
                   <p className='left'>{userName} {userWord} joined
-                    <Link to={community.length ?  `/community/${community[0].id}` : null }>
+                    <Link to={community.length ?  `/community/${community[0].id}` : 'not available' }>
                       {' '}{ community.length ? community[0].name : 'Loading'}
                     </Link> community.
                   </p><br/>
@@ -90,7 +91,7 @@ class UserProfile extends Component {
           <CollectionItem className='l2' key={activity.id}>
             <div className='joined'>
               <div>
-                <p className='left'>{userName} {userWord} uploaded a photo.</p><br/>
+                <p className='left'>{userName} {userWord} uploaded a photo {activity.title}.</p><br/>
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
               <div className='share_buttons'>
@@ -111,10 +112,10 @@ class UserProfile extends Component {
         )
         } else if(activity.type === 'subscribed') {
         return (
-          <CollectionItem className='l2' key={activity.id}>
-            <div className='joined'>
+          <CollectionItem className='l2' key={activity.activity_id}>
+            <div className='joined' key={activity.id}>
               <div>
-                <p className='left'>{userName} {userWord} subscribed to a goal.</p><br/>
+                <p className='left'>{userName} {userWord} subscribed to <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a>.</p><br/>
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
               <div className='share_buttons'>
@@ -196,8 +197,9 @@ class UserProfile extends Component {
     }
 
     const goalsList = subscripUser.length ? subscripUser.map(goal => {
+      console.log(goal);
       return (
-        <CollectionItem key={goal.id}>
+        <CollectionItem key={goal.goal_id}>
           { goal.title }
           <a href={`/goal/${goal.goal_id}`} className='secondary-content'>
             <Icon>
@@ -236,7 +238,7 @@ class UserProfile extends Component {
                 <div className="pic-container">
                   <img src={community[0]?borough[community[0].id]:null} alt="borough" className='borough responsive-img' />
                   <span className="borough-title">
-                    <Link to={community.length ?  `/community/${community[0].id}` : null }>
+                    <Link to={community.length ?  `/community/${community[0].id}` : 'not available' }>
                       { community.length ? <h4 className ='boroughName' id="bold">{community[0].name}</h4> : 'Loading'}
                     </Link>
                   </span>
