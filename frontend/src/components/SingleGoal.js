@@ -124,7 +124,7 @@ export default class SingleGoal extends Component {
       submissions && goalInfo[0] ? (
       <div className="container">
         <div className="goal-header">
-          <h3>{goalInfo[0].title}</h3>
+          <h4 id="bold">{goalInfo[0].title}</h4>
             <div className="subs">
               <button className="btn waves-effect waves-light" onClick={this.handleSubscribe}> {loggedUserSubId ? "Unsubscribe " : "Subscribe "}{subscriptions ? subscriptions.length : null}</button>
             </div>
@@ -133,16 +133,16 @@ export default class SingleGoal extends Component {
         { loggedUser.id && loggedUserSubId ?
         <Row>
           <Col s={12}>
-            <h3>Your Contribution</h3>
-            <h2>{countUserSubs}/{goalInfo[0].target_value}</h2>
+            <h4>Your Contribution</h4>
+            <h5>{countUserSubs}/{goalInfo[0].target_value} total pictures</h5>
             <ProgressBar className={percUser > 99 ? "finished":'not-finished'} progress={+percUser} />
           </Col>
         </Row>
         : null }
         <Row>
           <Col s={12}>
-            <h3>{goalInfo[0].community} Contributions</h3>
-            <h2>{percAll}%</h2>
+            <h4>{goalInfo[0].community} Contributions</h4>
+            <h5>{percAll}%</h5>
             <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={+percAll} />
           </Col>
           <div className="container puzzle-area">
