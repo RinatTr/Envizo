@@ -3,7 +3,7 @@ import { Col, ProgressBar } from 'react-materialize';
 import { Link } from 'react-router-dom';
 
 const GoalDisplay = ({title, usernames, goalId, percAll, handleSubscribe, isSubscribed, subscriptionCount }) => {
-  let mapUsers = usernames ? usernames.map((user,i) => {return <li key={i}>{user}</li>} ) : ""
+  let mapUsers = usernames ? usernames.map((user,i) => {return <li key={i}>{user}</li>} ).slice(0,5) : ""
   return (
     <div className="goal-display-container">
       <div className="goal-header">
@@ -16,8 +16,9 @@ const GoalDisplay = ({title, usernames, goalId, percAll, handleSubscribe, isSubs
         <h4>{percAll}%</h4>
         <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={percAll} />
         </Col>
+
         <ul>
-          {usernames}
+          <Link to={`/goal/${goalId}`}>{mapUsers.length ? "Recently joined members" : ""}{mapUsers.length ? mapUsers : ""}{mapUsers.length ? " ..." : ""}</Link>
         </ul>
     </div>
   )

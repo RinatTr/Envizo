@@ -98,10 +98,7 @@ export default class CommunityGoal extends Component {
     }
 
   render() {
-    console.log('props===>',this.props);
-    // let { loggedUserSubId } = this.state
     let { community } = this.props;
-    // let { submissions, subscriptions, loggedUser, goals, users } = this.state;
 
     let mapGoals = community.goals ? community.goals.data.map(goal => {
       return <GoalDisplay

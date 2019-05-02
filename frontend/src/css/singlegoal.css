@@ -15,10 +15,6 @@
   justify-content: space-around;
 }
 
-.subs p {
-
-}
-
 .goal-header {
   display: flex;
   justify-content: space-between;
@@ -26,4 +22,18 @@
 
 .progress {
   height: 14px;
+}
+
+.goal-display-container ul a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.goal-display-container ul a li {
+  font-size: 13px;
+  margin-left: 6px;
+  color: #07356B;
+}
+.goal-display-container ul a:hover {
+  background: #d1e6d9;
 }
