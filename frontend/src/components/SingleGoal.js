@@ -31,8 +31,8 @@ export default class SingleGoal extends Component {
   }
 
   componentDidMount() {
-    let { loggedUser, match } = this.props;
-    let { loggedUserSubId } = this.state;
+    let { loggedUser } = this.props;
+    // let { loggedUserSubId } = this.state;
     let userId = loggedUser.id;
     let goalId = this.props.match.params.goal_id;
     this.getGoal()
@@ -42,7 +42,7 @@ export default class SingleGoal extends Component {
 
 
   componentDidUpdate(prevProps) {
-    let { loggedUser, match } = this.props;
+    let { loggedUser } = this.props;
     if (loggedUser.id !== prevProps.loggedUser.id) {
       let userId = loggedUser.id
       let goalId = +this.props.match.params.goal_id
@@ -66,8 +66,8 @@ export default class SingleGoal extends Component {
       }
   }
   getGoal = () => {
-    axios.
-      get(`/goals/${this.props.match.params.goal_id}`)
+    axios
+      .get(`/goals/${this.props.match.params.goal_id}`)
         .then(res=> {
           this.setState({
             goalInfo:[res.data.data]
@@ -113,7 +113,7 @@ export default class SingleGoal extends Component {
 
   render(){
     let { loggedUserSubId, goalInfo } = this.state
-    let { submissions, subscriptions, loggedUser,match } = this.props;
+    let { submissions, subscriptions, loggedUser } = this.props;
 
     let percAll = submissions && goalInfo[0] ? (submissions.length/+goalInfo[0].target_value*100).toFixed(2) : 0;
     let countUserSubs = submissions ? (submissions.filter(el => el.user_id === loggedUser.id)).length : null
@@ -139,7 +139,7 @@ export default class SingleGoal extends Component {
         : null }
         <Row>
           <Col s={12}>
-            <h4>{goalInfo[0].community} Contributions</h4>
+            <h4><a id='bold' href={`/community/${goalInfo[0].community_id}`}>{goalInfo[0].community}</a> Contributions</h4>
             <h5>{percAll}%</h5>
             <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={+percAll} />
           </Col>
