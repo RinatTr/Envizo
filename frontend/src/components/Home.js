@@ -14,8 +14,10 @@ class Home extends Component {
 
   }
 
-  componentDidUpdate(){
-    window.scroll(0,document.body.scrollHeight)
+  componentDidUpdate(prevProps, prevState){
+    if (prevState.borough !== this.state.borough) {
+      window.scroll(0,document.body.scrollHeight)
+    }
   }
   componentDidMount() {
     this.props.fetchTonnage();
