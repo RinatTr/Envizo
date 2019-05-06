@@ -5,6 +5,8 @@ import '../css/goalsList.css';
 import Prediction from './Prediction';
 import SubscriberCount from './SubscriberCount';
 
+const subjects = ['Monthly Tonnage', 'Air Pollution', 'Energy Consumption']
+
 class GoalsList extends Component {
   constructor(props) {
     super(props);
@@ -36,23 +38,35 @@ class GoalsList extends Component {
       return 0;
     }
   }
+  scroll = e => {
+    e.preventDefault();
 
+      window.scroll(0,document.body.scrollHeight)
+
+      setTimeout(()=> window.scroll({top:2500,left:0,behavior:'smooth'}), 300)
+  }
 
   render() {
-    let { boroughId } = this.props;
+    let { boroughId, subjects } = this.props;
 
     //first it filters on community id then maps the result
     //map through the goals array and present the goal in a collapsible card.
-    const goalsList = this.props.goals ? this.props.goals.data.filter(goal =>goal.community_id=== +boroughId).map(goal => {
+
+
+    const goalsList = this.props.goals ? this.props.goals.data.filter(goal => goal.community_id=== +boroughId).map(goal => {
       return (
+<<<<<<< HEAD
         <CollapsibleItem className="scroll-div" node='h5' header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>
+=======
+        <CollapsibleItem  onClick={this.scroll} node='h5' header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>
+>>>>>>> d997c9a747ac3c6ecdeb79818d73a94f1b23920e
           <div className="container">
             <p className='flow-text'>{goal.description.initiative}</p>
             <h4>Task:</h4><h5>{goal.description.description}</h5>
           </div>
           <div className='container leButtons'>
             <Prediction currentGoal={goal.title}/>
-            <button className="btn-small subscribe" id={goal.id} onClick={this.handleClick}>
+            <button  className="btn-small subscribe" id={goal.id} onClick={this.handleClick}>
               Learn More
             </button>
             <SubscriberCount count={this.calcSubscribers(goal.id)}/>

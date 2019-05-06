@@ -3,13 +3,14 @@ import { VisualDisplay } from './VisualDisplay'
 import { Tab, Tabs, Select } from 'react-materialize'
 import '../css/home.css';
 import GoalsListContainer from '../containers/GoalsListContainer';
-import M from 'materialize-css'
+
 
 class Home extends Component {
   constructor() {
     super()
     this.state = {
-      borough:0
+      borough:0,
+      subjects:'00'
     }
 
   }
@@ -28,12 +29,24 @@ class Home extends Component {
     })
     window.scroll(0,document.body.scrollHeight)
   }
+  tabChange = e => {
+    this.setState({
+      subjects:e
+    })
+
+  }
 
     render() {
+    const { subjects } = this.state
+
+    let list;
+    if(subjects === '00'){
+      list = <GoalsListContainer boroughId={this.state.borough}/>
+    }
       return (
         <>
         <div className="col s6">
-          <Tabs className=" tab-demo z-depth-1" options={{swipeable: true}}>
+          <Tabs onChange={this.tabChange} className=" tab-demo z-depth-1" options={{swipeable: true}}>
             <Tab title="Monthly Tonnage" active>
             <div className="container">
               <h4 id='bold'>Take a dive in NYC's trash pile.</h4>
@@ -67,8 +80,8 @@ class Home extends Component {
           </div>
           </div>
 
+          {list}
 
-          <GoalsListContainer boroughId={this.state.borough}/>
         </>
       )
     }
