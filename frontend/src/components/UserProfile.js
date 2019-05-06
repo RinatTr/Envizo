@@ -36,6 +36,17 @@ class UserProfile extends Component {
     this.props.fetchUserActivity(this.props.match.params.id);
   }
 
+  componentDidUpdate(prevProps){
+    if(this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.fetchAllGoals();
+      this.props.fetchAllUsers();
+      this.props.checkAuthenticateStatus();
+      this.getCommunityForAUser();
+      this.props.fetchAllSubscriptionsForAUser(this.props.match.params.id);
+      this.props.fetchUserActivity(this.props.match.params.id);
+    }
+  }
+
   getCommunityForAUser = () => {
     axios.get(`/communities/user/${this.props.match.params.id}`)
     .then(res => {
