@@ -3,7 +3,6 @@ import { VisualDisplay } from './VisualDisplay'
 import { Tab, Tabs, Select } from 'react-materialize'
 import '../css/home.css';
 import GoalsListContainer from '../containers/GoalsListContainer';
-import M from 'materialize-css'
 
 class Home extends Component {
   constructor() {

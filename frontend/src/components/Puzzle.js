@@ -10,7 +10,7 @@ const Puzzle = ({submissions}) => {
     if (i < submissions.length) {
       mapSubs.push(<div className="sub-img-wrapper"><img className="user-sub-img" src={submissions[i].img_url} alt="puzzle piece"/></div>)
     } else {
-      mapSubs.push(<div className="sub-img-wrapper"></div>)
+      mapSubs.push(<div className="sub-img-wrapper" key={i} ></div>)
     }
   }
 

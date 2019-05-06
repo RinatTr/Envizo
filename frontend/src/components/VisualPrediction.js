@@ -1,7 +1,5 @@
 import React from 'react'
 import '../css/VisualPrediction.css'
-import plastic1 from '../assets/plastic-1.png'
-import plastic2 from '../assets/plastic-2.png'
 
 let people = 'https://static1.squarespace.com/static/55947ac3e4b0fa882882cd65/58ab7b04bebafb337899961d/58ab7b16725e25c4fac43d33/1487647075724/NS_0010.png'
 

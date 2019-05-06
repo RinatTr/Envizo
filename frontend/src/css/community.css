@@ -82,6 +82,11 @@ transition:all 1s ease-in-out
   color: #8EE4AF
 } */
 
+.community-goal:hover {
+  background-color:#8ee4af;
+  color:#01356B;
+  cursor:pointer;
+}
 .communityActivity_link {
   color: #8EE4AF;
   /* font-weight: bold; */

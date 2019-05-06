@@ -199,7 +199,7 @@ class UserProfile extends Component {
     const goalsList = subscripUser.length ? subscripUser.map(goal => {
       console.log(goal);
       return (
-        <CollectionItem key={goal.goal_id}>
+        <CollectionItem key={goal.goal_id} className="community-goal" onClick={()=>this.props.history.push(`/goal/${goal.goal_id}`)}>
           { goal.title }
           <a href={`/goal/${goal.goal_id}`} className='secondary-content'>
             <Icon>

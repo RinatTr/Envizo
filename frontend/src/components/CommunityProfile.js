@@ -4,11 +4,16 @@ import '../css/community.css'
 import Timeago from 'react-timeago';
 
 let borough = {
-  1:'https://img3.goodfon.com/wallpaper/nbig/a/9b/new-york-city-new-york-1271.jpg',
-  2:'https://pbs.twimg.com/media/Drb0hVBWwAUvJSr.jpg',
-  3:'https://cdn-assets.alltrails.com/uploads/photo/image/19326941/extra_large_a08958fc25b15bb98cf4e1d17f1443c1.jpg',
-  4:'http://s1.1zoom.net/big0/603/Australia_Rivers_Boats_Brooklyn_Hawkesbury_River_540885_1280x800.jpg',
-  5:'https://cdn2.vox-cdn.com/uploads/chorus_asset/file/6695497/07_Kensinger_Mill_Creek_DSC_8839.0.jpg'
+  1:{imgUrl:'https://img3.goodfon.com/wallpaper/nbig/a/9b/new-york-city-new-york-1271.jpg',
+     communityName:'Manhattan'},
+  2:{imgUrl:'https://pbs.twimg.com/media/Drb0hVBWwAUvJSr.jpg',
+     communityName:'Queens'},
+  3:{imgUrl:'https://cdn-assets.alltrails.com/uploads/photo/image/19326941/extra_large_a08958fc25b15bb98cf4e1d17f1443c1.jpg',
+     communityName:'Bronx'},
+  4:{imgUrl:'http://s1.1zoom.net/big0/603/Australia_Rivers_Boats_Brooklyn_Hawkesbury_River_540885_1280x800.jpg',
+     communityName:'Brooklyn'},
+  5:{imgUrl:'https://cdn2.vox-cdn.com/uploads/chorus_asset/file/6695497/07_Kensinger_Mill_Creek_DSC_8839.0.jpg',
+     communityName:'Staten Island'}
 }
 
 class CommunityProfile extends Component {
@@ -17,15 +22,21 @@ class CommunityProfile extends Component {
     this.props.fetchAllGoalsPerCommunity(this.props.match.params.id);
   }
 
+  click = e => {
+    e.preventDefault();
+    // this.props.history.push(/goal/${goals.id}')
+    console.log('Has been clicked');
+  }
+
   getActivities = () => {
     const { activity } = this.props;
 
     if (activity) {
-      const activityList = activity.map(activity => {
+      const activityList = activity.map((activity, i) => {
 
         if(activity.type === 'joined') {
           return (
-            <CollectionItem className='avatar'>
+            <CollectionItem className='avatar' key={i +activity.type} >
               <img src={activity.avatar_img} alt="" className="circle" />
                 <p className = "title left" >
                 <a href={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</a> has joined the community.
@@ -36,7 +47,7 @@ class CommunityProfile extends Component {
           )
           } else if(activity.type === 'uploaded') {
           return (
-            <CollectionItem className='avatar'>
+            <CollectionItem className='avatar' key={i +activity.type} >
               <img src={activity.avatar_img} alt="" className="circle" />
                 <p className = "title left" >
                 <a href={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</a> uploaded a photo to <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a>.
@@ -47,7 +58,7 @@ class CommunityProfile extends Component {
           )
         } else if(activity.type === 'subscribed') {
           return (
-            <CollectionItem className='avatar'>
+            <CollectionItem className='avatar' key={i +activity.type}>
               <img src={activity.avatar_img} alt="" className="circle" />
                 <p className = "title left" >
                 <a href={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</a> has subscribed to <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a>.
@@ -58,7 +69,7 @@ class CommunityProfile extends Component {
           )
         } else if(activity.type === 'milestone') {
           return (
-            <CollectionItem className='avatar'>
+            <CollectionItem className='avatar' key={i +activity.type} >
               <img src={activity.avatar_img} alt="" className="circle" />
                 <p className = "title left" >
                 <a href={`/profile/${activity.usersid}` }>{activity.name}</a> has completed <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a> goal.
@@ -77,39 +88,21 @@ class CommunityProfile extends Component {
 
 
   render() {
+    let comm_id = this.props.match.params.id
     let goalsList;
-    let imgUrl;
-    let communityName;
-    if (this.props.match.params.id == 1) {
-      imgUrl = 'https://img3.goodfon.com/wallpaper/nbig/a/9b/new-york-city-new-york-1271.jpg'
-      communityName = 'Manhattan';
-    } else if (this.props.match.params.id == 2) {
-      imgUrl = 'https://pbs.twimg.com/media/Drb0hVBWwAUvJSr.jpg'
-      communityName = 'Queens';
-    } else if (this.props.match.params.id == 3) {
-      imgUrl = 'https://cdn-assets.alltrails.com/uploads/photo/image/19326941/extra_large_a08958fc25b15bb98cf4e1d17f1443c1.jpg'
-      communityName = 'Bronx';
-    } else if (this.props.match.params.id == 4) {
-      imgUrl = 'http://s1.1zoom.net/big0/603/Australia_Rivers_Boats_Brooklyn_Hawkesbury_River_540885_1280x800.jpg'
-      communityName = 'Brooklyn';
-    } else if (this.props.match.params.id == 5) {
-      imgUrl = 'https://cdn2.vox-cdn.com/uploads/chorus_asset/file/6695497/07_Kensinger_Mill_Creek_DSC_8839.0.jpg'
-      communityName = 'Staten Island';
-    }
-
     if (this.props.community ) {
-      goalsList = this.props.community.data.map(goals => {
+      goalsList = this.props.community.data.map((goals, i) => {
             return (
-              <>
-                <CollectionItem>
+
+                <CollectionItem className="community-goal" key={`${goals.title} ${i}`} onClick={()=>this.props.history.push(`/goal/${goals.id}`)}>
                   {goals.title}
                   <a href={`/goal/${goals.id}`} className='secondary-content'>
                     <Icon>
-                      send
+                      arrow_forward
                     </Icon>
                   </a>
                 </CollectionItem>
-              </>
+
             )
           })
     }
@@ -123,8 +116,8 @@ class CommunityProfile extends Component {
             <Collection className='avatar'>
 
               <div className="pic-container">
-                <img src={imgUrl} alt="borough" className='borough responsive-img' />
-                <h4>{communityName}</h4>
+                <img src={borough[comm_id].imgUrl} alt="borough" className='borough responsive-img' />
+                <h4>{borough[comm_id].communityName}</h4>
                 <h5>Goals</h5>
               </div>
 
@@ -136,7 +129,7 @@ class CommunityProfile extends Component {
                       <div className='white-text'>
                       Community Goals
                       <Icon right>
-                      send
+                      arrow_forward
                       </Icon>
                       </div>
                   </a>
