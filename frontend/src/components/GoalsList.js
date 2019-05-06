@@ -22,8 +22,8 @@ class GoalsList extends Component {
   handleScroll = () => {
     let div = document.querySelector(".scroll-div.active");
     console.log(div);
-    if (div) {div.scrollIntoView(true);}
-    // if (div) { div.scrollTop = div.scrollHeight - div.clientHeight }
+    // if (div) {div.scrollIntoView(true);}
+    if (div) { div.scrollTop = div.scrollHeight - div.clientHeight }
   }
   //Input: all subsciptions fetched from backend; Output: number of subscribers for each goal
   calcSubscribers = (id) => {
