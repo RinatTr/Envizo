@@ -9,7 +9,8 @@ class Home extends Component {
   constructor() {
     super()
     this.state = {
-      borough:0
+      borough:0,
+      subjects: 0
     }
 
   }
@@ -22,17 +23,23 @@ class Home extends Component {
   }
   handleChange = e => {
     this.setState({
-      borough:e.target.value
+      borough:e.target.value,
     })
     window.scroll(0,document.body.scrollHeight)
   }
+
+  // handleTabChange = (event) => {
+  //   this.setState({
+  //     subjects: event.target.idx
+  //   })
+  // }
 
     render() {
       return (
         <>
         <div className="col s6">
-          <Tabs className=" tab-demo z-depth-1" options={{swipeable: true}}>
-            <Tab title="Monthly Tonnage" active>
+          <Tabs className=" tab-demo z-depth-1" options={{swipeable: true}} onChange={this.handleTabChange}>
+            <Tab idx='1' title="Monthly Tonnage" name='subjects' active>
             <div className="container">
               <h4 id='bold'>Take a dive in NYC's trash pile.</h4>
               </div>
@@ -44,10 +51,10 @@ class Home extends Component {
                 <h4 className="center" id="bold">OK. How Can I Help?</h4>
               </div>
             </Tab>
-            <Tab title="Air Pollution">
+            <Tab idx='2' title="Air Pollution" name='subjects'>
               <div className="container"><h5>Coming soon ...</h5></div>
             </Tab>
-            <Tab title="Energy Consumption">
+            <Tab idx='3' title="Energy Consumption" name='subjects'>
               <div className="container"><h5>Coming soon ...</h5></div>
             </Tab>
           </Tabs>
@@ -66,7 +73,7 @@ class Home extends Component {
           </div>
 
 
-          <GoalsListContainer boroughId={this.state.borough}/>
+          <GoalsListContainer boroughId={this.state.borough} subjects={this.state.subjects}/>
         </>
       )
     }
