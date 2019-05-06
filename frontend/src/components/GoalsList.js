@@ -21,12 +21,7 @@ class GoalsList extends Component {
     ? this.props.history.push(`/goal/${e.target.id}`)
     : this.props.history.push(`/login`)
   }
-  handleScroll = () => {
-    let div = document.querySelector(".scroll-div.active");
-    console.log(div);
-    // if (div) {div.scrollIntoView(true);}
-    if (div) { div.scrollTop = div.scrollHeight - div.clientHeight }
-  }
+
   //Input: all subsciptions fetched from backend; Output: number of subscribers for each goal
   calcSubscribers = (id) => {
     if (this.props.subscriptions) {
@@ -38,11 +33,10 @@ class GoalsList extends Component {
       return 0;
     }
   }
+  
   scroll = e => {
     e.preventDefault();
-
       window.scroll(0,document.body.scrollHeight)
-
       setTimeout(()=> window.scroll({top:2500,left:0,behavior:'smooth'}), 300)
   }
 
@@ -55,11 +49,7 @@ class GoalsList extends Component {
 
     const goalsList = this.props.goals ? this.props.goals.data.filter(goal => goal.community_id=== +boroughId).map(goal => {
       return (
-<<<<<<< HEAD
-        <CollapsibleItem className="scroll-div" node='h5' header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>
-=======
         <CollapsibleItem  onClick={this.scroll} node='h5' header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>
->>>>>>> d997c9a747ac3c6ecdeb79818d73a94f1b23920e
           <div className="container">
             <p className='flow-text'>{goal.description.initiative}</p>
             <h4>Task:</h4><h5>{goal.description.description}</h5>
