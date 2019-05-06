@@ -10,8 +10,6 @@ import { uploadFile } from 'react-s3';
 import axios from 'axios'
 // let aws = require('../util/secret.json')
 
-
-
 // fake key to prevent errors
 let aws = {
   "AWSAccessKeyId":123,
