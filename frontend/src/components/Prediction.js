@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Modal, Button, Select } from 'react-materialize';
-// import M from 'materialize-css';
 import { VisualPrediction } from  './VisualPrediction.js'
 
 //change the prediction text according to goal type.
@@ -42,9 +41,6 @@ class Prediction extends Component {
     })
   }
 
-  handleClick = () => {
-    console.log("HERE");
-  }
   handleSubmit = (e = null) => {
     if (e) { e.preventDefault() }
     let { input_a, input_b, frequency, currentGoal } = this.state;
