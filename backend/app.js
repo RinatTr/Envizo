@@ -43,6 +43,8 @@ app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, "../frontend/build")))
+
 //route usage
 app.use('/api/users', usersRouter);
 app.use('/api/submissions', submissionsRouter);
@@ -50,6 +52,10 @@ app.use('/api/subscriptions', subscriptionsRouter);
 app.use('/api/goals', goalsRouter);
 app.use('/api/communities', communitiesRouter);
 app.use('/api/sessions', sessionsRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "../frontend/build/index.html"));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
