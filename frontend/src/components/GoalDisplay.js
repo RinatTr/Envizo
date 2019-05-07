@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 const GoalDisplay = ({title, usernames, goalId, percAll, handleSubscribe, isSubscribed, subscriptionCount }) => {
   let mapUsers = usernames ? usernames.map((user,i) => {return <li key={i}>{user}</li>} ).slice(0,5) : ""
-    console.log(isSubscribed);
   return (
     <div className="goal-display-container">
       <div className="goal-header">
