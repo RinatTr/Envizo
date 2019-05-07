@@ -16,34 +16,40 @@ export default class CommunityGoal extends Component {
   }
 
   handleSubscribe = (e) => {
+    e.persist();
     let { loggedUser, match } = this.props;
     let { loggedUserSubId } = this.state;
     let userId = loggedUser.id;
-    // let goalId = this.props.match.params.goal_id;
-      if (e.target.innerText.slice(0,3) === "SUB") {
-        // addSubscription({ user_id: userId , goal_id: goalId }).then((res) => {
-          // this.refreshSubscriptions(userId, goalId);
-        // })
-      } else {
-        // deleteSubscription(loggedUserSubId).then((res) => {
-          // this.refreshSubscriptions(userId, goalId);
-        // })
-      }
+    let sub = e.target.id.split("'");
+    let goalId = sub[1];
+
+    this.refreshSubscriptionsForUserAndGoal(userId, goalId)
+          .then(() => {
+            if (e.target.innerText.slice(0,3) === "SUB") {
+              addSubscription({ user_id: userId , goal_id: goalId }).then((res) => {
+                this.refreshSubscriptionsForUserAndGoal(userId, goalId);
+              })
+            } else {
+              deleteSubscription(sub[0]).then((res) => {
+                this.refreshSubscriptionsForUserAndGoal(userId, goalId);
+              })
+            }
+          })
   }
 
-  // refreshSubscriptions = (userId, goalId) => {
-  //   getSingleSubscriptionIdForUserAndGoal(userId, goalId)
-  //     .then((res) => {
-  //         this.props.fetchSubscriptionsPerGoal(goalId);
-  //         let newValue = res.data.subId.length ? res.data.subId[0].id : "" ;
-  //         return this.setState({ loggedUserSubId: newValue });
-  //     })
-  // }
+  refreshSubscriptionsForUserAndGoal = (userId, goalId) => {
+    return getSingleSubscriptionIdForUserAndGoal(userId, goalId)
+            .then((res) => {
+                this.props.fetchSubscriptionsPerGoal(goalId);
+                let newValue = res.data.subId.length ? res.data.subId[0].id : "" ;
+                return this.setState({ loggedUserSubId: newValue });
+            })
+  }
     refreshProps = () => {
       let {match} = this.props;
-      // if (this.props.loggedUser.id) {
-      //   this.props.fetchAllSubscriptionsPerUser(this.props.loggedUser.id);
-      // }
+      if (this.props.loggedUser.id) {
+        this.props.fetchAllSubscriptionsForAUser(this.props.loggedUser.id);
+      }
       this.props.fetchAllSubscriptionsPerComm(match.params.community_id);
       this.props.fetchAllSubmissionCountPerComm(match.params.community_id);
       this.props.fetchAllGoalsPerCommunity(match.params.community_id);
@@ -67,13 +73,14 @@ export default class CommunityGoal extends Component {
     isSubscribed = (goalId) => {
       let { community, loggedUser } = this.props;
       let isSub = false;
+      let userSub = null;
       if (community.subscriptions_per_goal && loggedUser.id ) {
         if (community.subscriptions_per_goal[goalId] !== undefined) {
-          let userSub = community.subscriptions_per_goal[goalId].find(sub => sub.user_id === loggedUser.id);
+          userSub = community.subscriptions_per_goal[goalId].find(sub => sub.user_id === loggedUser.id);
           isSub = userSub ? true : false ;
         }
       }
-      return isSub;
+      return [isSub, userSub];
     }
     submissionCount = (goalId) => {
       let { community } = this.props;
@@ -98,7 +105,6 @@ export default class CommunityGoal extends Component {
 
   render() {
     let { community } = this.props;
-
     let mapGoals = community.goals ? community.goals.data.map(goal => {
       return <GoalDisplay
                 title={goal.title}
@@ -110,7 +116,6 @@ export default class CommunityGoal extends Component {
                 subscriptionCount={this.subscriptionCount(goal.id)}
              />
     }) : ""
-
 
     return(
       community.goals !== undefined ? (

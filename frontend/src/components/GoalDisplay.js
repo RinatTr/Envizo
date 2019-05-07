@@ -9,7 +9,7 @@ const GoalDisplay = ({title, usernames, goalId, percAll, handleSubscribe, isSubs
       <div className="goal-header">
         <h4><Link to={`/goal/${goalId}`}>{title}</Link></h4>
         <div className="subs">
-          <button className="btn waves-effect waves-light" onClick={handleSubscribe}> {isSubscribed ? "Unsubscribe " : "Subscribe "}{subscriptionCount ? subscriptionCount : null}</button>
+          <button className="btn waves-effect waves-light" onClick={handleSubscribe} id={isSubscribed[1] ? isSubscribed[1].id+"'"+isSubscribed[1].goal_id : ""}> {isSubscribed[0] ? "Unsubscribe " : "Subscribe "}{subscriptionCount ? subscriptionCount : null}</button>
         </div>
       </div>
         <Col s={12}>

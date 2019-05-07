@@ -29,9 +29,9 @@ class Prediction extends Component {
   }
 
   setStory = (currentGoal) => {
-    let stories = { "Reusable Grocery Bag": ["I shop for groceries","times per week, and use","plastic bags on average each time.","plastic bags"],
-                    "Drink Tap Water": ["I drink a bottled or canned beverage","times per week.","","bottles and/or cans"],
-                    "Recycle": ["I dispose about","paper, metal, plastic and glass items per week, and recycle about","precentage of it.","paper, metal, plastic and glass items"] }
+    let stories = { ["Reusable Grocery Bag"]: ["I shop for groceries","times per week, and use","plastic bags on average each time.","plastic bags"],
+                    ["Drink Tap Water"]: ["I drink a bottled or canned beverage","times per week.","","bottles and/or cans"],
+                    ["Recycle"]: ["I dispose about","paper, metal, plastic and glass items per week, and recycle about","precentage of it.","paper, metal, plastic and glass items"] }
 
     return stories[currentGoal];
   }
@@ -42,6 +42,9 @@ class Prediction extends Component {
     })
   }
 
+  handleClick = () => {
+    console.log("HERE");
+  }
   handleSubmit = (e = null) => {
     if (e) { e.preventDefault() }
     let { input_a, input_b, frequency, currentGoal } = this.state;
@@ -79,7 +82,7 @@ class Prediction extends Component {
     return (
       <>
         <Modal header={currentGoal} trigger={<Button small>Prediction</Button>}>
-          <form className="input-field col s6 FormContainer" onSubmit={this.handleSubmit}>
+          <form className="input-field col s6 FormContainer" >
           {currentStory[0]}
             <div className='input-field col s6'>
               <input placeholder="input number" type="text" name="input_a" value={input_a} onChange={this.handleChange} />
@@ -92,7 +95,8 @@ class Prediction extends Component {
           }
             {currentStory[2]}
             {isSubmitted ? <p style={{color:'red'}}>{isInvalid}</p> : null}
-            <p><button className="btn-small">SHOW MY IMPACT</button></p>
+            {/*this.scroll in GoalsList takes over onSubmit in form, hence using onClick bellow*/}
+            <p><button className="btn-small" onClick={this.handleSubmit}>SHOW MY IMPACT</button></p>
             {isSubmitted && !isInvalid
               ? <>
               <div className='input-field col s6'>

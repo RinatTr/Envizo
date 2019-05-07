@@ -49,14 +49,14 @@ class GoalsList extends Component {
 
     const goalsList = this.props.goals ? this.props.goals.data.filter(goal => goal.community_id=== +boroughId).map(goal => {
       return (
-        <CollapsibleItem  onClick={this.scroll} node='h5' header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>
+        <CollapsibleItem onClick={this.scroll} node='h5' header={goal.title +' - ' + goal.description.slogan} icon="delete" key={goal.id}>
           <div className="container">
             <p className='flow-text'>{goal.description.initiative}</p>
             <h4>Task:</h4><h5>{goal.description.description}</h5>
           </div>
           <div className='container leButtons'>
             <Prediction currentGoal={goal.title}/>
-            <button  className="btn-small subscribe" id={goal.id} onClick={this.handleClick}>
+            <button className="btn-small subscribe" id={goal.id} onClick={this.handleClick}>
               Learn More
             </button>
             <SubscriberCount count={this.calcSubscribers(goal.id)}/>
