@@ -2,7 +2,7 @@ const { db } = require('./index.js');
 // * `GET /users`
 //   * Get all users
 const getAllUsers = (req, res, next) => {
-  db.any('SELECT * FROM users')
+  db.any('SELECT id, username, community_id, avatar_img, created_at FROM users')
     .then(data => {
       res.status(200)
       .json({
@@ -22,7 +22,7 @@ const getAllUsers = (req, res, next) => {
 //Gets specific user by id
 const getAUser = ( req, res, next ) => {
   let userId = req.params.id
-  db.one('SELECT * FROM users WHERE id=$1',userId)
+  db.one('SELECT id, username, community_id, avatar_img, created_at FROM users WHERE id=$1',userId)
     .then(data => {
       res.status(200)
       .json({
@@ -44,7 +44,7 @@ const getAUser = ( req, res, next ) => {
 //   * Get all users per community
 const getAllUsersPerCommunity = (req, res, next) => {
   let community_id = parseInt(req.params.id);
-  db.any('SELECT * FROM users WHERE community_id=$1', community_id)
+  db.any('SELECT id, username, community_id, avatar_img, created_at FROM users WHERE community_id=$1', community_id)
     .then(data => {
       res.status(200)
       .json({
