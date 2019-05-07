@@ -33,7 +33,7 @@ class GoalsList extends Component {
       return 0;
     }
   }
-  
+
   scroll = e => {
     e.preventDefault();
       window.scroll(0,document.body.scrollHeight)
