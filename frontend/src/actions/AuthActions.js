@@ -47,7 +47,6 @@ export const checkAuthenticateStatus = () => dispatch => {
   ;
 }
 export const newUser = newUserData => dispatch => {
-  console.log(newUserData);
   axios
   .post("/sessions/new", newUserData)
     .then(res => {
@@ -86,7 +85,7 @@ export const logIn = logInData => dispatch => {
 
     })
     .then(()=> {
-      console.log('check auth at login');
+      // console.log('check auth at login');
       checkAuthenticateStatus();
 
     })

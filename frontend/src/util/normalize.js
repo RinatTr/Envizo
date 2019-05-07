@@ -31,7 +31,6 @@ export const normalizeData = (info) => {
            return null
       }
     });
-    console.log("data==>",data)
     //sum all districts and organize in obj
     let summaries = {
       bronx: {},

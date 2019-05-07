@@ -68,7 +68,6 @@ class UserProfile extends Component {
 
     if (userActivity.length) {
       activityList = userActivity.map(activity => {
-        console.log(activity);
         if(activity.type === 'joined') {
           return (
             <CollectionItem className='l2' key={activity.activity_id}>
@@ -208,7 +207,6 @@ class UserProfile extends Component {
     }
 
     const goalsList = subscripUser.length ? subscripUser.map(goal => {
-      console.log(goal);
       return (
         <CollectionItem key={goal.goal_id} className="community-goal" onClick={()=>this.props.history.push(`/goal/${goal.goal_id}`)}>
           { goal.title }

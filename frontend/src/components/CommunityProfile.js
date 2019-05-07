@@ -25,7 +25,6 @@ class CommunityProfile extends Component {
   click = e => {
     e.preventDefault();
     // this.props.history.push(/goal/${goals.id}')
-    console.log('Has been clicked');
   }
 
   getActivities = () => {
