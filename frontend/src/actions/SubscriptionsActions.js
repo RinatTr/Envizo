@@ -57,10 +57,11 @@ export const fetchAllSubscriptionsPerComm = (comm_id) => dispatch => {
       })
       return Promise.all(promises)
               .then(res => {
+                console.log(res)
                 let subObj = {}
                 //res in an array of responses
                 res.forEach((promise, i ) => {
-                  if(promise.data.subscriptions.length) {
+                  if(promise.data.subscriptions[i] !== undefined) {
                     subObj[promise.data.subscriptions[i].goal_id] = promise.data.subscriptions
                   }
                 })
