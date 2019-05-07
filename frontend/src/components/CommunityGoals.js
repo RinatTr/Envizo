@@ -16,16 +16,17 @@ export default class CommunityGoal extends Component {
   }
 
   handleSubscribe = (e) => {
-    e.persist();
     let { loggedUser, match } = this.props;
     let { loggedUserSubId } = this.state;
     let userId = loggedUser.id;
-    let sub = e.target.id.split("'");
+    let subStr = e.target.id
+    let innerText = e.target.innerText.slice(0,3)
+    let sub = subStr.split("'");
     let goalId = sub[1];
 
     this.refreshSubscriptionsForUserAndGoal(userId, goalId)
           .then(() => {
-            if (e.target.innerText.slice(0,3) === "SUB") {
+            if (innerText === "SUB") {
               addSubscription({ user_id: userId , goal_id: goalId }).then((res) => {
                 this.refreshSubscriptionsForUserAndGoal(userId, goalId);
               })
