@@ -3,14 +3,14 @@ import '../css/signup.css';
 import ReactS3 from 'react-s3';
 import { Redirect } from 'react-router-dom';
 import { Select } from 'react-materialize';
-// import { uploadFile } from 'react-s3';
-// let aws = require('../util/secret.json')
+import { uploadFile } from 'react-s3';
+let aws = require('../util/secret.json')
 
 //fake key to prevent errors
-let aws = {
-  "AWSAccessKeyId":123,
-  "AWSSecretKey":123
-}
+// let aws = {
+//   "AWSAccessKeyId":123,
+//   "AWSSecretKey":123
+// }
 
 //Optional Import
 

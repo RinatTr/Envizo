@@ -186,27 +186,27 @@ class UserProfile extends Component {
     // let boroughid = this.props.auth.currentUser.community_id
     const { community } = this.state;
     const communityId = community.length ? community[0].id : null;
-    const { subscripUser } = this.props.subscriptions;
-    const { users, match } = this.props;
+    // const { subscriptions.subscripUser } = this.props.subscriptions;
+    const { users, match, subscriptions } = this.props;
     const routeId = parseInt(match.params.id);
     const userObj = users.find(user => user.id === routeId)
     const userName = userObj ? userObj.username : "";
     // const { users } = this.props;
-
     //loop through subscritionsForAUser and get goals that the user subscribed
-    let imgUrl;
-    if ( subscripUser ) {
-      const usersInfo = subscripUser.find(user => {
-        return user.user_id === parseInt(this.props.match.params.id)
-      })
-      if (usersInfo) {
-        imgUrl = usersInfo.avatar_img
-      } else {
-        imgUrl = ''
-      }
-    }
+    let imgUrl = userObj ? userObj.avatar_img : '';
+    // if ( subscriptions.subscripUser ) {
+    //   const usersInfo = subscriptions.subscripUser.find(user => {
+    //     return user.user_id === parseInt(this.props.match.params.id)
+    //   })
+    //   if (usersInfo) {
+    //     imgUrl = usersInfo.avatar_img
+    //     console.log(imgUrl);
+    //   } else {
+    //     imgUrl = 'subscribe to show photo'
+    //   }
+    // }
 
-    const goalsList = subscripUser.length ? subscripUser.map(goal => {
+    const goalsList = subscriptions.subscripUser.length ? subscriptions.subscripUser.map(goal => {
       return (
         <CollectionItem key={goal.goal_id} className="community-goal" onClick={()=>this.props.history.push(`/goal/${goal.goal_id}`)}>
           { goal.title }
@@ -251,7 +251,7 @@ class UserProfile extends Component {
                       { community.length ? <h4 className ='boroughName' id="bold">{community[0].name}</h4> : 'Loading'}
                     </Link>
                   </span>
-                  <img src={imgUrl} alt="" className="circle profile-pic z-depth-3 center"></img>
+                  <img src={imgUrl} alt='' className="circle profile-pic z-depth-3 center"></img>
                 </div>
                 <div>
                   <h4 className="username">{userName}</h4>
