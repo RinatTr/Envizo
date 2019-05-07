@@ -9,7 +9,7 @@ export const CURRENT_USER = "CURRENT_USER"
 //logs out the user
 export const logout = () => dispatch => {
   axios
-    .post("/sessions/logout")
+    .post("/api/sessions/logout")
     .then(() => {
       Auth.deauthenticateUser();
     })
@@ -23,7 +23,7 @@ export const checkAuthenticateStatus = () => dispatch => {
 
 
   axios
-    .get("/sessions/isLoggedIn").then(user => {
+    .get("/api/sessions/isLoggedIn").then(user => {
 
     if (user.data.id === +Auth.getToken()){
 
@@ -48,7 +48,7 @@ export const checkAuthenticateStatus = () => dispatch => {
 }
 export const newUser = newUserData => dispatch => {
   axios
-  .post("/sessions/new", newUserData)
+  .post("/api/sessions/new", newUserData)
     .then(res => {
       dispatch({
         type:NEW_USER,
@@ -56,7 +56,7 @@ export const newUser = newUserData => dispatch => {
       })
 
       axios
-      .post("/sessions/login",{username:newUserData.username, password:newUserData.password})
+      .post("/api/sessions/login",{username:newUserData.username, password:newUserData.password})
         .then(res => {
           Auth.authenticateUser(res.data.id);
           dispatch({
@@ -74,7 +74,7 @@ export const newUser = newUserData => dispatch => {
 
 export const logIn = logInData => dispatch => {
   axios
-  .post("/sessions/login", logInData)
+  .post("/api/sessions/login", logInData)
     .then(res => {
       // console.log('res of login', res.data);
       Auth.authenticateUser(res.data.id);
@@ -97,7 +97,7 @@ export const logIn = logInData => dispatch => {
 
 export const loadCurrent = () => dispatch => {
   axios
-  .get(`/users/${+Auth.getToken()}`)
+  .get(`/api/users/${+Auth.getToken()}`)
     .then(res => {
       dispatch({
         type:CURRENT_USER,

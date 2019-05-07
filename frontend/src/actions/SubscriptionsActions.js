@@ -51,7 +51,7 @@ export const fetchAllSubscriptionsPerComm = (comm_id) => dispatch => {
       let promises = [];
       res.data.data.forEach(goal => {
         let req = axios({
-          url:`/subscriptions/goal/${goal.id}`
+          url:`/api/subscriptions/goal/${goal.id}`
         })
         promises.push(req)
       })

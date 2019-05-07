@@ -94,7 +94,7 @@ export const fetchAllSubmissionCountPerComm =(comm_id) => dispatch => {
 
       res.data.data.forEach(goal => {
         let req = axios({
-          url:`/submissions/count/${goal.id}`
+          url:`/api/submissions/count/${goal.id}`
         })
 
         promises.push(req)

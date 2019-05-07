@@ -48,7 +48,7 @@ class UserProfile extends Component {
   }
 
   getCommunityForAUser = () => {
-    axios.get(`/communities/user/${this.props.match.params.id}`)
+    axios.get(`/api/communities/user/${this.props.match.params.id}`)
     .then(res => {
       this.setState({
         community: res.data.community

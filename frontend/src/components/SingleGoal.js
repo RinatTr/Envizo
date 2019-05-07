@@ -66,15 +66,12 @@ export default class SingleGoal extends Component {
       }
   }
   getGoal = () => {
-    axios
-      .get(`/goals/${this.props.match.params.goal_id}`)
-        .then(res=> {
-          this.setState({
-            goalInfo:[res.data.data]
-          })
+    axios.get(`/api/goals/${this.props.match.params.goal_id}`)
+      .then(res=> {
+        this.setState({
+          goalInfo:[res.data.data]
         })
-
-
+      })
   }
   //normalized desc
   nd = (description) => {
