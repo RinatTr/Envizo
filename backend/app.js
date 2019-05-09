@@ -45,7 +45,9 @@ app.use(passport.session());
 
 // app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname + "../frontend/build/index.html"));
+});
 //route usage
 app.use('/api/users', usersRouter);
 app.use('/api/submissions', submissionsRouter);
@@ -71,8 +73,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname + "../frontend/build/index.html"));
-});
+
 
 module.exports = app;
