@@ -4,15 +4,16 @@ let imgUrl = "https://trello-attachments.s3.amazonaws.com/5ca1ffec97ca8169c9c3b9
 // import Gallery from 'react-photo-gallery';
 // var reactPhotoGallery = require("react-photo-gallery");
 
-const Puzzle = ({submissions}) => {
+const Puzzle = ({submissions, isCompleted}) => {
   let mapSubs = [];
   let node;
 
-  let isComplete = submissions.length === 500;
-  if (isComplete) {
+  if (isCompleted) {
     node = <div>
-              <h4 className="center">Congratulations! Goal Completed</h4>
-              <img alt="congrats" src={imgUrl}></img>
+              <h4 className="center" id="bold-green">Congratulations! Goal Completed</h4>
+              <div className="wrapper-grats">
+                <img alt="congrats" src={imgUrl}></img>
+              </div>
             </div>
   } else {
     for (let i = 0; i < 500; i++ ) {
@@ -24,7 +25,7 @@ const Puzzle = ({submissions}) => {
     }
   }
 
-  return (isComplete ? node : <div className="container-puzzle">{mapSubs.reverse()}</div>)
+  return (isCompleted ? node : <div className="container-puzzle">{mapSubs.reverse()}</div>)
 }
 
 export default Puzzle;

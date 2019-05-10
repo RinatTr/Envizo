@@ -88,7 +88,7 @@ export default class SingleGoal extends Component {
   handleUpload = (e) => {
     let { loggedUser, match, submissions } = this.props;
     let { loggedUserSubId } = this.state;
-    let sub = { img_url:"" , goal_id: match.params.goal_id, sub_count: 500, subscriptions_id: loggedUserSubId }
+    let sub = { img_url:"" , goal_id: match.params.goal_id, sub_count: submissions.length, subscriptions_id: loggedUserSubId }
 
     ReactS3.uploadFile(e.target.files[0], config)
             .then((res) => {
@@ -144,21 +144,23 @@ export default class SingleGoal extends Component {
             <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={+percAll} />
           </Col>
           <div className="container puzzle-area">
-            <div className="file-field input-field">
-              <div className="btn-small waves-effect waves-light">
-                <span>Upload photo</span>
-                  <input
-                    type="file"
-                    name="avatar"
-                    accept=".jpg, .jpeg, .png"
-                    onChange={this.handleUpload}
-                  />
-              </div>
-              <div className="file-path-wrapper">
-                <input className="file-path validate" name='avatarpath' type="text" />
-              </div>
-            </div>
-            <Puzzle submissions={submissions} />
+            {!goalInfo[0].completed
+              ? <div className="file-field input-field">
+                   <div className="btn-small waves-effect waves-light">
+                    <span>Upload photo</span>
+                      <input
+                        type="file"
+                        name="avatar"
+                        accept=".jpg, .jpeg, .png"
+                        onChange={this.handleUpload}
+                      />
+                  </div>
+                  <div className="file-path-wrapper">
+                    <input className="file-path validate" name='avatarpath' type="text" />
+                  </div>
+                </div>
+              : ""}
+            <Puzzle submissions={submissions} isCompleted={goalInfo[0].completed} />
           </div>
         </Row>
 

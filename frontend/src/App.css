@@ -27,6 +27,14 @@ h4#bold {
   font-weight: 400;
 }
 
+/* big titles - bold green */
+h4#bold-green {
+  font-size: 40px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  color: #5CDB95;
+}
+
 li, p {
   font-size: 17px;
 }

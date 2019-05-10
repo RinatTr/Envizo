@@ -22,3 +22,8 @@ div .sub-img-wrapper {
   justify-content: center;
   align-items: center;
 }
+
+div .wrapper-grats img {
+  height: 400px;
+  width: 512px;
+}
