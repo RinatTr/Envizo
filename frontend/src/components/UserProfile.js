@@ -68,6 +68,8 @@ class UserProfile extends Component {
 
     if (userActivity.length) {
       activityList = userActivity.map(activity => {
+        console.log(activity);
+        
         if(activity.type === 'joined') {
           return (
             <CollectionItem className='l2' key={activity.activity_id}>
