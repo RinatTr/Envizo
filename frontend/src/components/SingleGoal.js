@@ -144,22 +144,24 @@ export default class SingleGoal extends Component {
             <ProgressBar className={percAll > 99 ? "finished":'not-finished'} progress={+percAll} />
           </Col>
           <div className="container puzzle-area">
-            {!goalInfo[0].completed
-              ? <div className="file-field input-field">
-                   <div className="btn-small waves-effect waves-light">
-                    <span>Upload photo</span>
-                      <input
-                        type="file"
-                        name="avatar"
-                        accept=".jpg, .jpeg, .png"
-                        onChange={this.handleUpload}
-                      />
-                  </div>
-                  <div className="file-path-wrapper">
-                    <input className="file-path validate" name='avatarpath' type="text" />
-                  </div>
-                </div>
-              : ""}
+            {goalInfo[0].completed
+              ? ""
+              : loggedUserSubId ? (<div className="file-field input-field">
+                                     <div className="btn-small waves-effect waves-light">
+                                      <span>Upload photo</span>
+                                        <input
+                                          type="file"
+                                          name="avatar"
+                                          accept=".jpg, .jpeg, .png"
+                                          onChange={this.handleUpload}
+                                        />
+                                    </div>
+                                    <div className="file-path-wrapper">
+                                      <input className="file-path validate" name='avatarpath' type="text" />
+                                    </div>
+                                  </div>)
+                                  : <div className="file-field input-field"><h5>Subscribe to upload a photo!</h5></div>
+              }
             <Puzzle submissions={submissions} isCompleted={goalInfo[0].completed} />
           </div>
         </Row>
