@@ -69,7 +69,7 @@ class UserProfile extends Component {
     if (userActivity.length) {
       activityList = userActivity.map(activity => {
         console.log(activity);
-        
+
         if(activity.type === 'joined') {
           return (
             <CollectionItem className='l2' key={activity.activity_id}>
@@ -83,15 +83,15 @@ class UserProfile extends Component {
                   <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
                 </div>
                 <div className='share_buttons'>
-                  <FacebookShareButton url='www.facebook.com' className="button">
+                  <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
 
-                  <TwitterShareButton url='www.twitter.com' className="button">
+                  <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
 
-                  <TumblrShareButton url='www.tumblr.com' className="button">
+                  <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
                     <TumblrIcon size={32} round={true} />
                   </TumblrShareButton>
                 </div>
@@ -107,15 +107,15 @@ class UserProfile extends Component {
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
               <div className='share_buttons'>
-                <FacebookShareButton url='www.facebook.com' className="button">
+                <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
                   <FacebookIcon size={32} round={true} />
                 </FacebookShareButton>
 
-                <TwitterShareButton url='/' className="button">
+                <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
                   <TwitterIcon size={32} round={true} />
                 </TwitterShareButton>
 
-                <TumblrShareButton url='www.tumblr.com' className="button">
+                <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
                   <TumblrIcon size={32} round={true} />
                 </TumblrShareButton>
               </div>
@@ -131,15 +131,15 @@ class UserProfile extends Component {
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
               <div className='share_buttons'>
-                <FacebookShareButton url='www.facebook.com' className="button">
+                <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
                   <FacebookIcon size={32} round={true} />
                 </FacebookShareButton>
 
-                <TwitterShareButton url='www.twitter.com' className="button">
+                <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
                   <TwitterIcon size={32} round={true} />
                 </TwitterShareButton>
 
-                <TumblrShareButton url='www.tumblr.com' className="button">
+                <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
                   <TumblrIcon size={32} round={true} />
                 </TumblrShareButton>
               </div>
@@ -157,15 +157,15 @@ class UserProfile extends Component {
                   <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
                 </div>
                 <div className='share_buttons'>
-                  <FacebookShareButton url='www.facebook.com' className="button">
+                  <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
 
-                  <TwitterShareButton url='www.twitter.com' className="button">
+                  <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
 
-                  <TumblrShareButton url='www.tumblr.com' className="button">
+                  <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
                     <TumblrIcon size={32} round={true} />
                   </TumblrShareButton>
                 </div>
