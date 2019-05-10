@@ -47,6 +47,7 @@ CREATE TABLE activity (
   id SERIAL PRIMARY KEY,
   type VARCHAR,
   user_id INT REFERENCES users(id),
-  subscription_id INT REFERENCES subscriptions(id) ON DELETE CASCADE,
+  subscription_id INT REFERENCES subscriptions(id),
   time_stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
