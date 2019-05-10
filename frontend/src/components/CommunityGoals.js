@@ -26,11 +26,12 @@ export default class CommunityGoal extends Component {
 
     this.refreshSubscriptionsForUserAndGoal(userId, goalId)
           .then(() => {
+            debugger
             if (innerText === "SUB") {
               addSubscription({ user_id: userId , goal_id: goalId }).then((res) => {
                 this.refreshSubscriptionsForUserAndGoal(userId, goalId);
                 this.refreshProps();
-              })
+            })
             } else {
               deleteSubscription(sub[0]).then((res) => {
                 this.refreshSubscriptionsForUserAndGoal(userId, goalId);

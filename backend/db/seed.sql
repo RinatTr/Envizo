@@ -32,7 +32,8 @@ CREATE TABLE subscriptions (
   id SERIAL PRIMARY KEY,
   goal_id INT REFERENCES goals(id),
   user_id INT REFERENCES users(id),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(goal_id, user_id)
 );
 
 CREATE TABLE submissions (
@@ -47,7 +48,7 @@ CREATE TABLE activity (
   id SERIAL PRIMARY KEY,
   type VARCHAR,
   user_id INT REFERENCES users(id),
-  subscription_id INT REFERENCES subscriptions(id),
+  subscription_id INT REFERENCES subscriptions(id) ON DELETE CASCADE,
   time_stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
