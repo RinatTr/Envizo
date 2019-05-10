@@ -1,7 +1,7 @@
--- DROP DATABASE IF EXISTS envizo;
--- CREATE DATABASE envizo;
+DROP DATABASE IF EXISTS envizo;
+CREATE DATABASE envizo;
 
--- \c envizo;
+\c envizo;
 
 CREATE TABLE communities (
   id SERIAL PRIMARY KEY,
