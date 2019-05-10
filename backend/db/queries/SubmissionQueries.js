@@ -42,7 +42,21 @@ const getAllSubmissionsPerUserPerGoal = (req, res, next) => {
 
 const createNewSubmission = (req, res, next) => {
   //req.body needs to include goal_id,subscription_id and params needs to have user_id
-  db.none('INSERT INTO submissions(img_url, user_id, goal_id ) VALUES($1, $2, $3)', [req.body.img_url,req.params.user_id, req.body.goal_id])
+  let subCount = +req.body.sub_count
+  if (subCount === 500) {
+    db.none('UPDATE goals SET completed = $1 WHERE id = $2', [true, req.body.goal_id])
+    .then(() => {
+      db.none('INSERT INTO activity(type, user_id, subscription_id) VALUES($1,$2,$3)',['milestone',parseInt(req.params.user_id),parseInt(req.body.subscriptions_id)])
+      .then(() => {
+        res.status(200).json({
+          status: 'success',
+          message: 'Updated Goal and added activity'
+        })
+      })
+    })
+    .catch(err => next(err))
+  } else {
+    db.none('INSERT INTO submissions(img_url, user_id, goal_id ) VALUES($1, $2, $3)', [req.body.img_url,req.params.user_id, req.body.goal_id])
     .then(() => {
       db.none('INSERT INTO activity(type, user_id, subscription_id) VALUES($1,$2,$3)',['uploaded',parseInt(req.params.user_id),parseInt(req.body.subscriptions_id)])
       .then(() => {
@@ -50,9 +64,10 @@ const createNewSubmission = (req, res, next) => {
           status: 'success',
           message: 'Received a new submission and added activity'
         })
+      })
     })
-  })
-  .catch(err => next(err))
+    .catch(err => next(err))
+  }
 }
 
 const deleteSubmission = (req, res, next) => {

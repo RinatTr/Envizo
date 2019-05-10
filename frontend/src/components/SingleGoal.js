@@ -86,8 +86,9 @@ export default class SingleGoal extends Component {
 
 
   handleUpload = (e) => {
-    let { loggedUser, match } = this.props;
-    let sub = { img_url:"" , goal_id: match.params.goal_id }
+    let { loggedUser, match, submissions } = this.props;
+    let { loggedUserSubId } = this.state;
+    let sub = { img_url:"" , goal_id: match.params.goal_id, sub_count: 500, subscriptions_id: loggedUserSubId }
 
     ReactS3.uploadFile(e.target.files[0], config)
             .then((res) => {
@@ -96,7 +97,7 @@ export default class SingleGoal extends Component {
               addSubmission(loggedUser.id, sub)
             })
             .then(() => {
-              window.location.reload()
+              return window.location.reload
             })
             .catch(err => console.log(err))
   }

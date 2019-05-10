@@ -29,6 +29,7 @@ class CommunityProfile extends Component {
 
   getActivities = () => {
     const { activity } = this.props;
+    let comm_id = this.props.match.params.id;
 
     if (activity) {
       const activityList = activity.map((activity, i) => {
@@ -69,9 +70,9 @@ class CommunityProfile extends Component {
         } else if(activity.type === 'milestone') {
           return (
             <CollectionItem className='avatar' key={i +activity.type} >
-              <img src={activity.avatar_img} alt="" className="circle" />
+              <img src={borough[comm_id].imgUrl} alt="" className="circle" />
                 <p className = "title left" >
-                <a href={`/profile/${activity.usersid}` }>{activity.name}</a> has completed <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a> goal.
+                {activity.name} has completed <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a> goal.
                 </p>
                 <br />
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
