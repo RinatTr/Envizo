@@ -1,2 +1,2 @@
 node_modules/
-/frontend/src/util/secretAWS.json
+# /frontend/src/util/secretAWS.json
