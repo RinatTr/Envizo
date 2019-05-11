@@ -95,9 +95,9 @@ export default class SingleGoal extends Component {
               sub.img_url = res.location;
               this.setState({ didUpload: true })
               addSubmission(loggedUser.id, sub)
-            })
-            .then(() => {
-              window.location.reload()
+                .then(() => {
+                  this.props.fetchSubmissionsPerGoal(match.params.goal_id)
+                })
             })
             .catch(err => console.log(err))
   }

@@ -38,7 +38,6 @@ class Home extends Component {
 
     render() {
     const { subjects } = this.state
-    console.log(this.props.location, this.props.match);
     let list;
     if(subjects === '00'){
       list = <GoalsListContainer boroughId={this.state.borough}/>
