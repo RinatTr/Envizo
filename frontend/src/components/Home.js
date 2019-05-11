@@ -38,7 +38,7 @@ class Home extends Component {
 
     render() {
     const { subjects } = this.state
-
+    console.log(this.props.location, this.props.match);
     let list;
     if(subjects === '00'){
       list = <GoalsListContainer boroughId={this.state.borough}/>
@@ -68,16 +68,16 @@ class Home extends Component {
           </Tabs>
           </div>
           <div className="container borough-select">
-          <div className ='input-field col s6'>
-          <Select name='borough' onChange={this.handleChange}>
-            <option value='0'>Select Borough</option>
-            <option value='1'>Manhattan</option>
-            <option value='2'>Queens</option>
-            <option value='3'>Bronx</option>
-            <option value='4'>Brooklyn</option>
-            <option value='5'>Staten Island</option>
-          </Select>
-          </div>
+            <div className ='input-field col s6'>
+              <Select name='borough' onChange={this.handleChange}>
+                <option value='0'>Select Borough</option>
+                <option value='1'>Manhattan</option>
+                <option value='2'>Queens</option>
+                <option value='3'>Bronx</option>
+                <option value='4'>Brooklyn</option>
+                <option value='5'>Staten Island</option>
+              </Select>
+            </div>
           </div>
 
           {list}

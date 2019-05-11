@@ -62,14 +62,13 @@ class UserProfile extends Component {
     const { auth, users, userActivity } = this.props;
     const routeId = parseInt(this.props.match.params.id);
     const theUser = users.find(user => user.id === routeId)
-    const userName = theUser ? (auth.currentUser.id === routeId ? 'You' : theUser.username) : null;
-    const userWord = theUser ? (auth.currentUser.id === routeId ? 'have' : 'has') : null;
+    const isLoggedInUserPage = auth.currentUser.id === routeId
+    const userName = theUser ? (isLoggedInUserPage ? 'You' : theUser.username) : null;
+    const userWord = theUser ? (isLoggedInUserPage ? 'have' : 'has') : null;
     let activityList;
 
     if (userActivity.length) {
       activityList = userActivity.map(activity => {
-        console.log(activity);
-
         if(activity.type === 'joined') {
           return (
             <CollectionItem className='l2' key={activity.activity_id}>
@@ -82,6 +81,33 @@ class UserProfile extends Component {
                   </p><br/>
                   <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
                 </div>
+                { isLoggedInUserPage ?
+                  <div className='share_buttons'>
+                    <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
+                      <FacebookIcon size={32} round={true} />
+                    </FacebookShareButton>
+
+                    <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
+                      <TwitterIcon size={32} round={true} />
+                    </TwitterShareButton>
+
+                    <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
+                      <TumblrIcon size={32} round={true} />
+                    </TumblrShareButton>
+                  </div> : null
+                }
+              </div>
+            </CollectionItem>
+          )
+        } else if(activity.type === 'uploaded') {
+        return (
+          <CollectionItem className='l2' key={activity.id}>
+            <div className='joined'>
+              <div>
+                <p className='left'>{userName} {userWord} uploaded a photo to <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a>.</p><br/>
+                <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
+              </div>
+              { isLoggedInUserPage ?
                 <div className='share_buttons'>
                   <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
                     <FacebookIcon size={32} round={true} />
@@ -94,31 +120,8 @@ class UserProfile extends Component {
                   <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
                     <TumblrIcon size={32} round={true} />
                   </TumblrShareButton>
-                </div>
-              </div>
-            </CollectionItem>
-          )
-        } else if(activity.type === 'uploaded') {
-        return (
-          <CollectionItem className='l2' key={activity.id}>
-            <div className='joined'>
-              <div>
-                <p className='left'>{userName} {userWord} uploaded a photo {activity.title}.</p><br/>
-                <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
-              </div>
-              <div className='share_buttons'>
-                <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
-                  <FacebookIcon size={32} round={true} />
-                </FacebookShareButton>
-
-                <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
-                  <TwitterIcon size={32} round={true} />
-                </TwitterShareButton>
-
-                <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
-                  <TumblrIcon size={32} round={true} />
-                </TumblrShareButton>
-              </div>
+                </div> : null
+              }
             </div>
           </CollectionItem>
         )
@@ -130,19 +133,21 @@ class UserProfile extends Component {
                 <p className='left'>{userName} {userWord} subscribed to <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a>.</p><br/>
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
               </div>
-              <div className='share_buttons'>
-                <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
-                  <FacebookIcon size={32} round={true} />
-                </FacebookShareButton>
+              { isLoggedInUserPage ?
+                <div className='share_buttons'>
+                  <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
+                    <FacebookIcon size={32} round={true} />
+                  </FacebookShareButton>
 
-                <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
-                  <TwitterIcon size={32} round={true} />
-                </TwitterShareButton>
+                  <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
+                    <TwitterIcon size={32} round={true} />
+                  </TwitterShareButton>
 
-                <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
-                  <TumblrIcon size={32} round={true} />
-                </TumblrShareButton>
-              </div>
+                  <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
+                    <TumblrIcon size={32} round={true} />
+                  </TumblrShareButton>
+                </div> : null
+              }
             </div>
           </CollectionItem>
         )
@@ -156,19 +161,21 @@ class UserProfile extends Component {
                   </Link> {userWord} reached a milestone.<br/>
                   <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
                 </div>
-                <div className='share_buttons'>
-                  <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
-                    <FacebookIcon size={32} round={true} />
-                  </FacebookShareButton>
+                { isLoggedInUserPage ?
+                  <div className='share_buttons'>
+                    <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
+                      <FacebookIcon size={32} round={true} />
+                    </FacebookShareButton>
 
-                  <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
-                    <TwitterIcon size={32} round={true} />
-                  </TwitterShareButton>
+                    <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
+                      <TwitterIcon size={32} round={true} />
+                    </TwitterShareButton>
 
-                  <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
-                    <TumblrIcon size={32} round={true} />
-                  </TumblrShareButton>
-                </div>
+                    <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
+                      <TumblrIcon size={32} round={true} />
+                    </TumblrShareButton>
+                  </div> : null
+                }
               </div>
             </CollectionItem>
           )

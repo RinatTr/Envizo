@@ -28,9 +28,9 @@ class Prediction extends Component {
   }
 
   setStory = (currentGoal) => {
-    let stories = { ["Reusable Grocery Bag"]: ["I shop for groceries","times per week, and use","plastic bags on average each time.","plastic bags"],
-                    ["Drink Tap Water"]: ["I drink a bottled or canned beverage","times per week.","","bottles and/or cans"],
-                    ["Recycle"]: ["I dispose about","paper, metal, plastic and glass items per week, and recycle about","precentage of it.","paper, metal, plastic and glass items"] }
+    let stories = { "Reusable Grocery Bag": ["I shop for groceries","times per week, and use","plastic bags on average each time.","plastic bags"],
+                    "Drink Tap Water": ["I drink a bottled or canned beverage","times per week.","","bottles and/or cans"],
+                    "Recycle": ["I dispose about","paper, metal, plastic and glass items per week, and recycle about","precentage of it.","paper, metal, plastic and glass items"] }
 
     return stories[currentGoal];
   }
@@ -49,8 +49,8 @@ class Prediction extends Component {
     //b - precentage 0.5
     let weeks = (frequency === "month") ? 4.345 : 52.142
     let result = (currentGoal === "Recycle")
-      ? (input_a_parse - (input_a_parse * input_b_parse/100))*weeks.toFixed(1)
-      : (input_a_parse * input_b_parse * weeks).toFixed(1)
+      ? (input_a_parse - (input_a_parse * input_b_parse/100))*weeks
+      : (input_a_parse * input_b_parse * weeks)
 
     if (!isNaN(result)) {
       this.setState({
@@ -102,7 +102,7 @@ class Prediction extends Component {
                   <option value="year">year</option>
                 </Select>
               </div>
-                You are polluting your community with <b>{calcResult}</b> {currentStory[3]} on average each {frequency}.
+                You are polluting your community with <b>{calcResult.toFixed(2)}</b> {currentStory[3]} on average each {frequency}.
               <VisualPrediction
                   result={calcResult}
                   type={currentGoal}/>

@@ -8,13 +8,13 @@ import '../css/singlegoal.css';
 import ReactS3 from 'react-s3';
 import { uploadFile } from 'react-s3';
 import axios from 'axios'
-// let aws = require('../util/secret.json')
+let aws = require('../util/secretAWS.json')
 
 // fake key to prevent errors
-let aws = {
-  "AWSAccessKeyId":123,
-  "AWSSecretKey":123
-}
+// let aws = {
+//   "AWSAccessKeyId":123,
+//   "AWSSecretKey":123
+// }
 
 const config = {
     bucketName: 'envizo-img',
@@ -97,7 +97,7 @@ export default class SingleGoal extends Component {
               addSubmission(loggedUser.id, sub)
             })
             .then(() => {
-              return window.location.reload
+              window.location.reload()
             })
             .catch(err => console.log(err))
   }
