@@ -13,6 +13,11 @@
   width: 29px;
   height: 29px;
 }
+.container-puzzle .user-sub-img:hover {
+  width: 59px;
+  height: 59px;
+  z-index: 200;
+}
 
 div .sub-img-wrapper {
   width: 30px;
