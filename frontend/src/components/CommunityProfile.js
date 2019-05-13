@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { Row, Col, Collection, CollectionItem, Icon, Button } from 'react-materialize';
 import '../css/community.css'
 import Timeago from 'react-timeago';
@@ -39,7 +40,7 @@ class CommunityProfile extends Component {
             <CollectionItem className='avatar' key={i +activity.type} >
               <img src={activity.avatar_img} alt="" className="circle" />
                 <p className = "title left" >
-                <a href={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</a> has joined the community.
+                <Link to={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</Link> has joined the community.
                 </p>
                 <br />
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
@@ -50,7 +51,7 @@ class CommunityProfile extends Component {
             <CollectionItem className='avatar' key={i +activity.type} >
               <img src={activity.avatar_img} alt="" className="circle" />
                 <p className = "title left" >
-                <a href={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</a> uploaded a photo to <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a>.
+                <Link to={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</Link> uploaded a photo to <Link to={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</Link>.
                 </p>
                 <br />
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
@@ -61,7 +62,7 @@ class CommunityProfile extends Component {
             <CollectionItem className='avatar' key={i +activity.type}>
               <img src={activity.avatar_img} alt="" className="circle" />
                 <p className = "title left" >
-                <a href={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</a> has subscribed to <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a>.
+                <Link to={`/profile/${activity.usersid}` } className='communityActivity_username'>{activity.username}</Link> has subscribed to <Link to={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</Link>.
                 </p>
                 <br />
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
@@ -72,7 +73,7 @@ class CommunityProfile extends Component {
             <CollectionItem className='avatar' key={i +activity.type} >
               <img src={borough[comm_id].imgUrl} alt="" className="circle" />
                 <p className = "title left" >
-                {activity.name} has completed <a href={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</a> goal.
+                {activity.name} has completed <Link to={`/goal/${activity.goal_id}`} className='communityActivity_link'>{activity.title}</Link> goal.
                 </p>
                 <br />
                 <p className='left grey-text'><Timeago date= {activity.time_stamp}/></p>
@@ -96,11 +97,11 @@ class CommunityProfile extends Component {
 
                 <CollectionItem className="community-goal" key={`${goals.title} ${i}`} onClick={()=>this.props.history.push(`/goal/${goals.id}`)}>
                   {goals.title}
-                  <a href={`/goal/${goals.id}`} className='secondary-content'>
+                  <Link to={`/goal/${goals.id}`} className='secondary-content'>
                     <Icon>
                       arrow_forward
                     </Icon>
-                  </a>
+                  </Link>
                 </CollectionItem>
 
             )
@@ -125,14 +126,14 @@ class CommunityProfile extends Component {
               { goalsList }
               <CollectionItem>
                   <Button type="submit" waves="light">
-                  <a href={`/goals/community/${this.props.match.params.id}`} className='secondary-content'>
+                  <Link to={`/goals/community/${this.props.match.params.id}`} className='secondary-content'>
                       <div className='white-text'>
                       Community Goals
                       <Icon right>
                       arrow_forward
                       </Icon>
                       </div>
-                  </a>
+                  </Link>
                   </Button>
               </CollectionItem>
             </Collection>

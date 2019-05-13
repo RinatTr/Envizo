@@ -71,7 +71,7 @@ class UserProfile extends Component {
       activityList = userActivity.map(activity => {
         if(activity.type === 'joined') {
           return (
-            <CollectionItem className='l2' key={activity.activity_id}>
+            <CollectionItem className='l2' key={activity.id}>
               <div className='joined'>
                 <div className='text'>
                   <p className='left'>{userName} {userWord} joined

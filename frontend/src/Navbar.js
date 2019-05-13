@@ -57,7 +57,7 @@ render(){
     <div>
       <nav>
         <div className="nav-wrapper">
-          <div className='logo_img'><a href='/'><img src={logo} alt='' className="brand-logo responsive-img"></img></a></div>
+          <div className='logo_img'><Link to='/'><img src={logo} alt='' className="brand-logo responsive-img"></img></Link></div>
           <a href="/" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             {navbarTernary}
         </div>

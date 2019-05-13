@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import M from 'materialize-css'
 import '../css/login.css'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 class Login extends Component {
   state = {
@@ -31,7 +31,8 @@ class Login extends Component {
 }
   logout = e => {
     this.props.logout()
-    window.location.reload();
+    // window.location.reload();
+    this.props.history.push('/')
   }
 
   render(){
@@ -72,7 +73,7 @@ class Login extends Component {
         {this.props.isLoggedIn ?
           <img src="https://media1.tenor.com/images/8d9e656f141cb596b9196287197bea37/tenor.gif?itemid=11705959" alt="logintest" />
             :<div className="container">
-                <h4>Not a member? <a href='/signup'>Sign up</a></h4>
+                <h4>Not a member? <Link to='/signup'>Sign up</Link></h4>
               </div>}
       </div>
     )
