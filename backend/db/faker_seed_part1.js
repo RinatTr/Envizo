@@ -97,6 +97,8 @@ subscriptions = subscriptions.join(", ")
 submissions = submissions.join(", ")
 activity = activity.join(", ")
 
+
+
 db.none("INSERT INTO communities(name) VALUES " + communities + ";")
 .then(() => {
   db.none("INSERT INTO users(username, password_digest, email, community_id, avatar_img) VALUES " + users + ";")
