@@ -83,15 +83,17 @@ class UserProfile extends Component {
                 </div>
                 { isLoggedInUserPage ?
                   <div className='share_buttons'>
-                    <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
+                    <FacebookShareButton url='https://envizo.herokuapp.com' quote={'I have joined the ' + community[0].name + 'community at Envizo'} className="button">
                       <FacebookIcon size={32} round={true} />
                     </FacebookShareButton>
 
-                    <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
+                    <TwitterShareButton url='https://envizo.herokuapp.com'
+                      hashtags={['Envizo', 'Environment', 'HelpKeepYourCommunityClean']}
+                      title={'I have joined the ' + community[0].name + 'community at Envizo'} className="button">
                       <TwitterIcon size={32} round={true} />
                     </TwitterShareButton>
 
-                    <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
+                    <TumblrShareButton url='https://envizo.herokuapp.com' caption={'I have joined the ' + community[0].name + 'community at Envizo'} className="button">
                       <TumblrIcon size={32} round={true} />
                     </TumblrShareButton>
                   </div> : null
@@ -109,15 +111,19 @@ class UserProfile extends Component {
               </div>
               { isLoggedInUserPage ?
                 <div className='share_buttons'>
-                  <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
+                  <FacebookShareButton url='https://envizo.herokuapp.com' quote={'I have uploaded a photo to the ' + activity.title + ' goal at Envizo !'} className="button">
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
 
-                  <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
+                  <TwitterShareButton url='https://envizo.herokuapp.com'
+                    hashtags={['Envizo', 'Environment', 'HelpKeepYourCommunityClean']}
+                    title={'I have uploaded a photo to the ' + activity.title + ' goal at Envizo !'} className="button">
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
 
-                  <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
+                  <TumblrShareButton url='https://envizo.herokuapp.com'
+                    tags={['Envizo', 'Environment', 'HelpKeepYourCommunityClean']}
+                    caption={'I have uploaded a photo to the ' + activity.title + ' goal at Envizo !'} className="button">
                     <TumblrIcon size={32} round={true} />
                   </TumblrShareButton>
                 </div> : null
@@ -135,17 +141,21 @@ class UserProfile extends Component {
               </div>
               { isLoggedInUserPage ?
                 <div className='share_buttons'>
-                  <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
-                    <FacebookIcon size={32} round={true} />
-                  </FacebookShareButton>
+                <FacebookShareButton url='https://envizo.herokuapp.com' quote={'I have subscribed to the ' + activity.title + ' goal at Envizo !'} className="button">
+                  <FacebookIcon size={32} round={true} />
+                </FacebookShareButton>
 
-                  <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
-                    <TwitterIcon size={32} round={true} />
-                  </TwitterShareButton>
+                <TwitterShareButton url='https://envizo.herokuapp.com'
+                  hashtags={['Envizo', 'Environment', 'HelpKeepYourCommunityClean']}
+                  title={'I have subscribed to the ' + activity.title + ' goal at Envizo !'} className="button">
+                  <TwitterIcon size={32} round={true} />
+                </TwitterShareButton>
 
-                  <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
-                    <TumblrIcon size={32} round={true} />
-                  </TumblrShareButton>
+                <TumblrShareButton url='https://envizo.herokuapp.com'
+                tags={['Envizo', 'Environment', 'HelpKeepYourCommunityClean']}
+                caption={'I have subscribed to the ' + activity.title + ' goal at Envizo !'} className="button">
+                  <TumblrIcon size={32} round={true} />
+                </TumblrShareButton>
                 </div> : null
               }
             </div>
@@ -163,15 +173,19 @@ class UserProfile extends Component {
                 </div>
                 { isLoggedInUserPage ?
                   <div className='share_buttons'>
-                    <FacebookShareButton url='https://envizo.herokuapp.com' className="button">
+                    <FacebookShareButton url='https://envizo.herokuapp.com' quote={'My community has completed a milestone in ' + activity.title + ' goal at Envizo !'} className="button">
                       <FacebookIcon size={32} round={true} />
                     </FacebookShareButton>
 
-                    <TwitterShareButton url='https://envizo.herokuapp.com' className="button">
+                    <TwitterShareButton url='https://envizo.herokuapp.com'
+                      hashtags={['Envizo', 'Environment', 'HelpKeepYourCommunityClean']}
+                      title={'My community has completed a milestone in ' + activity.title + ' goal at Envizo !'} className="button">
                       <TwitterIcon size={32} round={true} />
                     </TwitterShareButton>
 
-                    <TumblrShareButton url='https://envizo.herokuapp.com' className="button">
+                    <TumblrShareButton url='https://envizo.herokuapp.com'
+                      tags={['Envizo', 'Environment', 'HelpKeepYourCommunityClean']}
+                      caption={'My community has completed a milestone in ' + activity.title + ' goal at Envizo !'} className="button">
                       <TumblrIcon size={32} round={true} />
                     </TumblrShareButton>
                   </div> : null
