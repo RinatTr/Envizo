@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/signup.css';
 import ReactS3 from 'react-s3';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Select } from 'react-materialize';
 import { uploadFile } from 'react-s3';
 // let aws = require('../util/secretAWS.json')
@@ -167,7 +167,7 @@ class Signup extends Component {
         {this.state.error?<p>Check Input Entries</p>:null}
 
         <div className="container">
-          <h4>Already a member? <a href="/login">Login</a></h4>
+          <h4>Already a member? <Link to="/login">Login</Link></h4>
         </div>
       </div>
     )
