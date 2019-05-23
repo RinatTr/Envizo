@@ -11,7 +11,6 @@ We care about the environment, and we wanted to create an app to encourage users
 We believe that if users see their impact, they will be empowered to act and engage with their communities.
 
 ## Features
-(seeing data of the issue, see your impact[prediction], upload a photo  )
 1. Interactive visualization of the environmental issue.
 2. Personal impact prediction component.
 3. Join your community and subscribe to [GreenNYC](https://www1.nyc.gov/site/greenyc/small-steps/at-home.page) suggested goals.
